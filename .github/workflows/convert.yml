@@ -31,6 +31,7 @@ jobs:
       - name: Create Temporary Directory
         run: |
           mkdir -p temp_output
+          chmod -R 777 temp_output  # Ensure write permissions
           echo "TEMP_DIR=temp_output" >> $GITHUB_ENV
 
       - name: Convert Markdown to HTML and PDF using Marp CLI
@@ -40,6 +41,7 @@ jobs:
             RELATIVE_PATH="${file#content/}"
             OUTPUT_DIR="$TEMP_DIR/$(dirname "$RELATIVE_PATH")"
             mkdir -p "$OUTPUT_DIR"
+            chmod -R 777 "$OUTPUT_DIR"  # Ensure write permissions
             
             # Run Marp CLI without specifying a user to avoid permission issues
             docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.html")"
