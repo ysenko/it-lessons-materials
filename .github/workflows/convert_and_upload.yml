@@ -101,7 +101,8 @@ jobs:
             RELATIVE_PATH="${file#temp_output/}"
             DIR_NAME=$(dirname "$RELATIVE_PATH" | cut -d'/' -f1)
             TARGET_FOLDER_ID_VAR="GRADE_${DIR_NAME}_FOLDER_ID"
-            TARGET_FOLDER_ID="${{ vars[env.TARGET_FOLDER_ID_VAR] }}"
+            echo "DIR_NAME=$DIR_NAME" >> $GITHUB_ENV  # Store DIR_NAME in GitHub env
+            TARGET_FOLDER_ID="${{ vars[format('GRADE_{0}_FOLDER_ID', env.DIR_NAME)] }}"
             echo "TARGET_FOLDER_ID=$TARGET_FOLDER_ID"
             TARGET_FILE_NAME=$(basename "$RELATIVE_PATH")
             TARGET_PATH="$TARGET_FOLDER_ID:$TARGET_FILE_NAME"
