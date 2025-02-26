@@ -12,11 +12,21 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2  # Ensures we have at least the previous commit for diffing
 
       - name: Find Changed Markdown Files
         id: changed-md
         run: |
-          echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} -- '*.md' | tr '\n' ' ')" >> $GITHUB_ENV
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          
+          # Ensure base commit exists
+          git fetch origin "$BASE_SHA" --depth=1 || true
+          
+          # Find changed files
+          CHANGED_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- '*.md' | tr '\n' ' ')
+          echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_ENV
 
       - name: Convert Markdown to HTML and PDF using Marp CLI
         if: env.CHANGED_FILES != ''
