@@ -75,6 +75,7 @@ jobs:
             echo "HAS_FILES=true" >> $GITHUB_ENV
           else
             echo "HAS_FILES=false" >> $GITHUB_ENV
+        shell: bash
 
       - name: Set up Python
         if: env.HAS_FILES == 'true'
