@@ -100,7 +100,9 @@ jobs:
           for file in $(find temp_output -type f); do
             RELATIVE_PATH="${file#temp_output/}"
             DIR_NAME=$(dirname "$RELATIVE_PATH" | cut -d'/' -f1)
+            echo "Dir name is $DIR_NAME"
             TARGET_FOLDER_ID_VAR="GRADE_${DIR_NAME}_FOLDER_ID"
+            echo "Will read target folder ID from $TARGET_FOLDER_ID_VAR"
             TARGET_FOLDER_ID="${!TARGET_FOLDER_ID_VAR}"
             TARGET_FILE_NAME=$(basename "$RELATIVE_PATH")
             TARGET_PATH="$TARGET_FOLDER_ID:$TARGET_FILE_NAME"
