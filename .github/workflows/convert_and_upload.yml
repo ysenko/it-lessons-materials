@@ -113,7 +113,7 @@ jobs:
               echo "Warning: No Google Drive folder ID found for $DIR_NAME. Skipping upload."
             else
               echo "Uploading $file to $TARGET_PATH"
-              #python google_drive_upload.py "$file" "$TARGET_PATH"
+              python google_drive_upload.py "$file" "$TARGET_PATH"
             fi
           done
   

@@ -32,11 +32,11 @@ color: black
 
 ## Key Use Cases of AutoGen 2/2
 
-### 1. Research & Experimentation
+### 3. Research & Experimentation
 - Ideal for AI-driven scientific discovery.
 - Supports hypothesis generation and validation through autonomous agents.
 
-### 2. Task Decomposition & Workflow Automation
+### 4. Task Decomposition & Workflow Automation
 - Breaks down large, complex tasks into smaller subtasks.
 - Automates decision-making with hierarchical agents.
 
