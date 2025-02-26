@@ -1,0 +1,27 @@
+name: Build Marp Presentations on Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-presentations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Find Changed Markdown Files
+        id: changed-md
+        run: |
+          echo "CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }} -- '*.md' | tr '\n' ' ')" >> $GITHUB_ENV
+
+      - name: Convert Markdown to HTML and PDF using Marp CLI
+        if: env.CHANGED_FILES != ''
+        run: |
+          for file in $CHANGED_FILES; do
+            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli "$file" --output "${file%.md}.html"
+            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli "$file" --output "${file%.md}.pdf"
+          done
