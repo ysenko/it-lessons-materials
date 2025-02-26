@@ -94,23 +94,40 @@ jobs:
         run: |
           echo '${{ secrets.GDRIVE_CREDENTIALS }}' > creds.json
 
-      - name: Upload Converted Files to Google Drive
+      - name: Set Target Folder ID for Each File
         if: env.HAS_FILES == 'true'
         run: |
           for file in $(find temp_output -type f); do
             RELATIVE_PATH="${file#temp_output/}"
             DIR_NAME=$(dirname "$RELATIVE_PATH" | cut -d'/' -f1)
-            TARGET_FOLDER_ID_VAR="GRADE_${DIR_NAME}_FOLDER_ID"
-            echo "DIR_NAME=$DIR_NAME" >> $GITHUB_ENV  # Store DIR_NAME in GitHub env
-            TARGET_FOLDER_ID="${{ vars[format('GRADE_{0}_FOLDER_ID', env.DIR_NAME)] }}"
-            echo "TARGET_FOLDER_ID=$TARGET_FOLDER_ID"
+            echo "DIR_NAME_$file=$DIR_NAME" >> $GITHUB_ENV
+          done
+
+          - name: Set Target Folder ID for Each File
+          if: env.HAS_FILES == 'true'
+          run: |
+            for file in $(find temp_output -type f); do
+              RELATIVE_PATH="${file#temp_output/}"
+              DIR_NAME=$(dirname "$RELATIVE_PATH" | cut -d'/' -f1)
+              echo "DIR_NAME_$file=$DIR_NAME" >> $GITHUB_ENV
+            done
+  
+      - name: Upload Converted Files to Google Drive
+        if: env.HAS_FILES == 'true'
+        env:
+            TARGET_FOLDER_ID: ${{ vars[format('GRADE_{0}_FOLDER_ID', env.DIR_NAME)] }}
+        run: |
+          for file in $(find temp_output -type f); do
+            RELATIVE_PATH="${file#temp_output/}"
             TARGET_FILE_NAME=$(basename "$RELATIVE_PATH")
             TARGET_PATH="$TARGET_FOLDER_ID:$TARGET_FILE_NAME"
-            
+              
             if [ -z "$TARGET_FOLDER_ID" ]; then
               echo "Warning: No Google Drive folder ID found for $DIR_NAME. Skipping upload."
             else
               echo "Uploading $file to $TARGET_PATH"
-              # python google_drive_upload.py "$file" "$TARGET_PATH"
+              #python google_drive_upload.py "$file" "$TARGET_PATH"
             fi
           done
+  
+
