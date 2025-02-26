@@ -83,5 +83,17 @@ jobs:
         run: |
           for file in $(find temp_output -type f); do
             RELATIVE_PATH="${file#temp_output/}"
-            python google_drive_upload.py "$file" "1UcpTtlguwZa8xu3ac7yNy4mM8ALPmqf9:$RELATIVE_PATH"
+            DIR_NAME=$(dirname "$RELATIVE_PATH" | cut -d'/' -f1)
+            TARGET_FOLDER_ID_VAR="GRADE_${DIR_NAME}_FOLDER_ID"
+            echo "Will read target folder id from $TARGET_FOLDER_ID_VAR"
+            TARGET_FOLDER_ID="${!TARGET_FOLDER_ID_VAR}"
+            TARGET_FILE_NAME=$(basename "$RELATIVE_PATH")
+            TARGET_PATH="$TARGET_FOLDER_ID:$TARGET_FILE_NAME"
+            
+            if [ -z "$TARGET_FOLDER_ID" ]; then
+              echo "Warning: No Google Drive folder ID found for $DIR_NAME. Skipping upload."
+            else
+              echo "Copying $file to $TARGET_PATH"
+              # python google_drive_upload.py "$file" "$TARGET_PATH"
+            fi
           done
