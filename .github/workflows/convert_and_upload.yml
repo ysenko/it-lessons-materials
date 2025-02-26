@@ -70,12 +70,13 @@ jobs:
 
       - name: Check if Files Exist
         id: check-files
+        shell: bash
         run: |
           if [ -d "temp_output" ] && [ "$(ls -A temp_output)" ]; then
             echo "HAS_FILES=true" >> $GITHUB_ENV
           else
             echo "HAS_FILES=false" >> $GITHUB_ENV
-        shell: bash
+          fi
 
       - name: Set up Python
         if: env.HAS_FILES == 'true'
@@ -107,6 +108,7 @@ jobs:
             if [ -z "$TARGET_FOLDER_ID" ]; then
               echo "Warning: No Google Drive folder ID found for $DIR_NAME. Skipping upload."
             else
-              python google_drive_upload.py "$file" "$TARGET_PATH"
+              echo "Uploading $file to $TARGET_PATH"
+              # python google_drive_upload.py "$file" "$TARGET_PATH"
             fi
           done
