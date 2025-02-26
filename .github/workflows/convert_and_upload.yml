@@ -103,7 +103,7 @@ jobs:
             DIR_NAME=$(dirname "$RELATIVE_PATH" | cut -d'/' -f1)
             TARGET_FOLDER_ID_VAR="GRADE_${DIR_NAME}_FOLDER_ID"
             echo "Will read $TARGET_FOLDER_ID_VAR"
-            TARGET_FOLDER_ID=$(eval echo "\$$TARGET_FOLDER_ID_VAR")
+            TARGET_FOLDER_ID="${{ env[${TARGET_FOLDER_ID_VAR}] }}"
             TARGET_FOLDER_ID="$GRADE_5_FOLDER_ID"
             TARGET_FILE_NAME=$(basename "$RELATIVE_PATH")
             TARGET_PATH="$TARGET_FOLDER_ID:$TARGET_FILE_NAME"
