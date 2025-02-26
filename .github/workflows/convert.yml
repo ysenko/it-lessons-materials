@@ -36,12 +36,16 @@ jobs:
       - name: Convert Markdown to HTML and PDF using Marp CLI
         if: env.CHANGED_FILES != ''
         run: |
+          sudo chown -R $(id -u):$(id -g) temp_output  # Ensure correct ownership
+          
           for file in $CHANGED_FILES; do
             RELATIVE_PATH="${file#content/}"
             OUTPUT_DIR="$TEMP_DIR/$(dirname "$RELATIVE_PATH")"
             mkdir -p "$OUTPUT_DIR"
-            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.html")"
-            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
+            
+            # Run Marp CLI as the current user to prevent permission issues
+            docker run --rm -v "$PWD:/workspace" -w /workspace -u $(id -u):$(id -g) ghcr.io/marp-team/marp-cli "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.html")"
+            docker run --rm -v "$PWD:/workspace" -w /workspace -u $(id -u):$(id -g) ghcr.io/marp-team/marp-cli "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
           done
 
       - name: Upload Converted Files as Artifact
