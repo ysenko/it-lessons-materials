@@ -97,6 +97,7 @@ jobs:
       - name: Upload Converted Files to Google Drive
         if: env.HAS_FILES == 'true'
         run: |
+          env
           for file in $(find temp_output -type f); do
             RELATIVE_PATH="${file#temp_output/}"
             DIR_NAME=$(dirname "$RELATIVE_PATH" | cut -d'/' -f1)
