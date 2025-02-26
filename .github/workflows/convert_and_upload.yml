@@ -94,22 +94,18 @@ jobs:
         run: |
           echo '${{ secrets.GDRIVE_CREDENTIALS }}' > creds.json
 
-      - name: Set Target Folder ID for Each File
+      - name: Upload Converted Files to Google Drive
         if: env.HAS_FILES == 'true'
+        env:
+            GRADE_5_FOLDER_ID: ${{ vars.GRADE_5_FOLDER_ID }}
+            GRADE_6_FOLDER_ID: ${{ vars.GRADE_6_FOLDER_ID }}
+            GRADE_7_FOLDER_ID: ${{ vars.GRADE_7_FOLDER_ID }}
         run: |
           for file in $(find temp_output -type f); do
             RELATIVE_PATH="${file#temp_output/}"
             DIR_NAME=$(dirname "$RELATIVE_PATH" | cut -d'/' -f1)
-            echo "DIR_NAME_$file=$DIR_NAME" >> $GITHUB_ENV
-          done
-  
-      - name: Upload Converted Files to Google Drive
-        if: env.HAS_FILES == 'true'
-        env:
-            TARGET_FOLDER_ID: ${{ vars[format('GRADE_{0}_FOLDER_ID', env.DIR_NAME)] }}
-        run: |
-          for file in $(find temp_output -type f); do
-            RELATIVE_PATH="${file#temp_output/}"
+            TARGET_FOLDER_ID_VAR="GRADE_${DIR_NAME}_FOLDER_ID"
+            TARGET_FOLDER_ID="${!TARGET_FOLDER_ID_VAR}"
             TARGET_FILE_NAME=$(basename "$RELATIVE_PATH")
             TARGET_PATH="$TARGET_FOLDER_ID:$TARGET_FILE_NAME"
               
