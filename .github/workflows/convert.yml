@@ -48,9 +48,3 @@ jobs:
             docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
           done
 
-      - name: Upload Converted Files as Artifact
-        if: env.CHANGED_FILES != ''
-        uses: actions/upload-artifact@v4
-        with:
-          name: converted-presentations
-          path: temp_output
