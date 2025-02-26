@@ -1,0 +1,48 @@
+name: Convert Markdown and Upload to Google Drive
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  convert-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Find Changed Markdown Files
+        id: changed-md
+        run: |
+          echo "CHANGED_FILES=$(git diff --name-only HEAD^ HEAD -- '*.md' | tr '\n' ' ')" >> $GITHUB_ENV
+
+      - name: Convert Markdown to HTML and PDF using Marp CLI
+        if: env.CHANGED_FILES != ''
+        run: |
+          for file in $CHANGED_FILES; do
+            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli "$file" --output "${file%.md}.html"
+            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli "$file" --output "${file%.md}.pdf"
+          done
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip -U -r requirements.txt
+
+      - name: Create JSON credentials file
+        run: |
+          echo '${{ secrets.GDRIVE_CREDENTIALS }}' > creds.json
+
+      - name: Upload Converted Files to Google Drive
+        if: env.CHANGED_FILES != ''
+        run: |
+          for file in $CHANGED_FILES; do
+            echo "Will upload" "${file%.md}.html" "GDRIVE_FOLDER_ID:${file%.md}.html"
+            echo "Will upload" "${file%.md}.pdf" "GDRIVE_FOLDER_ID:${file%.md}.pdf"
+          done
