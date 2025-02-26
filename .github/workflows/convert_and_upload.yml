@@ -55,6 +55,7 @@ jobs:
   upload-to-google-drive:
     runs-on: ubuntu-latest
     needs: build-presentations
+    if: always()  # Ensure job runs even if there are no changed files
 
     steps:
       - name: Checkout Repository
@@ -65,27 +66,39 @@ jobs:
         with:
           name: converted-presentations
           path: temp_output
+        continue-on-error: true  # Prevent failure if no artifact exists
+
+      - name: Check if Files Exist
+        id: check-files
+        run: |
+          if [ -d "temp_output" ] && [ "$(ls -A temp_output)" ]; then
+            echo "HAS_FILES=true" >> $GITHUB_ENV
+          else
+            echo "HAS_FILES=false" >> $GITHUB_ENV
 
       - name: Set up Python
+        if: env.HAS_FILES == 'true'
         uses: actions/setup-python@v4
         with:
           python-version: "3.12"
 
       - name: Install Dependencies
+        if: env.HAS_FILES == 'true'
         run: |
           pip install -r requirements.txt
 
       - name: Create Google Drive Credentials File
+        if: env.HAS_FILES == 'true'
         run: |
           echo '${{ secrets.GDRIVE_CREDENTIALS }}' > creds.json
 
       - name: Upload Converted Files to Google Drive
+        if: env.HAS_FILES == 'true'
         run: |
           for file in $(find temp_output -type f); do
             RELATIVE_PATH="${file#temp_output/}"
             DIR_NAME=$(dirname "$RELATIVE_PATH" | cut -d'/' -f1)
             TARGET_FOLDER_ID_VAR="GRADE_${DIR_NAME}_FOLDER_ID"
-            echo "Will read target folder id from $TARGET_FOLDER_ID_VAR"
             TARGET_FOLDER_ID="${!TARGET_FOLDER_ID_VAR}"
             TARGET_FILE_NAME=$(basename "$RELATIVE_PATH")
             TARGET_PATH="$TARGET_FOLDER_ID:$TARGET_FILE_NAME"
@@ -93,7 +106,6 @@ jobs:
             if [ -z "$TARGET_FOLDER_ID" ]; then
               echo "Warning: No Google Drive folder ID found for $DIR_NAME. Skipping upload."
             else
-              echo "Copying $file to $TARGET_PATH"
-              # python google_drive_upload.py "$file" "$TARGET_PATH"
+              python google_drive_upload.py "$file" "$TARGET_PATH"
             fi
           done

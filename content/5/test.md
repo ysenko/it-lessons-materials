@@ -18,7 +18,7 @@ color: black
 
 ---
 
-## Key Use Cases of AutoGen
+## Key Use Cases of AutoGen 1/2
 
 ### 1. Multi-Agent Collaboration
 - Facilitates multiple AI agents working together on complex tasks.
@@ -27,6 +27,10 @@ color: black
 ### 2. Automated Code Generation & Debugging
 - Uses AI agents to iteratively generate, test, and debug code.
 - Enables human-in-the-loop supervision where needed.
+
+---
+
+## Key Use Cases of AutoGen 2/2
 
 ### 3. Research & Experimentation
 - Ideal for AI-driven scientific discovery.
