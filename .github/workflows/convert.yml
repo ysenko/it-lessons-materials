@@ -27,6 +27,7 @@ jobs:
           # Find changed files only in the content directory
           CHANGED_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- 'content/*.md' | tr '\n' ' ')
           echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_ENV
+          echo "Detected changed files: ${CHANGED_FILES}"
 
       - name: Create Temporary Directory
         run: |
