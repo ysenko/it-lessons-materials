@@ -53,5 +53,5 @@ jobs:
         if: env.CHANGED_FILES != ''
         uses: actions/upload-artifact@v4
         with:
-          name: converted-presentations-${{ github.sha }}
+          name: artifact-${{ github.event.pull_request.head.sha }}
           path: temp_output
