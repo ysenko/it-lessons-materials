@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 4  # Ensures we have at least the previous commit for diffing
 
       - name: Get last commit SHA from merged PR
         id: get_sha
