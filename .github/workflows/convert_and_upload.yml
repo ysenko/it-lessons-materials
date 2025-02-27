@@ -15,7 +15,7 @@ jobs:
       - name: Get last commit SHA from merged PR
         id: get_sha
         run: |
-          SHA=$(git log --merges -n 1 --pretty=format:"%P" | awk '{print $2}')
+          SHA=$(git rev-parse HEAD@{2})
           echo "MERGED_PR_SHA=$SHA" >> $GITHUB_ENV
 
       - name: Download Converted Files
