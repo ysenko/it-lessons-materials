@@ -20,13 +20,14 @@ jobs:
         run: |
           BASE_SHA="${{ github.event.pull_request.base.sha }}"
           HEAD_SHA="${{ github.event.pull_request.head.sha }}"
-          
+
           # Ensure base commit exists
           git fetch origin "$BASE_SHA" --depth=1 || true
-          
+
           # Find changed files only in the content directory
           CHANGED_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- 'content/*.md' | tr '\n' ' ')
           echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_ENV
+          echo "Detected changed files: ${CHANGED_FILES}"
 
       - name: Create Temporary Directory
         run: |
@@ -42,9 +43,15 @@ jobs:
             OUTPUT_DIR="$TEMP_DIR/$(dirname "$RELATIVE_PATH")"
             mkdir -p "$OUTPUT_DIR"
             chmod -R 777 "$OUTPUT_DIR"  # Ensure write permissions
-            
+
             # Run Marp CLI without specifying a user to avoid permission issues
             docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.html")"
             docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
           done
 
+      - name: Upload Converted Files as Artifact
+        if: env.CHANGED_FILES != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: converted-presentations-${{ github.sha }}
+          path: temp_output

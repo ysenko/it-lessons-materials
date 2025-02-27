@@ -1,5 +1,7 @@
 .history
 .venv
 
-.pdf
-.html
+creds.json
+
+*.pdf
+*.html
