@@ -3,5 +3,5 @@
 
 creds.json
 
-.pdf
-.html
+*.pdf
+*.html
