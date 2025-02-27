@@ -12,10 +12,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Get last commit SHA from merged PR
+        id: get_sha
+        run: |
+          SHA=$(git log --merges -n 1 --pretty=format:"%P" | awk '{print $2}')
+          echo "MERGED_PR_SHA=$SHA" >> $GITHUB_ENV
+
       - name: Download Converted Files
         uses: actions/download-artifact@v4
         with:
-          name: converted-presentations-${{ github.sha }}
+          name: converted-presentations-${{ env.MERGED_PR_SHA }}
           path: temp_output
 
       - name: Check if Files Exist
