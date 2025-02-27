@@ -52,6 +52,8 @@ jobs:
       - name: Upload Converted Files as Artifact
         if: env.CHANGED_FILES != ''
         uses: actions/upload-artifact@v4
+        env:
+          ARTIFACT_NAME: converted-presentations-${{ github.event.pull_request.head.sha }}
         with:
-          name: converted-presentations-{{ github.event.pull_request.head.sha }}
+          name: ${{ env.ARTIFACT_NAME }}
           path: temp_output
