@@ -20,6 +20,16 @@ jobs:
           SHA=$(git rev-parse HEAD^2)
           echo "MERGED_PR_SHA=$SHA" >> $GITHUB_ENV
 
+      - name: List Available Artifacts
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: artifacts } = await github.rest.actions.listArtifactsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            console.log(artifacts.artifacts.map(a => a.name));
+
       - name: Download Converted Files
         uses: actions/download-artifact@v4
         with:
