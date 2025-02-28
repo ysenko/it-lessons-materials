@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  actions: read  # Explicitly allow reading artifacts
+
 jobs:
   upload-to-google-drive:
     runs-on: ubuntu-latest
