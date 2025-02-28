@@ -1,7 +1,7 @@
 # it-lessons-materials
 
 The repository contains materials for informatics lessons of the "New Ukrainian School" program.
-Presentations are added in the Marp (Markdown flavor) format, and CI/CD pipeline is responsible for creating PDF and HTML versions and pushing them the GDrive.
+Presentations are added in the Marp (Markdown flavor) format, and the CI/CD pipeline is responsible for creating PDF and HTML versions and pushing them to the GDrive.
 
 ## Setup
 
@@ -9,9 +9,10 @@ Presentations are added in the Marp (Markdown flavor) format, and CI/CD pipeline
 2. Enable Google Drive API.
 3. Create a new service account and grant it the Editor role.
 4. Download the service account key in JSON format and add it to the GitHub Secrets as `GDRIVE_CREDENTIALS`
-5. Add the following env variables `GRADE_5_FOLDER_ID`  `GRADE_6_FOLDER_ID` `GRADE_5_FOLDER_ID` with respective folder ids (can be determined by looking at the folder URL in the browser).
-6. Grant edit access to all folders for various grades to the service account email address.
-7. Commit merge and enjoy.
+5. Add the following env variables `GRADE_5_FOLDER_ID`  `GRADE_6_FOLDER_ID` `GRADE_5_FOLDER_ID` with respective folder IDs (can be determined by looking at the folder URL in the browser).
+6. Generate personal access token (classic) with read access to the repo. Set repository secret `PAT_TOKEN` so the pipeline can download artifacts.
+7. Grant edit access to all folders for various grades to the service account email address.
+8. Commit merge and enjoy.
 
 ## Adding new presentation
 
