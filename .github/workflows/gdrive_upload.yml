@@ -36,7 +36,7 @@ jobs:
         with:
           github_token: ${{ secrets.PAT_TOKEN }}  # Use a PAT token to access artifacts from another workflow
           workflow: convert.yml  # The workflow filename that created the artifact
-          run_id: latest  # Get the latest run's artifact
+          commit: ${{ env.MERGED_PR_SHA }}
           name: converted-presentations-${{ env.MERGED_PR_SHA }}  # Name of the artifact uploaded by the previous workflow
           path: temp_output
 
