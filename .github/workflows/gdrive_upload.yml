@@ -14,12 +14,6 @@ jobs:
         with:
           fetch-depth: 4  # Ensures we have at least the previous commit for diffing
 
-      - name: Get last commit SHA from merged PR
-        id: get_sha
-        run: |
-          SHA=$(git rev-parse HEAD^2)
-          echo "MERGED_PR_SHA=$SHA" >> $GITHUB_ENV
-
       - name: List Available Artifacts
         uses: actions/github-script@v6
         with:
@@ -29,6 +23,12 @@ jobs:
               repo: context.repo.repo,
             });
             console.log(artifacts.artifacts.map(a => a.name));
+
+      - name: Get last commit SHA from merged PR
+        id: get_sha
+        run: |
+          SHA=$(git rev-parse HEAD^2)
+          echo "MERGED_PR_SHA=$SHA" >> $GITHUB_ENV
 
       - name: Download Converted Files
         uses: actions/download-artifact@v4
