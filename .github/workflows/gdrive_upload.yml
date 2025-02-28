@@ -25,17 +25,19 @@ jobs:
             });
             console.log(response.data.artifacts.map(a => a.name));
 
-
       - name: Get last commit SHA from merged PR
         id: get_sha
         run: |
           SHA=$(git rev-parse HEAD^2)
           echo "MERGED_PR_SHA=$SHA" >> $GITHUB_ENV
 
-      - name: Download Converted Files
-        uses: actions/download-artifact@v4
+      - name: Download Artifact from Another Workflow
+        uses: dawidd6/action-download-artifact@v2
         with:
-          name: converted-presentations-${{ env.MERGED_PR_SHA }}
+          github_token: ${{ secrets.PAT_TOKEN }}  # Use a PAT token to access artifacts from another workflow
+          workflow: convert.yml  # The workflow filename that created the artifact
+          run_id: latest  # Get the latest run's artifact
+          name: artifact-${{ env.MERGED_PR_SHA }}  # Name of the artifact uploaded by the previous workflow
           path: temp_output
 
       - name: Check if Files Exist
