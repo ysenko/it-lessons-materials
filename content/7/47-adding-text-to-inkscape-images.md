@@ -55,7 +55,7 @@ img {
       </ol>
     </div>
   <div class="image">
-    <img src="./assets/44/inkscape-window-marked.png">
+    <img src="./assets/47/logo-simple.png">
   </div>
 </div>
 
