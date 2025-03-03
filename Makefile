@@ -1,7 +1,8 @@
 .PHONY: clean
 
 SRC ?= presentation.md
-OUTPUT_DIR ?= output
+# Use content to ensure that produced html files can find images.
+OUTPUT_DIR ?= content
 
 # Output HTML file (derived from SRC name)
 HTML_OUT = $(patsubst %.md,%.html,$(SRC))
@@ -35,8 +36,6 @@ clean:
 	find . -name "*.html" -exec rm -f {} \;
 	find . -name "*.pdf" -exec rm -f {} \;
 	find . -name "*.pptx" -exec rm -f {} \;
-	rm -rf $(OUTPUT_DIR)
-
 
 # Show help message
 help:

@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 2  # Ensures we have at least the previous commit for diffing
 
-      - name: Find Changed Markdown Files in Content Directory
+      - name: Find Changed or Added Markdown Files in Content Directory
         id: changed-md
         run: |
           BASE_SHA="${{ github.event.pull_request.base.sha }}"
@@ -24,10 +24,10 @@ jobs:
           # Ensure base commit exists
           git fetch origin "$BASE_SHA" --depth=1 || true
 
-          # Find changed files only in the content directory
-          CHANGED_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- 'content/*.md' | tr '\n' ' ')
+          # Find changed or added files only in the content directory
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- 'content/*.md' | tr '\n' ' ')
           echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_ENV
-          echo "Detected changed files: ${CHANGED_FILES}"
+          echo "Detected changed or added files: ${CHANGED_FILES}"
 
       - name: Create Temporary Directory
         run: |
