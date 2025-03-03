@@ -32,7 +32,7 @@ jobs:
           echo "MERGED_PR_SHA=$SHA" >> $GITHUB_ENV
 
       - name: Download Artifact from Another Workflow
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v6
         with:
           github_token: ${{ secrets.PAT_TOKEN }}  # Use a PAT token to access artifacts from another workflow
           workflow: convert.yml  # The workflow filename that created the artifact
