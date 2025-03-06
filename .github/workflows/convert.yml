@@ -42,7 +42,6 @@ jobs:
             RELATIVE_PATH="${file#content/}"
             OUTPUT_DIR="$TEMP_DIR/$(dirname "$RELATIVE_PATH")"
             mkdir -p "$OUTPUT_DIR"
-            chmod -R 777 "$OUTPUT_DIR"  # Ensure write permissions
 
             # Run Marp CLI without specifying a user to avoid permission issues
             docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.pptx")"
