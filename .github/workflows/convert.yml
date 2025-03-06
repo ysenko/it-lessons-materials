@@ -41,11 +41,12 @@ jobs:
           for file in $CHANGED_FILES; do
             RELATIVE_PATH="${file#content/}"
             OUTPUT_DIR="$TEMP_DIR/$(dirname "$RELATIVE_PATH")"
-            mkdir -p "$OUTPUT_DIR"
+            OUTPUT_PATH_PPTX="$OUTPUT_DIR/$(basename "${file%.md}.pptx")"
+            OUTPUT_PATH_PDF="$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
 
             # Run Marp CLI without specifying a user to avoid permission issues
-            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.pptx")"
-            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
+            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$OUTPUT_PATH_PPTX" --pptx
+            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$OUTPUT_PATH_PDF" --pdf
           done
 
       - name: Upload Converted Files as Artifact
