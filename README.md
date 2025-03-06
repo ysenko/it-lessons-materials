@@ -16,9 +16,21 @@ Presentations are added in the Marp (Markdown flavor) format, and the CI/CD pipe
 
 ## Adding new presentation
 
-1. Install [Marp](https://marp.app/)
-2. Choose the folder according to the grade (5, 6 or 7).
-3. Create a new markdown file in the folder following naming convention `<lesson-number>-<lesson-topic>.md`.
-4. Any assets (e.g. images) must be placed inside the `content/<YOUR_PRESENTATION_GRADE>/assets/<YOUR_LESSON_NUMBER>` folder.
-5. Please do not commit any artifacts (i.e. pdf, html, pptx files). The CI pipeline will build PDF and PPTX (non-editable) versions of all changed presentations and will upload them to your Google Drive. **Existing files with same names will be DELETED! from your Google Drive folder.**
-6. Once your file is merged to the `main` branch both html and pdf versions of it should appear on your GDrive.
+### Prerequisites
+
+- Install [Marp](https://marp.app/)
+
+### Creating presentation
+
+1. Copy the template file from the `templates` folder into the `content` folder.
+   Make sure you replaced `<GRADE>` with the correct grade (i.e. 5, 6 or 7), `<LESSON-NUMBER>` with a correct lesson number, and `<LESSON-TITLE>` with a short and readable lesson title:
+
+   ```sh
+   cp templates/presentation_template.md content/<GRADE>/<LESSON-NUMBER>-<LESSON-TITLE>.md
+   ```
+
+2. Any assets (e.g. images) must be placed inside the `content/<GRADE>/assets/<LESSON-NUMBER>` folder.
+
+3. Please do not commit any artifacts (i.e. pdf, html, pptx files). The CI pipeline will build PDF and PPTX (non-editable) versions of all changed presentations and will upload them to your Google Drive. **Existing files with same names will be DELETED! from your Google Drive folder.**
+
+4. Once your file is merged to the `main` branch both html and pdf versions of it should appear on your GDrive.
