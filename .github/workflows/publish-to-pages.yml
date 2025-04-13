@@ -16,12 +16,16 @@ jobs:
           fetch-depth: 2  # Ensures we have at least the previous commit for diffing
 
       - name: Create Publish Directory
+        env:
+          PUBLISH_DIR: ${{ vars.PUBLISH_DIR }}
         run: |
-          echo "Creating publish dir ... $PUBLISH_DIR"
+          echo "Creating publish directory..."
           mkdir -p $PUBLISH_DIR
           chmod -R 777 $PUBLISH_DIR  # Ensure write permissions
 
       - name: Copy assets directories to the publish directory
+        env:
+          PUBLISH_DIR: ${{ vars.PUBLISH_DIR }}
         run: |
           find content -type d -name "assets" | while read file; do
             assets_dir=${file#content/}
@@ -30,6 +34,8 @@ jobs:
           done
 
       - name: Convert Markdown to HTML and PDF using Marp CLI
+        env:
+          PUBLISH_DIR: ${{ vars.PUBLISH_DIR }}
         run: |
           find content -type f -name "*.md" | while read file; do
             relative_path="${file#content/}"
