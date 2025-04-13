@@ -53,3 +53,10 @@ jobs:
             # Run Marp CLI without specifying a user to avoid permission issues
             docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$output_path_html" --html
           done
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ vars.PUBLISH_DIR }}
