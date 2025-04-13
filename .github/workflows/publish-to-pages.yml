@@ -17,6 +17,7 @@ jobs:
 
       - name: Create Publish Directory
         run: |
+          echo "Creating publish dir ... $PUBLISH_DIR"
           mkdir -p $PUBLISH_DIR
           chmod -R 777 $PUBLISH_DIR  # Ensure write permissions
 
