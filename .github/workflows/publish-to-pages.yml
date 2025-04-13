@@ -33,6 +33,13 @@ jobs:
             mkdir -p $PUBLISH_DIR/$assets_dir
             cp -r $file $PUBLISH_DIR/$assets_dir
           done
+          
+      - name: Set publish folder permissions
+        env:
+          PUBLISH_DIR: ${{ vars.PUBLISH_DIR }}
+        run: |
+          echo "Setting publish folder permissions..."
+          chmod -R 777 $PUBLISH_DIR
 
       - name: Convert Markdown to HTML and PDF using Marp CLI
         env:
