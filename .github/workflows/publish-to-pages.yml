@@ -17,7 +17,6 @@ jobs:
 
       - name: Create Publish Directory
         run: |
-          echo "PUBLISH_DIR=publish" >> $GITHUB_ENV
           mkdir -p $PUBLISH_DIR
           chmod -R 777 $PUBLISH_DIR  # Ensure write permissions
 
