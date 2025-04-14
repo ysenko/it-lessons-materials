@@ -72,8 +72,10 @@ def _create_index_file(markdown_text: str, publish_dir: pathlib.Path) -> None:
     """
     index_file_path = publish_dir / "index.html"
     with open(index_file_path, "w", encoding="utf-8") as f:
-        full_html = HTML_TEMPLATE.format(html_content=markdown_text)
-        f.write(markdown.markdown(full_html, output_format="html"))
+        full_html = HTML_TEMPLATE.format(
+            html_content=markdown.markdown(markdown_text, output_format="html")
+        )
+        f.write(full_html)
 
 
 def _get_all_indexed_files(publish_dir: pathlib.Path) -> list[pathlib.Path]:
