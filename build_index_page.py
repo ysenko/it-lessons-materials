@@ -91,12 +91,11 @@ def _get_all_indexed_files(publish_dir: pathlib.Path) -> list[pathlib.Path]:
 
         for lesson_file in grade_dir.iterdir():
             if lesson_file.is_file() and lesson_file.name.endswith(INDEX_EXT):
-                lesson_file_path = grade_dir / lesson_file
                 lesson_number_match = LESSON_NUMBER_MATCHER.match(lesson_file.name)
                 if lesson_number_match:
                     lesson_number = int(lesson_number_match.group())
                     all_files.append(PresentationFile(
-                        path=lesson_file_path,
+                        path=lesson_file.relative_to(publish_dir),
                         file_name=lesson_file.name,
                         grade=grade,
                         lesson_number=lesson_number,
