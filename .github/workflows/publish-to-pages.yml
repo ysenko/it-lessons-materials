@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-presentations:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/build-index-page-for-pages'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -74,7 +74,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/build-index-page-for-pages'
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ${{ vars.PUBLISH_DIR }}
