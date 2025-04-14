@@ -3,6 +3,8 @@
 The repository contains materials for informatics lessons of the "New Ukrainian School" program.
 Presentations are added in the Marp (Markdown flavor) format, and the CI/CD pipeline is responsible for creating PDF and HTML versions and pushing them to the GDrive.
 
+This is the [web version of presentations](https://ysenko.github.io/it-lessons-materials/index.html)
+
 ## Setup
 
 1. Create a new GCloud Project.
