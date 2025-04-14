@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-presentations:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/55-build-and-publish-to-pages-via-cicd'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +33,7 @@ jobs:
             mkdir -p $PUBLISH_DIR/$assets_dir
             cp -r $file $PUBLISH_DIR/$assets_dir
           done
-          
+
       - name: Set publish folder permissions
         env:
           PUBLISH_DIR: ${{ vars.PUBLISH_DIR }}
@@ -53,6 +53,24 @@ jobs:
             # Run Marp CLI without specifying a user to avoid permission issues
             docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$output_path_html" --html
           done
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Create index.html
+        env:
+          PUBLISH_DIR: ${{ vars.PUBLISH_DIR }}
+        run: |
+          echo "Creating index.html..."
+          python3 build_index_page.py
+          chmod  777 $PUBLISH_DIR/index.html
+          echo "index.html created successfully."
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
