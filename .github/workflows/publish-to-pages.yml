@@ -29,8 +29,11 @@ jobs:
         run: |
           find content -type d -name "assets" | while read file; do
             assets_dir=${file#content/}
-            echo "Copying assets directory: $assets_dir to $PUBLISH_DIR/$assets_dir"
+
+            echo "Creating assets target directory: PUBLISH_DIR/$assets_dir"
             mkdir -p $PUBLISH_DIR/$assets_dir
+
+            echo "Recursively copying assets from $file to $PUBLISH_DIR/$assets_dir"
             cp -r $file $PUBLISH_DIR/$assets_dir
           done
 
