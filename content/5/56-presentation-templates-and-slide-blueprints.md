@@ -4,7 +4,7 @@ _class: lead
 paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
-footer: Інформатика | 6 клас
+footer: Інформатика | 5 клас
 header: Урок 56
 ---
 
