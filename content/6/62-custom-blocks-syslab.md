@@ -23,7 +23,7 @@ header: Урок 62
 .grid-container {
   display: grid;
   grid-template-columns: 50% 50%;
-  align-items: left;
+  align-items: flex-start;
 }
 .panel {
   font-size: 19px; /* Adjust text size */
