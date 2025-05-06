@@ -6,12 +6,12 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: Інформатика | 7 клас
-header: Урок 63
+header: Урок 62
 ---
 
 # **Реалізація алгоритмів із розгалуженням**
 
-## Урок **63**
+## Урок **62**
 
 ---
 

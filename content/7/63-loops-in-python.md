@@ -6,12 +6,12 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: Інформатика | 7 клас
-header: Урок 62
+header: Урок 63
 ---
 
 # **Цикли в Python**
 
-## 🧐 Урок **62**
+## 🧐 Урок **63**
 
 ---
 
