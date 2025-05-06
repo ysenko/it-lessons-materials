@@ -1,5 +1,6 @@
 ---
 theme: gaia
+marp: true
 _class: lead
 paginate: true
 backgroundColor: #fff
@@ -71,7 +72,7 @@ for shelf in range(1, 4):
 
 ---
 
-## Практичне завдання
+## Практичне завдання [Python Online](https://www.onlineide.pro/playground/python)
 
 <div class="grid-container">
 <div class="panel">
@@ -80,7 +81,6 @@ for shelf in range(1, 4):
 
 Використай два вкладені цикли `while`, щоб надрукувати таблицю моноження для 2, 3, 4, 5
 
-[Python Online](https://www.onlineide.pro/playground/python)
 
 ```python
 x = 2
