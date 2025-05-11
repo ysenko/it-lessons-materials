@@ -48,7 +48,7 @@ footer: Інформатика | 6 клас
 .grid-container {
   display: grid;
   grid-template-columns: 50% 50%;
-  align-items: left;
+  align-items: start;
 }
 
 .text {
