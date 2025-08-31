@@ -5,7 +5,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: Інформатика | <REPLACE-WITH-ACTUAL-GRADE> клас
-header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
+header: Урок 01
 ---
 
 # **REPLACE WITH LESSON TITLE**
