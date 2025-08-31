@@ -69,9 +69,9 @@ jobs:
       - name: Upload Converted Files to Google Drive
         if: env.HAS_FILES == 'true'
         env:
-            GRADE_5_FOLDER_ID: ${{ vars.GRADE_5_FOLDER_ID }}
             GRADE_6_FOLDER_ID: ${{ vars.GRADE_6_FOLDER_ID }}
             GRADE_7_FOLDER_ID: ${{ vars.GRADE_7_FOLDER_ID }}
+            GRADE_8_FOLDER_ID: ${{ vars.GRADE_8_FOLDER_ID }}
         run: |
           for file in $(find temp_output -type f); do
             RELATIVE_PATH="${file#temp_output/}"
