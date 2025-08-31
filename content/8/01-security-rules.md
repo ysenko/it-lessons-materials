@@ -21,10 +21,12 @@ header: Урок 01
   grid-template-columns: 50% 50%;
   align-items: left;
 }
+
 .text-left {
   font-size: 20px; /* Adjust text size */
   padding: 10px;
 }
+
 .image-center {
   max-width: 100%; /* Ensures the image scales within its space */
   text-align: right;
