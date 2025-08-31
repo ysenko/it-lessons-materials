@@ -25,30 +25,37 @@ header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
 ## Cлайд з текстом ліворуч і зображенням праворуч
 
 <style>
+
 .grid-container {
   display: grid;
   grid-template-columns: 50% 50%;
   align-items: left;
 }
-.text {
+.text-left {
   font-size: 14px; /* Adjust text size */
   padding: 10px;
 }
-image {
+.image-center {
   max-width: 100%; /* Ensures the image scales within its space */
   height: auto;
   text-align: right;
-  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
 
 <div class="grid-container">
-  <div class="text">
+  <div class="text-left">
+
 Тут буде ваш текст
+
   </div>
 
-  <div class="imаge">
+  <div class="image-center">
+
 Тут буде ваше зображення
+
   </div>
 </div>
 
