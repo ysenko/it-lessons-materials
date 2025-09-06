@@ -1,0 +1,76 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.2.2 Chrome/134.0.6998.178 Electron/35.1.2 Safari/537.36" version="26.2.2">
+  <diagram name="Page-1" id="30T3Ff48kpaxMRQt7fGV">
+    <mxGraphModel dx="2054" dy="1205" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="yeyxSy335-s-lC_vbxr7-1" value="&lt;font style=&quot;font-size: 19px;&quot;&gt;Інтернет-провайдер&lt;/font&gt;" style="verticalLabelPosition=bottom;aspect=fixed;html=1;shape=mxgraph.salesforce.non_profit;" vertex="1" parent="1">
+          <mxGeometry x="820" y="251" width="103.01" height="95.8" as="geometry" />
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-2" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Стаціонарний абонент&lt;/font&gt;" style="sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.concepts.home;fillColor=#2072B8;" vertex="1" parent="1">
+          <mxGeometry x="360" y="258.7" width="99.04" height="97.1" as="geometry" />
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-3" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.01;entryY=0.588;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="yeyxSy335-s-lC_vbxr7-2" target="yeyxSy335-s-lC_vbxr7-1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="490" y="330" as="sourcePoint" />
+            <mxPoint x="590" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-4" value="DSL / Cable / PON" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=18;" vertex="1" connectable="0" parent="yeyxSy335-s-lC_vbxr7-3">
+          <mxGeometry x="-0.2764" y="-4" relative="1" as="geometry">
+            <mxPoint x="50" y="-4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-5" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Супутник&lt;/font&gt;" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.satellite;" vertex="1" parent="1">
+          <mxGeometry x="610" y="20" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-7" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.485;exitY=-0.012;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="yeyxSy335-s-lC_vbxr7-1" target="yeyxSy335-s-lC_vbxr7-5">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="960" y="310" as="sourcePoint" />
+            <mxPoint x="1060" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-8" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;width=12;startSize=5.44;" edge="1" parent="1" source="yeyxSy335-s-lC_vbxr7-2" target="yeyxSy335-s-lC_vbxr7-5">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="450" y="200" as="sourcePoint" />
+            <mxPoint x="550" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-13" value="Satelite" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=18;" vertex="1" connectable="0" parent="yeyxSy335-s-lC_vbxr7-8">
+          <mxGeometry x="-0.1489" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-9" value="&amp;nbsp;Мобільний Абонент" style="html=1;verticalLabelPosition=bottom;align=center;labelBackgroundColor=#ffffff;verticalAlign=top;strokeWidth=2;strokeColor=#0080F0;shadow=0;dashed=0;shape=mxgraph.ios7.icons.smartphone;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="1129" y="258.7" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-10" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.646;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.05;entryY=0.705;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="yeyxSy335-s-lC_vbxr7-14" target="yeyxSy335-s-lC_vbxr7-9">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="960" y="310" as="sourcePoint" />
+            <mxPoint x="1060" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-11" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.075;entryY=0.055;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="yeyxSy335-s-lC_vbxr7-5" target="yeyxSy335-s-lC_vbxr7-9">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="940" y="210" as="sourcePoint" />
+            <mxPoint x="1040" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-12" value="Satelite" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=18;" vertex="1" connectable="0" parent="yeyxSy335-s-lC_vbxr7-11">
+          <mxGeometry x="-0.0776" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-15" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.942;exitY=0.543;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.02;entryY=0.666;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="yeyxSy335-s-lC_vbxr7-1" target="yeyxSy335-s-lC_vbxr7-14">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="917" y="303" as="sourcePoint" />
+            <mxPoint x="1131" y="301" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yeyxSy335-s-lC_vbxr7-14" value="4G / 5G" style="points=[[0.005,0.09,0],[0.08,0,0],[0.76,0.25,0],[1,0.92,0],[0.91,0.995,0],[0.57,0.995,0],[0.045,0.955,0],[0.005,0.43,0]];verticalLabelPosition=bottom;sketch=0;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.3g_4g_indicator;fillColor=#005073;strokeColor=none;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="990" y="268.7" width="50" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
