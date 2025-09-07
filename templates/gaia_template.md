@@ -32,6 +32,10 @@ header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
   font-size: 30px;
 }
 
+.text-medium-small {
+  font-size: 25px;
+}
+
 </style>
 
 # **REPLACE WITH LESSON TITLE**
