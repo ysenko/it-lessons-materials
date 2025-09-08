@@ -36,6 +36,17 @@ header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
   font-size: 25px;
 }
 
+.text-small {
+  font-size: 18px;
+}
+
+.card {
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 15px;
+  font-size: 18px;
+}
+
 </style>
 
 # **REPLACE WITH LESSON TITLE**
