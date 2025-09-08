@@ -1,4 +1,5 @@
 ---
+marp: true
 theme: gaia
 _class: lead
 paginate: true
@@ -13,19 +14,23 @@ header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
 .grid-container {
   display: grid;
   grid-template-columns: 50% 50%;
-  align-items: left;
+  align-items: start;
 }
 .text-left {
-  font-size: 14px; /* Adjust text size */
-  padding: 10px;
+  text-align: left;
+  padding: 5px;
 }
 .image-center {
   max-width: 100%; /* Ensures the image scales within its space */
   height: auto;
-  text-align: right;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.text-large {
+  font-size: 40px;
 }
 
 .text-medium {
@@ -40,11 +45,14 @@ header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
   font-size: 18px;
 }
 
+.text-tiny {
+  font-size: 14px;
+}
+
 .card {
   border: 2px solid #333;
   border-radius: 12px;
   padding: 15px;
-  font-size: 18px;
 }
 
 </style>
@@ -60,36 +68,3 @@ header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
 - ℹ️ Що таке абзац.
 - 🔧 Які дії можна виконувати з абзацом.
 - ✏️ Які властивості має абзац і як їх змінювати.
-
----
-
-## Cлайд з текстом ліворуч і зображенням праворуч
-
-
-<div class="grid-container">
-  <div class="text-left">
-
-Тут буде ваш текст
-
-  </div>
-
-  <div class="image-center">
-
-Тут буде ваше зображення
-
-  </div>
-</div>
-
----
-
-## Слайд зі зміненим розміром шрифта
-
-<style>
-  .slide {
-    font-size: 18px;
-  }
-</style>
-
-<section class="slide">
-Весь текст в цій секції буде зі шрифтом 18 розміру
-</section>
