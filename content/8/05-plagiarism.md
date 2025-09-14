@@ -20,15 +20,6 @@ header: Урок 05
   text-align: left;
   padding: 5px;
 }
-.image-center {
-  max-width: 100%; /* Ensures the image scales within its space */
-  height: auto;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .text-large {
   font-size: 40px;
 }
