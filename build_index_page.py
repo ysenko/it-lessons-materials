@@ -79,7 +79,11 @@ def _get_lesson_human_readable_name(lesson_file: PresentationFile) -> str | None
         return matched_title_obj.group("lesson_title")
 
 
-def _build_index_lesson_name(lesson_number: int, lesson_human_readable_name: str | None, lesson_file_path: pathlib.Path) -> str:
+def _build_index_lesson_name(
+    lesson_number: int,
+    lesson_human_readable_name: str | None,
+    lesson_file_path: pathlib.Path,
+) -> str:
     """Build lesson name for the index file.
 
     Args:
@@ -104,7 +108,9 @@ def _index_grade_files(grade: int, lesson_files: list[PresentationFile]) -> str:
     index_content = f"\n## Уроки для {grade} Класу\n"
     for lesson_file in lesson_files:
         lesson_name = _get_lesson_human_readable_name(lesson_file)
-        index_content += _build_index_lesson_name(lesson_file.lesson_number, lesson_name, lesson_file.path)
+        index_content += _build_index_lesson_name(
+            lesson_file.lesson_number, lesson_name, lesson_file.path
+        )
         # index_content += f"- Урок номер [{lesson_file.lesson_number}]({lesson_file.path})\n"
 
     return index_content
@@ -138,13 +144,15 @@ def _get_all_indexed_files(publish_dir: pathlib.Path) -> list[PresentationFile]:
                 lesson_number_match = LESSON_NUMBER_MATCHER.match(lesson_file.name)
                 if lesson_number_match:
                     lesson_number = int(lesson_number_match.group())
-                    all_files.append(PresentationFile(
-                        lesson_dir=publish_dir,
-                        path=lesson_file.relative_to(publish_dir),
-                        file_name=lesson_file.name,
-                        grade=grade,
-                        lesson_number=lesson_number,
-                    ))
+                    all_files.append(
+                        PresentationFile(
+                            lesson_dir=publish_dir,
+                            path=lesson_file.relative_to(publish_dir),
+                            file_name=lesson_file.name,
+                            grade=grade,
+                            lesson_number=lesson_number,
+                        )
+                    )
 
     return all_files
 
