@@ -111,7 +111,6 @@ def _index_grade_files(grade: int, lesson_files: list[PresentationFile]) -> str:
         index_content += _build_index_lesson_name(
             lesson_file.lesson_number, lesson_name, lesson_file.path
         )
-        # index_content += f"- Урок номер [{lesson_file.lesson_number}]({lesson_file.path})\n"
 
     return index_content
 
