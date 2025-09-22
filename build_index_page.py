@@ -89,7 +89,7 @@ def _build_index_lesson_name(
     Args:
         lesson_number (int) lesson number
         lesson_human_readable_name (str): lesson name extracted from file or None.
-        lesson_file_path (pathlib.Path): path to the lesson file1
+        lesson_file_path (pathlib.Path): path to the lesson file
 
     Args:
         str, Lesson name for the index file list.
