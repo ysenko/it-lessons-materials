@@ -89,7 +89,7 @@ header: Урок 11
 
 <section class="text-medium-small">
 
-  <div class=card>
+  <div class="card">
 
 **Електронні послуги** — це послуги, які надаються повністю або частково через інтернет.
 
