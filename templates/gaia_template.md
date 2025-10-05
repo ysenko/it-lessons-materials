@@ -55,6 +55,10 @@ header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
   padding: 15px;
 }
 
+.important-to-remember {
+    background-color: lightyellow;
+}
+
 </style>
 
 # **REPLACE WITH LESSON TITLE**
