@@ -5,8 +5,8 @@ _class: lead
 paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
-footer: Інформатика | <REPLACE-WITH-ACTUAL-GRADE> клас
-header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
+footer: 🖥️ Інформатика | <REPLACE-WITH-ACTUAL-GRADE> клас
+header: 🏫 Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
 ---
 
 <style>
@@ -56,14 +56,18 @@ header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
 }
 
 .important-to-remember {
-    background-color: lightyellow;
+  background-color: lightyellow;
+}
+
+.borderless {
+  border: 0px;
 }
 
 </style>
 
 # **REPLACE WITH LESSON TITLE**
 
-## Урок **REPLACE WITH LESSON NUMBER**
+## 🏫 Урок **REPLACE WITH LESSON NUMBER**
 
 ---
 
