@@ -59,6 +59,10 @@ header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
   background-color: lightyellow;
 }
 
+.borderless {
+  border: 0px;
+}
+
 </style>
 
 # **REPLACE WITH LESSON TITLE**
