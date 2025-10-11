@@ -137,7 +137,7 @@ header: Урок 12
 
 ### ✅ **Ідеально!**
 
-`3-rozumnyh-yizhachky-yily-syniy-syr!`
+`3-rozumnykh-yizhachky-yily-syniy-syr!`
 <br>
 *(довгий, несподіваний, легко запам'ятати)*
 
