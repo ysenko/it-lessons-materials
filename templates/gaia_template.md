@@ -56,7 +56,7 @@ header: Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
 }
 
 .important-to-remember {
-    background-color: lightyellow;
+  background-color: lightyellow;
 }
 
 </style>
