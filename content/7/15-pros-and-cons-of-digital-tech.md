@@ -62,20 +62,14 @@ style: |
     text-align: center;
     display: block;
   }
+  .pros {
+    color: #2e7d32; /* Green */
+  }
+  .cons {
+    color: #c62828; /* Red */
+  }
 
 ---
-
-<style>
-
-.pros {
-  color: #2e7d32; /* Green */
-}
-.cons {
-  color: #c62828; /* Red */
-}
-
-</style>
-
 # 🌐 Переваги і небезпеки цифрового світу
 
 ## 🏫 Урок **15**
