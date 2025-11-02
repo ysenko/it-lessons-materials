@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 6 клас
-header: 🏫 Урок 15
+header: 🏫 Урок 17
 style: |
   .grid-container {
     display: grid;
