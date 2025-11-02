@@ -5,8 +5,8 @@ _class: lead
 paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
-footer: 🖥️ Інформатика | <REPLACE-WITH-ACTUAL-GRADE> клас
-header: 🏫 Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
+footer: 🖥️ Інформатика | 8 клас
+header: 🏫 Урок 17
 style: |
   .grid-container {
     display: grid;
