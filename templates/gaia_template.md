@@ -10,8 +10,14 @@ header: 🏫 Урок <REPLACE-WITH-ACTUAL-LESSON-NUMBER>
 style: |
   .grid-container {
     display: grid;
-    grid-template-columns: 50% 50%;
-    align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .grid-item {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fafafa;
   }
   .text-left {
     text-align: left;
@@ -41,12 +47,18 @@ style: |
     font-size: 14px;
   }
   .card {
-    border: 2px solid #333;
-    border-radius: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #f9f9f9;
   }
   .important-to-remember {
-    background-color: lightyellow;
+    background-color: #fff3cd;
+    border-left: 6px solid #ffecb5;
+    padding: 15px;
+    margin: 15px 0;
   }
   .borderless {
     border: 0px;
