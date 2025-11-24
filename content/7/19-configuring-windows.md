@@ -61,7 +61,7 @@ style: |
     margin: 15px 0;
   }
   .borderless {
-    border: 0px;
+    border: 0;
   }
   .task {
     background-color: #e3f2fd;
