@@ -1,6 +1,7 @@
 .history
 .venv
 *.DS_Store
+AGENTS.md
 
 creds.json
 
