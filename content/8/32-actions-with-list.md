@@ -158,7 +158,7 @@ print(inventory)
 
 <div class="task">
 
-**Рівень: Середній ⭐**
+**Рівень: Середній ⭐⭐**
 
 - Створіть два рюкзаки: b1 = ["Wood", "Stone"], b2 = ["Gold", "Diamond"].
 - Об'єднайте їх у total_items.
