@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 7 клас
-header: 🏫 Урок 33
+header: 🏫 Урок 32
 style: |
   .grid-container {
     display: grid;
@@ -79,7 +79,7 @@ style: |
 
 # Інфографіка. Поняття та властивості
 
-## 🏫 Урок **33**
+## 🏫 Урок **32**
 
 ---
 
