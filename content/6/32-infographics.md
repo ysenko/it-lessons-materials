@@ -5,7 +5,7 @@ _class: lead
 paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
-footer: 🖥️ Інформатика | 7 клас
+footer: 🖥️ Інформатика | 6 клас
 header: 🏫 Урок 32
 style: |
   .grid-container {
@@ -180,9 +180,9 @@ style: |
 
 **Набір №2: Інтернет за 1 хв 🌐**
 
-- Google: 5.9 млн запитів</li>
-- YouTube: 500 год відео завантажено</li>
-- TikTok: 167 млн переглядів</li>
+- Google: 5.9 млн запитів
+- YouTube: 500 год відео завантажено
+- TikTok: 167 млн переглядів
 
   </div>
 </div>
