@@ -85,7 +85,7 @@ style: |
 🔢 Символи: знаки (напр. ©, ±).
     </div>
     <div class="grid-item">
-📐 Фjрмули: складні формули.
+📐 Формули: складні формули.
     </div>
   </div>
   <div class="grid-item image-center">
