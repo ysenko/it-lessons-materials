@@ -13,12 +13,38 @@ style: |
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
   }
+  .grid-item {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fafafa;
+  }
   .text-left {
     text-align: left;
     padding: 5px;
   }
+  .image-center {
+    max-width: 100%; /* Ensures the image scales within its space */
+    height: auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .text-large {
+    font-size: 40px;
+  }
+  .text-medium {
+    font-size: 30px;
+  }
   .text-medium-small {
     font-size: 25px;
+  }
+  .text-small {
+    font-size: 18px;
+  }
+  .text-tiny {
+    font-size: 14px;
   }
   .card {
     border: 1px solid #ddd;
@@ -33,6 +59,9 @@ style: |
     border-left: 6px solid #ffecb5;
     padding: 15px;
     margin: 15px 0;
+  }
+  .borderless {
+    border: 0px;
   }
   .task {
     background-color: #e3f2fd;
@@ -60,18 +89,6 @@ style: |
 - 📝 Використаємо **стилі**, щоб структурувати документ.
 - 🔍 Використаємо автоматичну заміну тексту (**Ctrl + H**).
 - 📐 Додамо **спеціальні символи**, **формули** та **посилання**.
-
----
-
-## 📝 Важливо запам'ятати (у зошит)
-
-<div class="important-to-remember">
-
-- **Стилі** — це професійний спосіб оформлення. Використовуйте "Заголовок 1" та "Заголовок 2" для структури.
-- **Назва файлу** — `Проект_Прізвище` (замініть "Прізвище" на прізвища учнів, що виконують проект).
-- **Ctrl + H** — швидкий пошук та заміна слів.
-
-</div>
 
 ---
 
@@ -131,3 +148,13 @@ style: |
    `https://uk.wikipedia.org/wiki/Число_пі`
 
 </div>
+
+---
+
+## Фінальний вигляд проекту для самоперевірки
+
+<section class="image-center">
+
+![h:400px](./assets/38/final-project-example.png)
+
+</section>
