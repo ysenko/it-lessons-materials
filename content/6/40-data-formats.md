@@ -203,8 +203,6 @@ style: |
 </div>
 <div class="task grid-item image-center">
 
-#### Приклад
-
 <div>
 
 ![w:450px](./assets/40/level-1.png)
