@@ -103,7 +103,7 @@ style: |
 1. Відкрийте сервіс [Сайти Google](https://sites.google.com/)
 2. Створіть сайт використовуючи шаблон "Порожній сайт"
 
-![w:1100](./assets/41/site-templates.png)
+![w:1100px](./assets/41/site-templates.png)
 
 ---
 
