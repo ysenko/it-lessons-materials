@@ -201,7 +201,7 @@ style: |
 2. ⭐️⭐️ Додайте дату покупки (формат Дата) та знижку 0,1 (формат Відсотки).
 
 </div>
-<div class="task grid-item image-centert">
+<div class="task grid-item image-center">
 
 #### Приклад
 
