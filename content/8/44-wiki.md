@@ -76,11 +76,16 @@ style: |
   }
   pre {
     background-color: #f6f8fa;
+    color: #1f2328;
+    border: 1px solid #d0d7de;
     padding: 10px;
     border-radius: 6px;
     font-size: 16px;
     line-height: 1.2;
     overflow-x: auto;
+  }
+  pre code {
+    color: #1f2328;
   }
 
 ---
