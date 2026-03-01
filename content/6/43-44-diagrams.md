@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 6 клас
-header: 🏫 Урок 44-45
+header: 🏫 Урок 43-44
 style: |
   .grid-container {
     display: grid;
@@ -79,7 +79,7 @@ style: |
 
 # Основні типи числових діаграм
 
-## 🏫 Урок **44-45**
+## 🏫 Урок **43-44**
 
 ---
 
@@ -109,7 +109,7 @@ style: |
 </div>
 <div class="grid-item image-center">
 
-![w:550px](./assets/44-45/histogram-example.png)
+![w:550px](./assets/43-44/histogram-example.png)
 
 </div>
 </div>
