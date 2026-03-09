@@ -175,12 +175,12 @@ style: |
 <div class="grid-container">
   <div class="grid-item image-center">
 
-![w:350px](./assets/55/image-1.png)
+![w:350px](./assets/56/image-1.png)
 
   </div>
   <div class="grid-item image-center">
 
-![w:400px](./assets/55/image-2.png)
+![w:400px](./assets/56/image-2.png)
 
   </div>
 </div>
