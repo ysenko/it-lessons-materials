@@ -23,21 +23,6 @@ jobs:
           mkdir -p $PUBLISH_DIR
           chmod -R 777 $PUBLISH_DIR  # Ensure write permissions
 
-      - name: Copy assets directories to the publish directory
-        env:
-          PUBLISH_DIR: ${{ vars.PUBLISH_DIR }}
-        run: |
-          find content -type d -name "assets" | while read file; do
-            assets_dir=${file#content/}
-
-            echo "Creating assets target directory: $PUBLISH_DIR/$assets_dir"
-            mkdir -p $PUBLISH_DIR/$assets_dir
-
-            target_dir=$(dirname "$PUBLISH_DIR/$assets_dir")
-            echo "Recursively copying assets from $file to $target_dir"
-            cp -r $file $target_dir
-          done
-
       - name: Set publish folder permissions
         env:
           PUBLISH_DIR: ${{ vars.PUBLISH_DIR }}
@@ -53,7 +38,8 @@ jobs:
         env:
           PUBLISH_DIR: ${{ vars.PUBLISH_DIR }}
         run: |
-          cp -r content/* $PUBLISH_DIR/
+          find content -type f -name "*.html" -exec cp --parents {} "$PUBLISH_DIR/" \;
+          find content -type d -name "assets" -exec cp -r --parents {} "$PUBLISH_DIR/" \;
 
       - name: Set up Python
         uses: actions/setup-python@v4
