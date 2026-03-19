@@ -1,4 +1,4 @@
-.PHONY: clean
+.PHONY: clean html-local
 
 SRC ?= presentation.md
 # Use content to ensure that produced html files can find images.
@@ -23,6 +23,11 @@ all: html pdf pptx
 html:
 	$(MARP) $(SRC) --output $(HTML_OUT) --html --allow-local-files
 
+# Generate all HTML presentations and rebuild index.html locally
+html-local:
+	$(MARP) content --html --allow-local-files
+	PUBLISH_DIR=content python3 build_index_page.py
+
 # Generate PDF version of the presentation
 pdf:
 	$(MARP) $(SRC) --output $(PDF_OUT) --pdf --allow-local-files
@@ -42,6 +47,7 @@ help:
 	@echo "Usage: make [target] [SRC=path/to/yourfile.md]"
 	@echo "Available targets:"
 	@echo "  html     - Generate HTML presentation (default: presentation.md)"
+	@echo "  html-local - Generate HTML for all files in content and rebuild content/index.html"
 	@echo "  clean    - Remove ALL pdf, html and pptx files"
 	@echo "  help     - Show this help message"
 	@echo "Example usage: make html SRC=my_presentation.md"
