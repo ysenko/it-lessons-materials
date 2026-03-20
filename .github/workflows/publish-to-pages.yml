@@ -38,8 +38,9 @@ jobs:
         env:
           PUBLISH_DIR: ${{ vars.PUBLISH_DIR }}
         run: |
-          find content -type f -name "*.html" -exec cp --parents {} "$PUBLISH_DIR/" \;
-          find content -type d -name "assets" -exec cp -r --parents {} "$PUBLISH_DIR/" \;
+          cd content
+          find . -type f -name "*.html" -exec cp --parents {} "$PUBLISH_DIR/" \;
+          find . -type d -name "assets" -exec cp -r --parents {} "$PUBLISH_DIR/" \;
 
       - name: Set up Python
         uses: actions/setup-python@v4
