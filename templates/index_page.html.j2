@@ -2,30 +2,231 @@
 <html lang="uk">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Презентації для уроків інформатики НУШ</title>
     <style>
-        details { margin-bottom: 1em; }
-        summary { cursor: pointer; list-style: none; padding: 0.4em 0.6em; border-radius: 4px; }
+        :root {
+            --bg-start: #f2f8ff;
+            --bg-end: #eefaf2;
+            --surface: #ffffff;
+            --text-primary: #1b2a3a;
+            --text-secondary: #465769;
+            --border: #d9e4ef;
+            --shadow-soft: 0 10px 24px rgba(30, 63, 97, 0.08);
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --space-xs: 0.35rem;
+            --space-sm: 0.65rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --focus-ring: #1456c0;
+            --grade-6: #2a79d6;
+            --grade-7: #2c9e59;
+            --grade-8: #d98324;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Nunito", "Trebuchet MS", "Segoe UI", sans-serif;
+            font-size: 17px;
+            line-height: 1.45;
+            color: var(--text-primary);
+            background: linear-gradient(155deg, var(--bg-start), var(--bg-end));
+            min-height: 100vh;
+        }
+
+        .page {
+            max-width: 920px;
+            margin: var(--space-xl) auto;
+            padding: 0 var(--space-md) var(--space-xl);
+        }
+
+        .hero {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(1.65rem, 2.2vw, 2.1rem);
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            margin: var(--space-xs) 0 var(--space-md);
+            color: var(--text-secondary);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .help-text {
+            margin: 0;
+            background: #ecf4ff;
+            border: 1px solid #cfe0ff;
+            color: #173f77;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .grades {
+            display: grid;
+            gap: var(--space-md);
+        }
+
+        details {
+            --accent: var(--grade-6);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 7px solid var(--accent);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+        }
+
+        details:focus-within {
+            box-shadow: var(--shadow-soft), 0 0 0 3px var(--focus-ring);
+        }
+
+        details[data-grade="7"] { --accent: var(--grade-7); }
+        details[data-grade="8"] { --accent: var(--grade-8); }
+
+        summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 0.85rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            transition: background-color 0.2s ease;
+        }
+
         summary::-webkit-details-marker { display: none; }
-        summary::before { content: "▶"; display: inline-block; margin-right: 0.5em; transition: transform 0.2s; }
+
+        summary::before {
+            content: "▸";
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #eaf2ff;
+            background: color-mix(in srgb, var(--accent) 16%, white);
+            color: var(--accent);
+            font-size: 1rem;
+            line-height: 1;
+            flex: 0 0 auto;
+            transition: transform 0.2s ease;
+        }
+
         details[open] summary::before { transform: rotate(90deg); }
-        summary:hover { background-color: #f0f0f0; }
-        summary h2 { display: inline; }
+
+        summary:hover { background: #f7fbff; }
+
+        summary:focus-visible {
+            outline: none;
+        }
+
+        a:focus-visible {
+            outline: 3px solid var(--focus-ring);
+            outline-offset: 2px;
+            border-radius: 8px;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0.35rem var(--space-md) var(--space-md);
+            list-style: none;
+            display: grid;
+            gap: var(--space-sm);
+        }
+
+        li { margin: 0; }
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: #163252;
+            font-weight: 700;
+            background: #f8fbff;
+            border: 1px solid #e0ebf8;
+            border-radius: 10px;
+            padding: 0.72rem 0.8rem;
+            min-height: 44px;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
+        }
+
+        a:hover {
+            background: #edf5ff;
+            box-shadow: 0 8px 18px rgba(22, 66, 110, 0.12);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 640px) {
+            body { font-size: 16px; }
+
+            .page {
+                margin: var(--space-lg) auto;
+                padding: 0 0.75rem var(--space-lg);
+            }
+
+            .hero { padding: var(--space-md); }
+
+            .help-text {
+                border-radius: 14px;
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+
+            summary {
+                padding: 0.8rem 0.85rem;
+                font-size: 1rem;
+            }
+
+            ul { padding: 0.25rem 0.75rem 0.75rem; }
+        }
     </style>
 </head>
 <body>
-    <h1>Список уроків з інформатики НУШ</h1>
-    <p><span aria-hidden="true">👆</span> Натисни на назву класу, щоб відкрити або закрити список уроків.</p>
+    <main class="page">
+        <section class="hero" aria-label="Пояснення сторінки">
+            <h1>Список уроків з інформатики НУШ</h1>
+            {% if grouped_lessons %}
+            {% set grades = grouped_lessons | map(attribute='grade') | list %}
+            {% set min_grade = grades | min %}
+            {% set max_grade = grades | max %}
+            <p class="subtitle">{% if min_grade == max_grade %}{{ min_grade }} клас{% else %}{{ min_grade }}–{{ max_grade }} класи{% endif %}</p>
+            {% endif %}
+            <p class="help-text"><span aria-hidden="true">👆</span> Натисни на назву класу, щоб відкрити або закрити список уроків.</p>
+        </section>
 
-    {% for grade in grouped_lessons %}
-    <details>
-        <summary><h2>Уроки для {{ grade.grade }} Класу</h2></summary>
-        <ul>
-            {% for lesson in grade.lessons %}
-            <li>Урок <a href="{{ lesson.path }}">{{ lesson.display_name }}</a></li>
+        <section class="grades" aria-label="Список уроків за класами">
+            {% for grade in grouped_lessons %}
+            <details data-grade="{{ grade.grade }}">
+                <summary>Уроки для {{ grade.grade }} класу</summary>
+                <ul>
+                    {% for lesson in grade.lessons %}
+                    <li><a href="{{ lesson.path }}">{{ lesson.display_name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </details>
             {% endfor %}
-        </ul>
-    </details>
-    {% endfor %}
+        </section>
+    </main>
 </body>
 </html>
