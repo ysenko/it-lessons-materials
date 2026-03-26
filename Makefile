@@ -23,10 +23,12 @@ all: html pdf pptx
 html:
 	$(MARP) $(SRC) --output $(HTML_OUT) --html --allow-local-files
 
-# Generate all HTML presentations and rebuild index.html locally
+# Generate all HTML presentations and rebuild index.html locally, then serve
 html-local:
 	$(MARP) content --html --allow-local-files
 	PUBLISH_DIR=content python3 build_index_page.py
+	@echo "Serving content at http://localhost:8000 — press Ctrl+C to stop"
+	cd content && python3 -m http.server 8000
 
 # Generate PDF version of the presentation
 pdf:
