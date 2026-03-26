@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <title>Презентації для уроків інформатики НУШ</title>
+</head>
+<body>
+    <h1>Список уроків з інформатики НУШ</h1>
+
+    {% for grade in grouped_lessons %}
+    <h2>Уроки для {{ grade.grade }} Класу</h2>
+    <ul>
+        {% for lesson in grade.lessons %}
+        <li>Урок <a href="{{ lesson.path }}">{{ lesson.display_name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</body>
+</html>
