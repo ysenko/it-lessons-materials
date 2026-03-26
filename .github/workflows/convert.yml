@@ -35,7 +35,7 @@ jobs:
           chmod -R 777 temp_output  # Ensure write permissions
           echo "TEMP_DIR=temp_output" >> $GITHUB_ENV
 
-      - name: Convert Markdown to HTML and PDF using Marp CLI
+      - name: Convert Markdown to PPTX and PDF using Marp CLI
         if: env.CHANGED_FILES != ''
         run: |
           for file in $CHANGED_FILES; do

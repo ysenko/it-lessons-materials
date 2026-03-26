@@ -1,30 +1,20 @@
 import os
 import pathlib
 import re
-import itertools
 import logging
 
 from dataclasses import dataclass
 
-import markdown
+from jinja2 import Environment
+from jinja2 import FileSystemLoader
+from jinja2 import select_autoescape
 
 PUBLISH_DIR = os.environ.get("PUBLISH_DIR", "publish")
 INDEX_EXT = ".html"
+INDEX_TEMPLATE = "index_page.html.j2"
+TEMPLATES_DIR = pathlib.Path(__file__).parent / "templates"
 
 LESSON_NUMBER_MATCHER = re.compile(r"^\d+")
-
-HTML_TEMPLATE = """\
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Презентації для уроків інформатики НУШ</title>
-</head>
-<body>
-{html_content}
-</body>
-</html>
-"""
 
 LESSON_TITLE_MATCHER = re.compile(r"<title>(?P<lesson_title>.+)</title>")
 
@@ -39,24 +29,15 @@ class PresentationFile:
 
 
 def main():
-    markdown_text = """\
-# Список уроків з інформатики НУШ
-
-"""
-
     lessons_dir = pathlib.Path(PUBLISH_DIR)
 
     indexable_files = _get_all_indexed_files(lessons_dir)
 
     indexable_files.sort(key=lambda f: (f.grade, f.lesson_number))
 
-    for f in itertools.groupby(indexable_files, key=lambda f: f.grade):
-        grade_number, grade_files = f
-        markdown_text += _index_grade_files(grade_number, list(grade_files))
+    grouped_lessons = _group_lessons_by_grade(indexable_files)
 
-    print(markdown_text)
-
-    _create_index_file(markdown_text, lessons_dir)
+    _create_index_file(grouped_lessons, lessons_dir)
 
 
 def _get_lesson_human_readable_name(lesson_file: PresentationFile) -> str | None:
@@ -79,52 +60,49 @@ def _get_lesson_human_readable_name(lesson_file: PresentationFile) -> str | None
         return matched_title_obj.group("lesson_title")
 
 
-def _build_index_lesson_name(
-    lesson_number: int,
-    lesson_human_readable_name: str | None,
-    lesson_file_path: pathlib.Path,
-) -> str:
-    """Build lesson name for the index file.
+def _group_lessons_by_grade(indexable_files: list[PresentationFile]) -> list[dict]:
+    """Group lessons by grade and build a render-friendly structure."""
+    grouped: dict[int, list[dict]] = {}
 
-    Args:
-        lesson_number (int) lesson number
-        lesson_human_readable_name (str): lesson name extracted from file or None.
-        lesson_file_path (pathlib.Path): path to the lesson file
+    for lesson_file in indexable_files:
+        lesson_title = _get_lesson_human_readable_name(lesson_file)
+        lesson_display_name = str(lesson_file.lesson_number)
+        if lesson_title:
+            lesson_display_name += f": {lesson_title}"
 
-    Returns:
-        str: Lesson name for the index file list.
-    """
-    lesson_name = str(lesson_number)
-    if lesson_human_readable_name:
-        lesson_name += f": {lesson_human_readable_name}"
-
-    return f"- Урок [{lesson_name}]({lesson_file_path})\n"
-
-
-def _index_grade_files(grade: int, lesson_files: list[PresentationFile]) -> str:
-    """
-    Create an index for the given grade and its lesson files.
-    """
-    index_content = f"\n## Уроки для {grade} Класу\n"
-    for lesson_file in lesson_files:
-        lesson_name = _get_lesson_human_readable_name(lesson_file)
-        index_content += _build_index_lesson_name(
-            lesson_file.lesson_number, lesson_name, lesson_file.path
+        grouped.setdefault(lesson_file.grade, []).append(
+            {
+                "display_name": lesson_display_name,
+                "path": lesson_file.path.as_posix(),
+                "lesson_number": lesson_file.lesson_number,
+            }
         )
 
-    return index_content
+    return [
+        {
+            "grade": grade,
+            "lessons": sorted(
+                lessons,
+                key=lambda lesson: lesson["lesson_number"],
+            ),
+        }
+        for grade, lessons in sorted(grouped.items(), key=lambda item: item[0])
+    ]
 
 
-def _create_index_file(markdown_text: str, publish_dir: pathlib.Path) -> None:
+def _create_index_file(grouped_lessons: list[dict], publish_dir: pathlib.Path) -> None:
     """
     Create an index file in the given directory.
     """
     index_file_path = publish_dir / "index.html"
+    env = Environment(
+        loader=FileSystemLoader(TEMPLATES_DIR),
+        autoescape=select_autoescape(("html", "j2")),
+    )
+    template = env.get_template(INDEX_TEMPLATE)
+
     with open(index_file_path, "w", encoding="utf-8") as f:
-        full_html = HTML_TEMPLATE.format(
-            html_content=markdown.markdown(markdown_text, output_format="html")
-        )
-        f.write(full_html)
+        f.write(template.render(grouped_lessons=grouped_lessons))
 
 
 def _get_all_indexed_files(publish_dir: pathlib.Path) -> list[PresentationFile]:
