@@ -97,7 +97,7 @@ def _create_index_file(grouped_lessons: list[dict], publish_dir: pathlib.Path) -
     index_file_path = publish_dir / "index.html"
     env = Environment(
         loader=FileSystemLoader(TEMPLATES_DIR),
-        autoescape=select_autoescape(["html", "xml"]),
+        autoescape=select_autoescape(("html", "j2")),
     )
     template = env.get_template(INDEX_TEMPLATE)
 
