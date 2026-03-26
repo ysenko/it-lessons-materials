@@ -45,6 +45,10 @@ jobs:
           cd content
           find . -type f -name "*.html" -exec cp --parents {} "$GITHUB_WORKSPACE/$PUBLISH_DIR/" \;
           find . -type d -name "assets" -exec cp -r --parents {} "$GITHUB_WORKSPACE/$PUBLISH_DIR/" \;
+          cd "$GITHUB_WORKSPACE"
+          if [ -d assets ]; then
+            cp -r assets "$PUBLISH_DIR/"
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v4
