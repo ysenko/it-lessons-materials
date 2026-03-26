@@ -30,6 +30,10 @@ jobs:
           echo "Setting publish folder permissions..."
           chmod -R 777 $PUBLISH_DIR
 
+      - name: Ensure content directory is writable
+        run: |
+          chmod -R 777 content
+
       - name: Convert Markdown to HTML using Marp CLI
         run: |
           docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files content --html
