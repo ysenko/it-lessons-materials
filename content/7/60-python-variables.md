@@ -266,3 +266,24 @@ print(is_active, type(is_active))
 Виведи їх на екран за допомогою команди `print`.
 
 </div>
+
+---
+
+## Домашнє завдання
+
+<div class="task">
+
+Подивись на код нижче.
+У зошиті для кожної змінної запиши тип її значення у форматі
+"назва змінної - тип" (наприклад: *teacher_name - str*).
+
+```python
+teacher_name = "Юрій"
+student_name = "Анна"
+age = 12
+height = 1.58
+is_ready = True
+grade = 7
+```
+
+</div>
