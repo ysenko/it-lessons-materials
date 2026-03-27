@@ -49,6 +49,9 @@ jobs:
           if [ -d assets ]; then
             cp -r assets "$PUBLISH_DIR/"
           fi
+          if [ -f assets/favicon.ico ]; then
+            cp assets/favicon.ico "$PUBLISH_DIR/"
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v4
