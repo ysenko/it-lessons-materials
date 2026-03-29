@@ -24,10 +24,16 @@ jobs:
           # Ensure base commit exists
           git fetch origin "$BASE_SHA" --depth=1 || true
 
-          # Find changed or added files only in the content directory
-          CHANGED_FILES=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- 'content/*.md' | tr '\n' ' ')
+          # Find changed or added Marp slides (top-level per grade, excluding plans/)
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- 'content/**/*.md' \
+            | grep -v '/plans/' | tr '\n' ' ')
           echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_ENV
-          echo "Detected changed or added files: ${CHANGED_FILES}"
+          echo "Detected changed or added slide files: ${CHANGED_FILES}"
+
+          # Find changed or added lesson plan files
+          CHANGED_PLANS=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- 'content/**/plans/*.md' | tr '\n' ' ')
+          echo "CHANGED_PLANS=${CHANGED_PLANS}" >> $GITHUB_ENV
+          echo "Detected changed or added plan files: ${CHANGED_PLANS}"
 
       - name: Create Temporary Directory
         run: |
@@ -49,8 +55,24 @@ jobs:
             docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$OUTPUT_PATH_PDF" --pdf
           done
 
+      - name: Install Pandoc
+        if: env.CHANGED_PLANS != ''
+        run: sudo apt-get install -y pandoc texlive-latex-base texlive-fonts-recommended
+
+      - name: Convert Lesson Plans to PDF using Pandoc
+        if: env.CHANGED_PLANS != ''
+        run: |
+          for file in $CHANGED_PLANS; do
+            RELATIVE_PATH="${file#content/}"
+            OUTPUT_DIR="$TEMP_DIR/$(dirname "$RELATIVE_PATH")"
+            mkdir -p "$OUTPUT_DIR"
+            OUTPUT_PATH_PDF="$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
+
+            pandoc "$file" -o "$OUTPUT_PATH_PDF" --pdf-engine=pdflatex
+          done
+
       - name: Upload Converted Files as Artifact
-        if: env.CHANGED_FILES != ''
+        if: env.CHANGED_FILES != '' || env.CHANGED_PLANS != ''
         uses: actions/upload-artifact@v4
         env:
           ARTIFACT_NAME: converted-presentations-${{ github.event.pull_request.head.sha }}
