@@ -26,7 +26,7 @@ jobs:
 
           # Find changed or added Marp slides (top-level per grade, excluding plans/)
           CHANGED_FILES=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- ':(glob)content/**/*.md' \
-            | grep -v '/plans/' | tr '\n' ' ')
+            | { grep -v '/plans/' || true; } | tr '\n' ' ')
           echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_ENV
           echo "Detected changed or added slide files: ${CHANGED_FILES}"
 
