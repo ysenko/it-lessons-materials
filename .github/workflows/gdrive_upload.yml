@@ -79,7 +79,14 @@ jobs:
             TARGET_FOLDER_ID_VAR="GRADE_${DIR_NAME}_FOLDER_ID"
             TARGET_FOLDER_ID="${!TARGET_FOLDER_ID_VAR}"
             TARGET_FILE_NAME=$(basename "$RELATIVE_PATH")
-            TARGET_PATH="$TARGET_FOLDER_ID:$TARGET_FILE_NAME"
+            FULL_DIR=$(dirname "$RELATIVE_PATH")
+            RELATIVE_DIR="${FULL_DIR#${DIR_NAME}}"
+            RELATIVE_DIR="${RELATIVE_DIR#/}"
+            if [ -n "$RELATIVE_DIR" ]; then
+              TARGET_PATH="$TARGET_FOLDER_ID:$RELATIVE_DIR/$TARGET_FILE_NAME"
+            else
+              TARGET_PATH="$TARGET_FOLDER_ID:$TARGET_FILE_NAME"
+            fi
 
             if [ -z "$TARGET_FOLDER_ID" ]; then
               echo "Warning: No Google Drive folder ID found for $DIR_NAME. Skipping upload."

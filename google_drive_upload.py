@@ -58,15 +58,69 @@ def upload_to_drive(service, source_file, destination_name, folder_id):
     print(f"Uploaded file ID: {file.get('id')}")
 
 
+def get_or_create_folder(service, parent_folder_id, folder_name):
+    """
+    Find or create a subfolder by name inside the given parent folder.
+
+    Args:
+        service: The authenticated Google Drive service instance.
+        parent_folder_id (str): The ID of the parent folder.
+        folder_name (str): The name of the subfolder to find or create.
+
+    Returns:
+        str: The ID of the found or created subfolder.
+    """
+    query = (
+        f"'{parent_folder_id}' in parents and name = '{folder_name}' "
+        f"and mimeType = 'application/vnd.google-apps.folder' and trashed = false"
+    )
+    results = service.files().list(q=query, fields="files(id, name)").execute()
+    items = results.get("files", [])
+    if items:
+        return items[0]["id"]
+
+    file_metadata = {
+        "name": folder_name,
+        "mimeType": "application/vnd.google-apps.folder",
+        "parents": [parent_folder_id],
+    }
+    folder = service.files().create(body=file_metadata, fields="id").execute()
+    print(f"Created subfolder '{folder_name}' with ID: {folder.get('id')}")
+    return folder.get("id")
+
+
+def resolve_folder_path(service, root_folder_id, relative_path):
+    """
+    Resolve a slash-separated subfolder path, creating missing folders as needed.
+
+    Args:
+        service: The authenticated Google Drive service instance.
+        root_folder_id (str): The ID of the root folder.
+        relative_path (str): Slash-separated path of subfolders (e.g. "plans").
+
+    Returns:
+        str: The ID of the deepest resolved folder.
+    """
+    folder_id = root_folder_id
+    for part in relative_path.split("/"):
+        if part:
+            folder_id = get_or_create_folder(service, folder_id, part)
+    return folder_id
+
+
 def get_destination_file_name(destination_path):
     """
     Parse the destination path to get the folder ID and destination file name.
 
+    The path format is ``dest_folder_id:dest_file_name`` or
+    ``dest_folder_id:subfolder/dest_file_name`` for nested uploads.
+
     Args:
-        destination_path (str): The destination path in the format dest_folder_id:dest_file_name.
+        destination_path (str): The destination path.
 
     Returns:
-        tuple: A tuple containing the folder ID and destination file name.
+        tuple: A tuple of (folder_id, subfolder_path, file_name) where
+            ``subfolder_path`` is an empty string when there is no subfolder.
 
     Raises:
         ValueError: If the destination path is not in the correct format.
@@ -75,7 +129,13 @@ def get_destination_file_name(destination_path):
         raise ValueError(
             "Destination path must be in the format dest_folder_id:dest_file_name"
         )
-    return destination_path.split(":", 1)
+    folder_id, rest = destination_path.split(":", 1)
+    parts = rest.rsplit("/", 1)
+    if len(parts) == 2:
+        subfolder_path, file_name = parts
+    else:
+        subfolder_path, file_name = "", parts[0]
+    return folder_id, subfolder_path, file_name
 
 
 def remove_existing_file(service, folder_id, destination_name):
@@ -120,13 +180,22 @@ def main():
     args = parser.parse_args()
 
     # Parse destination path
-    folder_id, destination_name = get_destination_file_name(args.destination_path)
+    root_folder_id, subfolder_path, destination_name = get_destination_file_name(
+        args.destination_path
+    )
 
     # Authenticate
     creds = service_account.Credentials.from_service_account_file(
         CREDENTIALS_FILE, scopes=["https://www.googleapis.com/auth/drive"]
     )
     service = build("drive", "v3", credentials=creds)
+
+    # Resolve (or create) any subfolders
+    folder_id = (
+        resolve_folder_path(service, root_folder_id, subfolder_path)
+        if subfolder_path
+        else root_folder_id
+    )
 
     if args.override:
         remove_existing_file(service, folder_id, destination_name)
