@@ -139,7 +139,8 @@ def parse_destination_path(destination_path):
     """
     if ":" not in destination_path:
         raise ValueError(
-            "Destination path must be in the format dest_folder_id:dest_file_name"
+            "Destination path must be in the format dest_folder_id:dest_file_name "
+            "or dest_folder_id:subfolder/dest_file_name"
         )
     folder_id, rest = destination_path.split(":", 1)
     parts = rest.rsplit("/", 1)
