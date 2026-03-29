@@ -120,7 +120,7 @@ def resolve_folder_path(service, root_folder_id, relative_path):
     return folder_id
 
 
-def get_destination_file_name(destination_path):
+def parse_destination_path(destination_path):
     """
     Parse the destination path to get the folder ID and destination file name.
 
@@ -193,7 +193,7 @@ def main():
     args = parser.parse_args()
 
     # Parse destination path
-    root_folder_id, subfolder_path, destination_name = get_destination_file_name(
+    root_folder_id, subfolder_path, destination_name = parse_destination_path(
         args.destination_path
     )
 
