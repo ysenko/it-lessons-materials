@@ -62,6 +62,7 @@ jobs:
       - name: Convert Lesson Plans to PDF using Pandoc
         if: env.CHANGED_PLANS != ''
         run: |
+          sudo chmod -R 777 temp_output
           for file in $CHANGED_PLANS; do
             RELATIVE_PATH="${file#content/}"
             OUTPUT_DIR="$TEMP_DIR/$(dirname "$RELATIVE_PATH")"
