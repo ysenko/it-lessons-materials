@@ -5,7 +5,7 @@
 ## 1. Титульний слайд
 - **Заголовок:** `# Тема уроку`
 - **Підзаголовок:** `## 🏫 Урок **Номер**`
-- **Плейсхолдери:** Обов'язково замініть `<REPLACE-WITH-ACTUAL-GRADE>`, `REPLACE WITH LESSON NUMBER`, `REPLACE WITH LESSON TITLE`.
+- **Плейсхолдери:** Обов'язково замініть `<REPLACE-WITH-ACTUAL-GRADE>`, `<REPLACE-WITH-ACTUAL-LESSON-NUMBER>`, `REPLACE WITH LESSON TITLE`.
 
 ## 2. Слайд "Сьогодні ми дізнаємося" (Цілі)
 - Використовуйте `🎯` як емодзі в заголовку.
