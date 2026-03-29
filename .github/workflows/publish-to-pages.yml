@@ -36,7 +36,7 @@ jobs:
 
       - name: Convert Markdown to HTML using Marp CLI
         run: |
-          docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files content --html
+          docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files --ignore "content/**/plans/**" content --html
 
       - name: Copy converted HTML and assets to publish directory
         env:
