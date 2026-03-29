@@ -25,13 +25,13 @@ jobs:
           git fetch origin "$BASE_SHA" --depth=1 || true
 
           # Find changed or added Marp slides (top-level per grade, excluding plans/)
-          CHANGED_FILES=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- 'content/**/*.md' \
+          CHANGED_FILES=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- ':(glob)content/**/*.md' \
             | grep -v '/plans/' | tr '\n' ' ')
           echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_ENV
           echo "Detected changed or added slide files: ${CHANGED_FILES}"
 
           # Find changed or added lesson plan files
-          CHANGED_PLANS=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- 'content/**/plans/*.md' | tr '\n' ' ')
+          CHANGED_PLANS=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- ':(glob)content/**/plans/*.md' | tr '\n' ' ')
           echo "CHANGED_PLANS=${CHANGED_PLANS}" >> $GITHUB_ENV
           echo "Detected changed or added plan files: ${CHANGED_PLANS}"
 

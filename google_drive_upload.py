@@ -58,6 +58,11 @@ def upload_to_drive(service, source_file, destination_name, folder_id):
     print(f"Uploaded file ID: {file.get('id')}")
 
 
+def _escape_drive_query_value(value: str) -> str:
+    """Escape a string value for use inside a Google Drive API query."""
+    return value.replace("'", "\\'")
+
+
 def get_or_create_folder(service, parent_folder_id, folder_name):
     """
     Find or create a subfolder by name inside the given parent folder.
@@ -70,8 +75,9 @@ def get_or_create_folder(service, parent_folder_id, folder_name):
     Returns:
         str: The ID of the found or created subfolder.
     """
+    safe_name = _escape_drive_query_value(folder_name)
     query = (
-        f"'{parent_folder_id}' in parents and name = '{folder_name}' "
+        f"'{parent_folder_id}' in parents and name = '{safe_name}' "
         f"and mimeType = 'application/vnd.google-apps.folder' and trashed = false"
     )
     results = service.files().list(q=query, fields="files(id, name)").execute()
@@ -103,8 +109,14 @@ def resolve_folder_path(service, root_folder_id, relative_path):
     """
     folder_id = root_folder_id
     for part in relative_path.split("/"):
-        if part:
-            folder_id = get_or_create_folder(service, folder_id, part)
+        part = part.strip()
+        if not part:
+            continue
+        if part in {".", ".."}:
+            raise ValueError(
+                f"Invalid path segment '{part}' in subfolder path '{relative_path}'"
+            )
+        folder_id = get_or_create_folder(service, folder_id, part)
     return folder_id
 
 
@@ -148,8 +160,9 @@ def remove_existing_file(service, folder_id, destination_name):
         destination_name (str): The name of the file to remove.
     """
     # Search for existing file with the same name in the folder
+    safe_name = _escape_drive_query_value(destination_name)
     query = (
-        f"'{folder_id}' in parents and name = '{destination_name}' and trashed = false"
+        f"'{folder_id}' in parents and name = '{safe_name}' and trashed = false"
     )
     results = service.files().list(q=query, fields="files(id, name)").execute()
     items = results.get("files", [])
