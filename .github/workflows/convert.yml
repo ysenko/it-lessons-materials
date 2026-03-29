@@ -55,10 +55,6 @@ jobs:
             docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$OUTPUT_PATH_PDF" --pdf
           done
 
-      - name: Install Pandoc
-        if: env.CHANGED_PLANS != ''
-        run: sudo apt-get install -y pandoc texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
-
       - name: Convert Lesson Plans to PDF using Pandoc
         if: env.CHANGED_PLANS != ''
         run: |
@@ -69,7 +65,7 @@ jobs:
             mkdir -p "$OUTPUT_DIR"
             OUTPUT_PATH_PDF="$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
 
-            pandoc "$file" -o "$OUTPUT_PATH_PDF" --pdf-engine=pdflatex
+            docker run --rm -v "$PWD:/workspace" -w /workspace pandoc/extra:3.9-debian "$file" -o "$OUTPUT_PATH_PDF" --pdf-engine=xelatex -H .github/xelatex-header.tex
           done
 
       - name: Upload Converted Files as Artifact
