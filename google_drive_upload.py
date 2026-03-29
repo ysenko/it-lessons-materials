@@ -143,11 +143,27 @@ def parse_destination_path(destination_path):
             "or dest_folder_id:subfolder/dest_file_name"
         )
     folder_id, rest = destination_path.split(":", 1)
+    folder_id = folder_id.strip()
+    rest = rest.strip()
+    if not folder_id:
+        raise ValueError(
+            "Destination path must specify a non-empty folder ID before ':'."
+        )
+    if not rest or rest.endswith("/"):
+        raise ValueError(
+            "Destination path must specify a destination file name and must not end with '/'."
+        )
     parts = rest.rsplit("/", 1)
     if len(parts) == 2:
         subfolder_path, file_name = parts
     else:
         subfolder_path, file_name = "", parts[0]
+    subfolder_path = subfolder_path.strip()
+    file_name = file_name.strip()
+    if not file_name:
+        raise ValueError(
+            "Destination path must specify a non-empty destination file name."
+        )
     return folder_id, subfolder_path, file_name
 
 
