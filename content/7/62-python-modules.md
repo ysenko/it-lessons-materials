@@ -179,12 +179,16 @@ print(math.sqrt(16))  # 4.0
 Дозволяє працювати з випадковими числами.
 
 * `random.randint(a, b)` — випадкове ціле число в діапазоні від $a$ до $b$ (включно).
+* `random.choice(seq)` — випадковий елемент із послідовності (`list`, `string` тощо).
 
 ```python
 import random
 
 number = random.randint(1, 10)
 print("Випало число:", number)
+
+color = random.choice(["червоний", "синій", "зелений"])
+print("Випав колір:", color)
 ```
 
 ---
