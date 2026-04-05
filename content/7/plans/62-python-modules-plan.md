@@ -48,4 +48,4 @@
 ### 7. Домашнє завдання (3 хв)
 *   Виконати проєкт «Математичний помічник».
 *   **Інструкція:** Запитати радіус, обчислити площу кола ($S = \pi \cdot r^2$) та корінь із радіуса.
-*   Код можна написати в [Online Python IDE](https://www.onlineide.pro/playground/python?utm_source=online-python&utm_medium=navbar&utm_campaign=onlineidepro).
+*   Код можна написати в [Online Python IDE](https://www.onlineide.pro/playground/python).
