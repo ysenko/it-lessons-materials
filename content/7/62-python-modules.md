@@ -264,7 +264,7 @@ print("Ваш новий PIN-код:", pin)
 
 Якщо у вас вдома не встановлено Python, скористайтеся онлайн-редактором:
 
-👉 [**Online Python IDE**](https://www.onlineide.pro/playground/python?utm_source=online-python&utm_medium=navbar&utm_campaign=onlineidepro)
+👉 [**Online Python IDE**](https://www.onlineide.pro/playground/python)
 
 **Як показати роботу?**
 
