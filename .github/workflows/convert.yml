@@ -20,26 +20,53 @@ jobs:
         run: |
           BASE_SHA="${{ github.event.pull_request.base.sha }}"
           HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          CHANGED_FILES_RAW="$RUNNER_TEMP/changed_files_raw.txt"
+          CHANGED_PLANS_RAW="$RUNNER_TEMP/changed_plans_raw.txt"
           CHANGED_FILES_LIST="$RUNNER_TEMP/changed_files.txt"
           CHANGED_PLANS_LIST="$RUNNER_TEMP/changed_plans.txt"
+
+          : > "$CHANGED_FILES_LIST"
+          : > "$CHANGED_PLANS_LIST"
 
           # Ensure base commit exists
           git fetch origin "$BASE_SHA" --depth=1 || true
 
           # Find changed or added Marp slides (top-level per grade, excluding plans/)
           git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- ':(glob)content/**/*.md' \
-            | { grep -v '/plans/' || true; } > "$CHANGED_FILES_LIST"
+            | { grep -v '/plans/' || true; } > "$CHANGED_FILES_RAW"
+          while IFS= read -r file; do
+            file="${file%$'\r'}"
+            [ -z "$file" ] && continue
+            [ -f "$file" ] || continue
+            echo "$file" >> "$CHANGED_FILES_LIST"
+          done < "$CHANGED_FILES_RAW"
           CHANGED_FILES_COUNT=$(grep -cve '^\s*$' "$CHANGED_FILES_LIST" || true)
           echo "changed_files_count=${CHANGED_FILES_COUNT}" >> "$GITHUB_OUTPUT"
+          if [ "$CHANGED_FILES_COUNT" -gt 0 ]; then
+            echo "has_changed_files=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changed_files=false" >> "$GITHUB_OUTPUT"
+          fi
           echo "changed_files_path=${CHANGED_FILES_LIST}" >> "$GITHUB_OUTPUT"
           echo "Detected changed or added slide files:"
           cat "$CHANGED_FILES_LIST" || true
 
           # Find changed or added lesson plan files
           git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- ':(glob)content/**/plans/*.md' \
-            > "$CHANGED_PLANS_LIST"
+            > "$CHANGED_PLANS_RAW"
+          while IFS= read -r file; do
+            file="${file%$'\r'}"
+            [ -z "$file" ] && continue
+            [ -f "$file" ] || continue
+            echo "$file" >> "$CHANGED_PLANS_LIST"
+          done < "$CHANGED_PLANS_RAW"
           CHANGED_PLANS_COUNT=$(grep -cve '^\s*$' "$CHANGED_PLANS_LIST" || true)
           echo "changed_plans_count=${CHANGED_PLANS_COUNT}" >> "$GITHUB_OUTPUT"
+          if [ "$CHANGED_PLANS_COUNT" -gt 0 ]; then
+            echo "has_changed_plans=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changed_plans=false" >> "$GITHUB_OUTPUT"
+          fi
           echo "changed_plans_path=${CHANGED_PLANS_LIST}" >> "$GITHUB_OUTPUT"
           echo "Detected changed or added plan files:"
           cat "$CHANGED_PLANS_LIST" || true
@@ -51,10 +78,12 @@ jobs:
           echo "TEMP_DIR=temp_output" >> $GITHUB_ENV
 
       - name: Convert Markdown to PPTX and PDF using Marp CLI
-        if: steps.changed-md.outputs.changed_files_count != '0'
+        if: steps.changed-md.outputs.has_changed_files == 'true'
         run: |
           while IFS= read -r file; do
+            file="${file%$'\r'}"
             [ -z "$file" ] && continue
+            [ -f "$file" ] || continue
             RELATIVE_PATH="${file#content/}"
             OUTPUT_DIR="$TEMP_DIR/$(dirname "$RELATIVE_PATH")"
             OUTPUT_PATH_PPTX="$OUTPUT_DIR/$(basename "${file%.md}.pptx")"
@@ -62,26 +91,28 @@ jobs:
             mkdir -p "$OUTPUT_DIR"
 
             # Run Marp CLI without specifying a user to avoid permission issues
-            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$OUTPUT_PATH_PPTX" --pptx
-            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "$file" --output "$OUTPUT_PATH_PDF" --pdf
+            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "/workspace/$file" --output "/workspace/$OUTPUT_PATH_PPTX" --pptx
+            docker run --rm -v "$PWD:/workspace" -w /workspace ghcr.io/marp-team/marp-cli --allow-local-files "/workspace/$file" --output "/workspace/$OUTPUT_PATH_PDF" --pdf
           done < "${{ steps.changed-md.outputs.changed_files_path }}"
 
       - name: Convert Lesson Plans to PDF using Pandoc
-        if: steps.changed-md.outputs.changed_plans_count != '0'
+        if: steps.changed-md.outputs.has_changed_plans == 'true'
         run: |
           sudo chmod -R 777 temp_output
           while IFS= read -r file; do
+            file="${file%$'\r'}"
             [ -z "$file" ] && continue
+            [ -f "$file" ] || continue
             RELATIVE_PATH="${file#content/}"
             OUTPUT_DIR="$TEMP_DIR/$(dirname "$RELATIVE_PATH")"
             mkdir -p "$OUTPUT_DIR"
             OUTPUT_PATH_PDF="$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
 
-            docker run --rm -v "$PWD:/workspace" -w /workspace pandoc/extra:3.9-debian "$file" -o "$OUTPUT_PATH_PDF" --pdf-engine=xelatex -H .github/xelatex-header.tex
+            docker run --rm -v "$PWD:/workspace" -w /workspace pandoc/extra:3.9-debian "/workspace/$file" -o "/workspace/$OUTPUT_PATH_PDF" --pdf-engine=xelatex -H /workspace/.github/xelatex-header.tex
           done < "${{ steps.changed-md.outputs.changed_plans_path }}"
 
       - name: Upload Converted Files as Artifact
-        if: steps.changed-md.outputs.changed_files_count != '0' || steps.changed-md.outputs.changed_plans_count != '0'
+        if: steps.changed-md.outputs.has_changed_files == 'true' || steps.changed-md.outputs.has_changed_plans == 'true'
         uses: actions/upload-artifact@v4
         env:
           ARTIFACT_NAME: converted-presentations-${{ github.event.pull_request.head.sha }}
