@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 6 клас
-header: 🏫 Урок 61
+header: 🏫 Урок 51
 style: |
   .grid-container {
     display: grid;
@@ -73,7 +73,7 @@ style: |
 
 # 🚀 Інтерактивні об’єкти у Scratch
 
-## 🏫 Урок **61**
+## 🏫 Урок **51**
 
 ---
 
@@ -118,7 +118,7 @@ style: |
 <section class="grid-container">
 <div class="image-center">
 
-![h:480px](assets/61/scratch-move-blocks.png)
+![h:480px](assets/51/scratch-move-blocks.png)
 
 </div>
 <div class="text-small">
@@ -145,7 +145,7 @@ style: |
 <section class="grid-container">
 <div class="image-center">
 
-![width:500px](assets/61/scratch-coordinates.png)
+![width:500px](assets/51/scratch-coordinates.png)
 
 </div>
 <div class="text-small">
@@ -172,7 +172,7 @@ style: |
 <section class="grid-container">
 <div class="image-center">
 
-![h:480px](assets/61/scratch-look-blocks.png)
+![h:480px](assets/51/scratch-look-blocks.png)
 
 </div>
 <div class="text-small">

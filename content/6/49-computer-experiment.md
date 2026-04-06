@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 6 клас
-header: 🏫 Урок 59
+header: 🏫 Урок 49
 style: |
   .grid-container {
     display: grid;
@@ -79,7 +79,7 @@ style: |
 
 # Етапи побудови комп’ютерної моделі. Проведення експерименту
 
-## 🏫 Урок **59**
+## 🏫 Урок **49**
 
 ---
 
@@ -127,7 +127,7 @@ style: |
   </div>
   <div class="grid-item image-center">
 
-![h:380px](./assets/59/computer_experiment_stages.jpg)
+![h:380px](./assets/49/computer_experiment_stages.jpg)
 
   </div>
 
@@ -178,11 +178,11 @@ style: |
 
 1. Змініть час відправлення
 
-  ![h:200px](./assets/59/experiment_step_1.png)
+  ![h:200px](./assets/49/experiment_step_1.png)
 
 2. Оберіть дату і час відправлення
 
-  ![h:200px](./assets/59/experiment_step_2.png)
+  ![h:200px](./assets/49/experiment_step_2.png)
 
 </div>
 </div>

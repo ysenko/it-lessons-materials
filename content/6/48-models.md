@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 6 клас
-header: 🏫 Урок 58
+header: 🏫 Урок 48
 style: |
   .grid-container {
     display: grid;
@@ -78,7 +78,7 @@ style: |
 ---
 
 # Поняття про модель. Види моделей
-## 🏫 Урок **58**
+## 🏫 Урок **48**
 
 ---
 
@@ -152,7 +152,7 @@ style: |
 
 <section class="image-center">
 
-![h:480px](./assets/58/model_examples.png)
+![h:480px](./assets/48/model_examples.png)
 
 </section>
 
