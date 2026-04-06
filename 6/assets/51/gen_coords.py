@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import os
 
 # Створюємо папку, якщо її немає
-os.makedirs('content/6/assets/61', exist_ok=True)
+os.makedirs('content/6/assets/51', exist_ok=True)
 
 plt.figure(figsize=(10, 8))
 
@@ -36,4 +36,4 @@ plt.annotate('', xy=(0, 180), xytext=(0, 160), arrowprops=dict(arrowstyle='->', 
 plt.annotate('', xy=(0, -180), xytext=(0, -160), arrowprops=dict(arrowstyle='->', color='green', lw=2))
 
 plt.tight_layout()
-plt.savefig('content/6/assets/61/scratch-coordinates.png', dpi=150)
+plt.savefig('content/6/assets/51/scratch-coordinates.png', dpi=150)
