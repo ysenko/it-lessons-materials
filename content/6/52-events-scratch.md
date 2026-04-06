@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 6 клас
-header: 🏫 Урок 62
+header: 🏫 Урок 52
 style: |
   .grid-container {
     display: grid;
@@ -81,7 +81,7 @@ style: |
 
 *Організація взаємодії між об’єктами*
 
-## 🏫 Урок **62**
+## 🏫 Урок **52**
 
 ---
 
@@ -142,7 +142,7 @@ style: |
   </div>
   <div class="image-center">
 
-![w:350px](./assets/62/scratch-events.png)
+![w:350px](./assets/52/scratch-events.png)
 
   </div>
 </div>
@@ -182,8 +182,8 @@ style: |
 </div>
 <div class="image-center">
 
-![w:350px](./assets/62/scratch-broadcast.png)
-![w:350px](./assets/62/scratch-receive.png)
+![w:350px](./assets/52/scratch-broadcast.png)
+![w:350px](./assets/52/scratch-receive.png)
 
 </div>
 </div>

@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 6 клас
-header: 🏫 Урок 60
+header: 🏫 Урок 50
 style: |
   .grid-container {
     display: grid;
@@ -79,7 +79,7 @@ style: |
 
 # 🤖 Поняття про об’єкт у програмуванні
 
-## 🏫 Урок **60**
+## 🏫 Урок **50**
 
 ---
 
