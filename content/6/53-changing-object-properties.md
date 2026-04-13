@@ -195,7 +195,6 @@ style: |
 </div>
 <div class="grid-item image-center">
 
-<!-- TODO: Screenshot: приклад блоку з підставленою змінною -->
 ![w:520px](./assets/53/variable-in-motion.png)
 
 </div>
