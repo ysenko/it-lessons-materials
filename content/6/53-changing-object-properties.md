@@ -171,7 +171,6 @@ style: |
 </div>
 <div class="grid-item image-center">
 
-<!-- TODO: Screenshot: блоки змінних -->
 ![w:320px](./assets/53/variable-blocks.png)
 
 </div>
