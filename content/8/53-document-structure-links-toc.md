@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 8 клас
-header: 🏫 Урок 63
+header: 🏫 Урок 53
 style: |
   .grid-container {
     display: grid;
@@ -79,7 +79,7 @@ style: |
 
 # 📄 Структура документа. Гіперпосилання. Автоматичний зміст.
 
-## 🏫 Урок **63**
+## 🏫 Урок **53**
 
 ---
 
@@ -138,7 +138,7 @@ style: |
 </div>
 <div class="image-center">
 
-![w:550px](./assets/63/structure-panel.png)
+![w:550px](./assets/53/structure-panel.png)
 
 </div>
 </section>

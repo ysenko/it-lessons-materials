@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 8 клас
-header: 🏫 Урок 55
+header: 🏫 Урок 46
 style: |
   .grid-container {
     display: grid;
@@ -79,7 +79,7 @@ style: |
 
 # Критичне оцінювання інформації. Виявлення недостовірних даних
 
-## 🏫 Урок **55**
+## 🏫 Урок **46**
 
 ---
 

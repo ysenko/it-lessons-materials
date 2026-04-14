@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 8 клас
-header: 🏫 Урок 56
+header: 🏫 Урок 47
 style: |
   .grid-container {
     display: grid;
@@ -82,7 +82,7 @@ style: |
 
 # Фактчекінг зображень. Як відрізнити справжнє фото від ШІ-генерації
 
-## 🏫 Урок **56**
+## 🏫 Урок **47**
 
 ---
 
@@ -175,12 +175,12 @@ style: |
 <div class="grid-container">
   <div class="grid-item image-center">
 
-![w:350px](./assets/56/image-1.png)
+![w:350px](./assets/47/image-1.png)
 
   </div>
   <div class="grid-item image-center">
 
-![w:400px](./assets/56/image-2.png)
+![w:400px](./assets/47/image-2.png)
 
   </div>
 </div>
