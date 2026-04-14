@@ -20,7 +20,7 @@
 
 **2. Актуалізація (5 хв)**
 *   Повторення: [Урок 51](https://ysenko.github.io/it-lessons-materials/8/51-ai-image-generation.html), [Урок 52](https://ysenko.github.io/it-lessons-materials/8/52-text-docs-automation.html), [Урок 53](https://ysenko.github.io/it-lessons-materials/8/53-document-structure-links-toc.html).
-*   Бліц: Як пов'язати текст із закладкою? (Вставка -> Посилання -> Закладки).
+*   Бліц: Як пов'язати текст із закладкою? (Вставити → Посилання → Закладки).
 
 **3. Інструктаж (3 хв)**
 *   **Рівень 1:** Квест на 2 вибори (кожен по 2 варіанти). Мінімум 6 сторінок.
