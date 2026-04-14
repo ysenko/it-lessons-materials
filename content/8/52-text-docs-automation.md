@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 8 клас
-header: 🏫 Урок 62
+header: 🏫 Урок 52
 style: |
   .grid-container {
     display: grid;
@@ -94,7 +94,7 @@ style: |
 
 *Створення колонок, розділів у текстовому документі. Колонтитули.*
 
-## 🏫 Урок **62**
+## 🏫 Урок **52**
 
 ---
 

@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 8 клас
-header: 🏫 Урок 61
+header: 🏫 Урок 51
 style: |
   .grid-container {
     display: grid;
@@ -81,7 +81,7 @@ style: |
 
 ## Етичні норми використання згенерованих зображень
 
-## 🏫 Урок **61**
+## 🏫 Урок **51**
 
 ---
 
@@ -106,7 +106,7 @@ style: |
   </div>
   <div class="grid-item image-center">
 
-![h:300px](./assets/61/qr-code-for-test.png)
+![h:300px](./assets/51/qr-code-for-test.png)
 
   </div>
 
@@ -238,7 +238,7 @@ style: |
 
 <div class="image-center">
 
-![h:450px](./assets/61/frodo.jpg)
+![h:450px](./assets/51/frodo.jpg)
 
 </div>
 

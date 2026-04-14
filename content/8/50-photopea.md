@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 8 клас
-header: 🏫 Урок 60
+header: 🏫 Урок 50
 style: |
   .grid-container {
     display: grid;
@@ -79,7 +79,7 @@ style: |
 
 # 🖼️ Растрова графіка. Обробка растрових зображень
 
-## 🏫 Урок *60*
+## 🏫 Урок *50*
 
 ---
 
@@ -117,12 +117,12 @@ style: |
 
 <section class="text-medium-small">
 
-- ![h:40px](./assets/60/move.png) **Переміщення (V):** дозволяє рухати об'єкти на полотні.
-- ![h:40px](./assets/60/crop.png) **Кадрування (C):** обрізання зайвих країв зображення для покращення композиції.
-- ![h:40px](./assets/60/blure.png) **Розмиття (Blur Tool):** дозволяє розмити задній план, щоб виділити головний об'єкт.
-- ![h:40px](./assets/60/red-eye-removal.png) **Усунення червоних очей (Red Eye Tool):** швидко виправляє дефекти від спалаху камери.
-- ![h:40px](./assets/60/patch.png) **Латка (Patch Tool):** допомагає прибрати дрібні дефекти або випадкові об'єкти на фоні.
--  ![h:40px](./assets/60/dodge.png) **Освітлювач (Dodge Tool):** обережно висвітлює потрібні ділянки (наприклад, обличчя в тіні).
+- ![h:40px](./assets/50/move.png) **Переміщення (V):** дозволяє рухати об'єкти на полотні.
+- ![h:40px](./assets/50/crop.png) **Кадрування (C):** обрізання зайвих країв зображення для покращення композиції.
+- ![h:40px](./assets/50/blure.png) **Розмиття (Blur Tool):** дозволяє розмити задній план, щоб виділити головний об'єкт.
+- ![h:40px](./assets/50/red-eye-removal.png) **Усунення червоних очей (Red Eye Tool):** швидко виправляє дефекти від спалаху камери.
+- ![h:40px](./assets/50/patch.png) **Латка (Patch Tool):** допомагає прибрати дрібні дефекти або випадкові об'єкти на фоні.
+-  ![h:40px](./assets/50/dodge.png) **Освітлювач (Dodge Tool):** обережно висвітлює потрібні ділянки (наприклад, обличчя в тіні).
 
 </section>
 
@@ -133,7 +133,7 @@ style: |
 <div class="grid-container">
 <div class="grid-item text-medium-small">
 
-![h:50px](./assets/60/crop.png) **Кадрування (Crop - C)**
+![h:50px](./assets/50/crop.png) **Кадрування (Crop - C)**
 
 1. Виберіть інструмент кадрування на панелі ліворуч.
 2. Потягніть за маркери на кутах рамки, щоб виділити головне, відрізавши зайве.
@@ -142,7 +142,7 @@ style: |
 </div>
 <div class="grid-item text-medium-small">
 
-![h:50px](./assets/60/red-eye-removal.png) **Червоні очі (Red Eye Tool)**
+![h:50px](./assets/50/red-eye-removal.png) **Червоні очі (Red Eye Tool)**
 
 1. Натисніть праву кнопку миші на інструменті "Точковий пензель відновлення" (значок пластиру).
 2. Виберіть **Red Eye Tool**.
@@ -158,7 +158,7 @@ style: |
 <div class="grid-container">
 <div class="grid-item text-medium-small">
 
-![h:50px](./assets/60/blure.png) **Розмиття (Blur Tool)**
+![h:50px](./assets/50/blure.png) **Розмиття (Blur Tool)**
 
 1. Знайдіть значок краплі на панелі.
 2. Зверху налаштуйте: Жорсткість (Hardness) **0%**, Інтенсивність (Strength) **50-70%**.
@@ -167,7 +167,7 @@ style: |
 </div>
 <div class="grid-item text-medium-small">
 
-![h:50px](./assets/60/patch.png) **Латка (Patch Tool)**
+![h:50px](./assets/50/patch.png) **Латка (Patch Tool)**
 
 1. Знаходиться в групі інструментів "Пластиру".
 2. Обведіть зайвий об'єкт на фоні (замкніть лінію виділення).
@@ -183,7 +183,7 @@ style: |
 <div class="grid-container">
 <div class="grid-item text-medium-small">
 
-![h:50px](./assets/60/dodge.png) **Освітлювач (Dodge Tool)**
+![h:50px](./assets/50/dodge.png) **Освітлювач (Dodge Tool)**
 
 1. Знайдіть значок шпильки 📍 (в групі з "рукою").
 2. Налаштування зверху: Жорсткість **0%**, Діапазон **Середні тони**, Експозиція **20%**.
