@@ -376,12 +376,12 @@ print(chr(1072))  # а
 <div class="text-medium-small">
 
 ```python
-letter = "А"
-print(chr(ord(letter) + 1))   # Б  (наступна літера)
-print(chr(ord(letter) - 1))   # @  (попередній символ у Unicode)
+letter = "W"
+print(chr(ord(letter) + 1))   # X  (наступна літера)
+print(chr(ord(letter) - 1))   # V  (попередній символ у Unicode)
 
 # Перевірка: ord і chr скасовують одне одного
-print(chr(ord("Щ")))          # Щ
+print(chr(ord("N")))          # N
 ```
 
 </div>
