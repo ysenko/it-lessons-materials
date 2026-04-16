@@ -295,7 +295,7 @@ style: |
 
 ---
 
-## 🧩 Крок 3: перевірка кута при кліку
+## 🧩 Крок 3: перевірка кута при натисканні клавіші
 
 <div class="grid-container">
 <div class="grid-item text-left text-medium-small">
