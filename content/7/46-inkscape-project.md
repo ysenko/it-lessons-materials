@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 7 клас
-header: 🏫 Урок 55
+header: 🏫 Урок 46
 style: |
   .grid-container {
     display: grid;
@@ -79,7 +79,7 @@ style: |
 
 # Створення векторної композиції «Космічна подорож»
 
-## 🏫 Урок **55**
+## 🏫 Урок **46**
 
 ---
 
@@ -121,7 +121,7 @@ style: |
 
 <div class="image-center">
 
-![h:400px](./assets/55/example.png)
+![h:400px](./assets/46/example.png)
 
 </div>
 
