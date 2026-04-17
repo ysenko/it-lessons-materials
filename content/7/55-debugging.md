@@ -262,8 +262,7 @@ number = float("12.5")
 Traceback (most recent call last):
   File "program.py", line 3, in <module>
     result = 18 - age
-TypeError: unsupported operand type(s)
-    for -: 'int' and 'str'
+TypeError: unsupported operand type(s) for -: 'int' and 'str'
 ```
 
 </div>
