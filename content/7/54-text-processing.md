@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 7 клас
-header: 🏫 Урок 64
+header: 🏫 Урок 54
 style: |
   .grid-container {
     display: grid;
@@ -80,7 +80,7 @@ style: |
 
 # 📝 Текстові величини в Python та операції над ними
 
-## 🏫 Урок **64**
+## 🏫 Урок **54**
 
 ---
 

@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 7 клас
-header: 🏫 Урок 63
+header: 🏫 Урок 53
 style: |
   .grid-container {
     display: grid;
@@ -70,7 +70,7 @@ style: |
 
 # 🐢 Створення графічних примітивів за допомогою Python
 
-## 🏫 Урок **63**
+## 🏫 Урок **53**
 
 ---
 
@@ -170,7 +170,7 @@ turtle.speed(2)          # Швидкість руху (0-10; 0 = найшвид
 </div>
 <div class="image-center">
 
-![h:400](./assets/63/trident.png)
+![h:400](./assets/53/trident.png)
 
 </div>
 </div>

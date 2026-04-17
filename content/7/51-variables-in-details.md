@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 7 клас
-header: 🏫 Урок 61
+header: 🏫 Урок 51
 style: |
   .grid-container {
     display: grid;
@@ -79,7 +79,7 @@ style: |
 
 # 🐍 Робота зі змінними: Введення та Обчислення
 
-## 🏫 Урок **61**
+## 🏫 Урок **51**
 
 ---
 

@@ -6,7 +6,7 @@ paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
 footer: 🖥️ Інформатика | 7 клас
-header: 🏫 Урок 60
+header: 🏫 Урок 50
 style: |
   .grid-container {
     display: grid;
@@ -80,7 +80,7 @@ style: |
 # 🐍 Величини. Змінні.
   Знайомство з Python
 
-## 🏫 Урок **60**
+## 🏫 Урок **50**
 
 ---
 
@@ -129,7 +129,7 @@ style: |
 
 <div class="image-center">
 
-![w:1200px](./assets/60/python-popularity.png)
+![w:1200px](./assets/50/python-popularity.png)
 
 </div>
 
