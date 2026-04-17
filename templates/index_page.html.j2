@@ -226,7 +226,7 @@
                 <summary>Уроки для {{ grade.grade }} класу</summary>
                 <ul>
                     {% for lesson in grade.lessons %}
-                    <li><a href="{{ lesson.path }}">{{ lesson.display_name }}</a></li>
+                    <li><a href="{{ lesson.path }}" target="_blank" rel="noopener noreferrer">{{ lesson.display_name }}</a></li>
                     {% endfor %}
                 </ul>
             </details>
