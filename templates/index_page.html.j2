@@ -181,6 +181,12 @@
             transform: translateY(-1px);
         }
 
+        a[target="_blank"]::after {
+            content: " \2197";
+            font-weight: 800;
+            color: var(--text-secondary);
+        }
+
         @media (max-width: 640px) {
             body { font-size: 16px; }
 
@@ -226,7 +232,7 @@
                 <summary>Уроки для {{ grade.grade }} класу</summary>
                 <ul>
                     {% for lesson in grade.lessons %}
-                    <li><a href="{{ lesson.path }}">{{ lesson.display_name }}</a></li>
+                    <li><a href="{{ lesson.path }}" target="_blank" rel="noopener noreferrer">{{ lesson.display_name }}</a></li>
                     {% endfor %}
                 </ul>
             </details>
