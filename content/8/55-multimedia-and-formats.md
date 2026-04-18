@@ -296,7 +296,7 @@ MP3, AAC, OGG
 
 <section class="important-to-remember text-medium-small">
 
-⚠️ MP4 — це контейнер, а H.264 — кодек. Одне без одного не існує!
+⚠️ MP4 — це контейнер, а H.264 — кодек. Вони часто використовуються разом, але це різні рівні формату відео.
 
 </section>
 
@@ -354,10 +354,10 @@ MP3, AAC, OGG
 
 **Досліджуємо медіафайли у VLC**
 
-1. Відкрий VLC → відкрий будь-який **<a href="https://drive.google.com/file/d/1s5NhK0By-XqalGc6jQ2hKqeSkVs4a_bh/view?usp=sharing" target="_blank">аудіофайл</a>**
+1. Відкрий VLC → відкрий будь-який **<a href="https://drive.google.com/file/d/1s5NhK0By-XqalGc6jQ2hKqeSkVs4a_bh/view?usp=sharing" target="_blank" rel="noopener noreferrer">аудіофайл</a>**
 2. **Інструменти → Інформація про медіа** (Ctrl+I)
 3. Запиши: кодек (codec), частоту дискретизації (sample rate), бітрейт (bitrate)
-4. Повтори для **<a href="https://drive.google.com/file/d/1qAj-mfW6y3ilqEW3dXl1qsB0PMsP_n92/view?usp=sharing" target="_blank">відеофайлу</a>** — додай роздільну здатність (video resolution) та fps
+4. Повтори для **<a href="https://drive.google.com/file/d/1qAj-mfW6y3ilqEW3dXl1qsB0PMsP_n92/view?usp=sharing" target="_blank" rel="noopener noreferrer">відеофайлу</a>** — додай роздільну здатність (video resolution) та fps
 
 🌐 *Немає VLC?* → [mediainfo.js.org](https://mediainfo.js.org/demo/)
 
