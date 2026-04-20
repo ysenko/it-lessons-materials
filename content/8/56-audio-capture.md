@@ -180,7 +180,7 @@ style: |
 <!-- ▼▼▼ ВСТАВТЕ ПОСИЛАННЯ НА YOUTUBE НИЖЧЕ ▼▼▼ -->
 ### 👉 <a href="https://www.youtube.com/watch?v=hHqQ2Q31jiA" target="_blank">Посилання на відео</a>
 
-![w:200px](./assets/qr-video-56.png)
+![QR-код для переходу до покрокової відеоінструкції на YouTube w:200px](./assets/qr-video-56.png)
 
 ---
 
