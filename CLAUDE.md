@@ -123,6 +123,14 @@ No Python or Markdown linters are currently configured.
 - `GDRIVE_CREDENTIALS` — Service account JSON credentials (stored in GitHub Secrets)
 - `GRADE_*_FOLDER_ID` — Google Drive folder IDs for each grade (stored in GitHub Secrets)
 
+## Commits & Pull Requests
+
+- Write commit messages in imperative form: "Add feature" not "Added feature"
+- Include a brief summary (1 line) explaining the *what*, optionally followed by a body explaining the *why*
+- **Do not** include AI co-author attributions (e.g., `Co-Authored-By: Claude ...`) in commits or PRs
+- **Do not** explicitly mention Claude Code, Claude, or AI tools in commit messages or PR descriptions
+- Let the work speak for itself; focus on the change's purpose and impact
+
 ## Notes
 
 - See `AGENTS.md` for a runbook of build and helper script commands (intended for automated agents)
