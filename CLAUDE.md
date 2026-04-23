@@ -65,19 +65,19 @@ make clean
 
 ### Python Scripts
 
-- **`build_index_page.py`** — Scans published presentations, extracts lesson metadata (title, grade, lesson number), and generates an `index.html` file. Runs automatically in CI after new presentations are built.
-- **`google_drive_upload.py`** — Uploads PDF/HTML artifacts to Google Drive folders by grade. Authenticates via service account credentials (set via `GDRIVE_CREDENTIALS_FILE` env var or `creds.json`).
+- **`build_index_page.py`** — Generates index page listing all presentations by grade (runs automatically in CI)
+- **`google_drive_upload.py`** — Uploads PDF/HTML artifacts to Google Drive folders by grade
 
 ### Custom Skill
 
-- **`skills/nush-lesson-planner/`** — Claude Code skill for planning and generating Marp presentations in Ukrainian. Supports the full range of grades (5–12). The skill is also linked from `.claude/`, `.gemini/`, and `.opencode/` directories for use across multiple AI platforms.
+- **`skills/nush-lesson-planner/`** — Primary way to create lesson plans and Marp presentations in Ukrainian (grades 5–12). Linked from `.claude/`, `.gemini/`, and `.opencode/` for use across platforms.
 
 ## Lessons and Naming Convention
 
 Lessons are numbered sequentially within each grade using **2-digit zero-padded format**. File names follow this pattern:
 
 ```
-<LESSON-NUMBER>-<LESSON-TITLE>.md
+<LESSON-NUMBER>-<LESSON-SLUG>.md
 ```
 
 Examples: `05-basic-algorithms.md`, `46-inkscape-project.md`, `51-variables-in-details.md`
@@ -86,15 +86,11 @@ Lesson metadata (title, grade, number) is extracted from the presentation's `<ti
 
 ## Linting
 
-The repository uses `pre-commit` for basic checks:
-
 ```sh
 pre-commit run --all-files
 ```
 
-Current hooks: trailing-whitespace, end-of-file-fixer, check-yaml.
-
-No Python or Markdown linters are currently configured.
+Hooks: trailing-whitespace, end-of-file-fixer, check-yaml.
 
 ## Presentation Format
 
@@ -105,34 +101,21 @@ No Python or Markdown linters are currently configured.
 
 ## CI/CD
 
-- **Trigger**: GitHub Actions workflow runs automatically on merge to `main`
-- **Build Process**: All changed presentations are built into HTML, PDF, and PPTX formats
-- **Upload**: Built artifacts are uploaded to Google Drive folders organized by grade
-- **Cleanup**: Existing files with the same name are deleted and replaced on Google Drive
-- **Artifacts**: PDF, HTML, and PPTX files should never be committed to git
+- **Trigger**: Runs automatically on merge to `main`
+- **Build**: All changed presentations → HTML, PDF, PPTX
+- **Upload**: Artifacts to Google Drive folders (by grade)
+- **Cleanup**: Existing files deleted and replaced on Drive
+- **Important**: Never commit PDF, HTML, or PPTX files to git
 
-## Important Env Vars
+## Environment Variables
 
-**Local Development** (Google Drive uploads):
+**Local**: `PUBLISH_DIR` (directory with built presentations for `build_index_page.py`)
 
-- `GDRIVE_CREDENTIALS_FILE` — Path to service account JSON credentials (defaults to `creds.json`)
-- `PUBLISH_DIR` — Directory containing built presentations (used by `build_index_page.py`)
-
-**CI/CD** (GitHub Actions):
-
-- `GDRIVE_CREDENTIALS` — Service account JSON credentials (stored in GitHub Secrets)
-- `GRADE_*_FOLDER_ID` — Google Drive folder IDs for each grade (stored in GitHub Secrets)
+**CI/CD**: `GDRIVE_CREDENTIALS`, `GRADE_*_FOLDER_ID` (stored in GitHub Secrets)
 
 ## Commits & Pull Requests
 
-- Write commit messages in imperative form: "Add feature" not "Added feature"
-- Include a brief summary (1 line) explaining the *what*, optionally followed by a body explaining the *why*
-- **Do not** include AI co-author attributions (e.g., `Co-Authored-By: Claude ...`) in commits or PRs
-- **Do not** explicitly mention Claude Code, Claude, or AI tools in commit messages or PR descriptions
-- Let the work speak for itself; focus on the change's purpose and impact
-
-## Notes
-
-- See `AGENTS.md` for a runbook of build and helper script commands (intended for automated agents)
-- The `nush-lesson-planner` skill is the primary way to create new lesson plans and Marp presentations
-- Google Drive service account must be configured with Editor access to grade folders for uploads to work
+- Use imperative form: "Add feature" not "Added feature"
+- One-line summary + optional body (explaining the *why*)
+- **Do not** include AI co-author attributions or mention Claude Code/AI tools
+- Let the work speak for itself; focus on purpose and impact
