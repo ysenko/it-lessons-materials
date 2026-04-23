@@ -4,13 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Repository for informatics lesson materials for the "New Ukrainian School" (НУШ) program. Presentations are authored in Marp (Markdown flavor), covering grades 5–12. A CI/CD pipeline builds PDF and HTML versions and uploads them to Google Drive. The [web version of presentations](https://ysenko.github.io/it-lessons-materials/index.html) is published to GitHub Pages.
+Repository for informatics lesson materials for the "New Ukrainian School" (НУШ) program. Presentations are authored in Marp (Markdown flavor), covering grades 6–8. GitHub Actions converts presentations to PDF and PPTX on pull requests, uploads artifacts to Google Drive on merge to `main`, and publishes the [web version of presentations](https://ysenko.github.io/it-lessons-materials/index.html) to GitHub Pages via a separate workflow.
 
 ## Prerequisites
 
 - **Marp CLI**: `npm install -g marp-cli` — required for building presentations locally
 - **Python 3.10+**: Required for helper scripts
-- **git** and **gh** (GitHub CLI): Required for managing and uploading content
+- **git**: Required for repository management
 
 ## Build & Development Commands
 
@@ -43,8 +43,12 @@ pip install -r requirements.txt
 # Build or rebuild the index page (lists all presentations by grade)
 PUBLISH_DIR=content python3 build_index_page.py
 
-# Upload PDFs to Google Drive (requires credentials configured)
-python google_drive_upload.py
+# Upload a file to Google Drive (requires credentials configured)
+# Format: python3 google_drive_upload.py <source_file> <folder_id>:<destination_filename>
+python3 google_drive_upload.py content/6/example.pdf "$GRADE_6_FOLDER_ID:example.pdf"
+
+# Overwrite an existing file on Google Drive (used in CI when replacing artifacts)
+python3 google_drive_upload.py content/6/example.pdf "$GRADE_6_FOLDER_ID:example.pdf" --override
 ```
 
 ### Cleanup
@@ -58,26 +62,26 @@ make clean
 
 ### Content Structure
 
-- **`content/<GRADE>/`** — Markdown presentations organized by grade level (5–12)
+- **`content/<GRADE>/`** — Markdown presentations organized by grade level (currently grades 6–8)
 - **`content/<GRADE>/assets/<LESSON-NUMBER>/`** — Images and other assets for each lesson
 - **`templates/gaia_template.md`** — Template for new presentations (copy and customize)
 - **`templates/index_page.html.j2`** — Jinja2 template for generating index pages
 
 ### Python Scripts
 
-- **`build_index_page.py`** — Scans published presentations, extracts lesson metadata (title, grade, lesson number), and generates an `index.html` file. Runs automatically in CI after new presentations are built.
-- **`google_drive_upload.py`** — Uploads PDF/HTML artifacts to Google Drive folders by grade. Authenticates via service account credentials (set via `GDRIVE_CREDENTIALS_FILE` env var or `creds.json`).
+- **`build_index_page.py`** — Generates index page listing all presentations by grade (runs automatically in CI)
+- **`google_drive_upload.py`** — Uploads PDF/HTML artifacts to Google Drive folders by grade
 
 ### Custom Skill
 
-- **`skills/nush-lesson-planner/`** — Claude Code skill for planning and generating Marp presentations in Ukrainian. Supports the full range of grades (5–12). The skill is also linked from `.claude/`, `.gemini/`, and `.opencode/` directories for use across multiple AI platforms.
+- **`skills/nush-lesson-planner/`** — Primary way to create lesson plans and Marp presentations in Ukrainian (supports grades 5–12). Linked from `.claude/`, `.gemini/`, and `.opencode/` for use across platforms.
 
 ## Lessons and Naming Convention
 
 Lessons are numbered sequentially within each grade using **2-digit zero-padded format**. File names follow this pattern:
 
 ```
-<LESSON-NUMBER>-<LESSON-TITLE>.md
+<LESSON-NUMBER>-<LESSON-SLUG>.md
 ```
 
 Examples: `05-basic-algorithms.md`, `46-inkscape-project.md`, `51-variables-in-details.md`
@@ -86,53 +90,38 @@ Lesson metadata (title, grade, number) is extracted from the presentation's `<ti
 
 ## Linting
 
-The repository uses `pre-commit` for basic checks:
-
 ```sh
 pre-commit run --all-files
 ```
 
-Current hooks: trailing-whitespace, end-of-file-fixer, check-yaml.
-
-No Python or Markdown linters are currently configured.
+Hooks: trailing-whitespace, end-of-file-fixer, check-yaml.
 
 ## Presentation Format
 
 - Presentations use Marp (Markdown syntax with front-matter for configuration)
 - Slides are separated by `---`
 - Assets (images) are placed in `content/<GRADE>/assets/<LESSON-NUMBER>/` and referenced as `assets/<LESSON-NUMBER>/image.png`
-- Each presentation must include a `<title>` tag for the index page to extract the lesson name
+- Each presentation must have its title set (via Marp front-matter `title:` or the first `#` heading) so the generated HTML `<title>` is extracted correctly for the index page
 
 ## CI/CD
 
-- **Trigger**: GitHub Actions workflow runs automatically on merge to `main`
-- **Build Process**: All changed presentations are built into HTML, PDF, and PPTX formats
-- **Upload**: Built artifacts are uploaded to Google Drive folders organized by grade
-- **Cleanup**: Existing files with the same name are deleted and replaced on Google Drive
-- **Artifacts**: PDF, HTML, and PPTX files should never be committed to git
+- **Pull Request**: GitHub Actions converts changed presentations to PDF and PPTX artifacts for validation
+- **Merge to `main`**: A separate workflow downloads the generated artifacts and uploads them to Google Drive folders (by grade), replacing existing files
+- **Web Publishing**: HTML output is generated and published to GitHub Pages via a manual `workflow_dispatch` trigger
+- **Important**: Never commit PDF, HTML, or PPTX files to git
 
-## Important Env Vars
+## Environment Variables
 
-**Local Development** (Google Drive uploads):
+**Local**: `PUBLISH_DIR` (directory with built presentations for `build_index_page.py`)
 
-- `GDRIVE_CREDENTIALS_FILE` — Path to service account JSON credentials (defaults to `creds.json`)
-- `PUBLISH_DIR` — Directory containing built presentations (used by `build_index_page.py`)
+**CI/CD (GitHub Actions)**:
 
-**CI/CD** (GitHub Actions):
-
-- `GDRIVE_CREDENTIALS` — Service account JSON credentials (stored in GitHub Secrets)
-- `GRADE_*_FOLDER_ID` — Google Drive folder IDs for each grade (stored in GitHub Secrets)
+- `GDRIVE_CREDENTIALS` — Service account JSON credentials (stored as GitHub Secret)
+- `GRADE_6_FOLDER_ID`, `GRADE_7_FOLDER_ID`, `GRADE_8_FOLDER_ID` — Google Drive folder IDs (stored as GitHub Actions Variables, not Secrets)
 
 ## Commits & Pull Requests
 
-- Write commit messages in imperative form: "Add feature" not "Added feature"
-- Include a brief summary (1 line) explaining the *what*, optionally followed by a body explaining the *why*
-- **Do not** include AI co-author attributions (e.g., `Co-Authored-By: Claude ...`) in commits or PRs
-- **Do not** explicitly mention Claude Code, Claude, or AI tools in commit messages or PR descriptions
-- Let the work speak for itself; focus on the change's purpose and impact
-
-## Notes
-
-- See `AGENTS.md` for a runbook of build and helper script commands (intended for automated agents)
-- The `nush-lesson-planner` skill is the primary way to create new lesson plans and Marp presentations
-- Google Drive service account must be configured with Editor access to grade folders for uploads to work
+- Use imperative form: "Add feature" not "Added feature"
+- One-line summary + optional body (explaining the *why*)
+- **Do not** include AI co-author attributions or mention Claude Code/AI tools
+- Let the work speak for itself; focus on purpose and impact
