@@ -254,8 +254,8 @@ Screen recording — запис того, що відбувається на е�
 
 **Що вам потрібно зробити**:
 
-1. Відкрити Google Vids (<a href=https://vids.google.com target="_blank">https://vids.google.com</a>) або OBS Studio (завантажити за <a href=https://obsproject.com target="_blank">посиланням</a>).
-2. Створити новий проект.
+1. Відкрити Google Vids (<a href="https://vids.google.com" target="_blank">https://vids.google.com</a>) або OBS Studio (завантажити за <a href="https://obsproject.com" target="_blank">посиланням</a>).
+2. Створити новий проєкт.
 3. **Записати коротке відео (30-60 секунд)** з одночасним показом:
    - Вашого зображення в камері
    - Екрану комп'ютера
