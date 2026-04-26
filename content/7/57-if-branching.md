@@ -114,7 +114,7 @@ print(bool(""))
 
 ## 💡 Навіщо потрібен `if`?
 
-<div class="important-to-remember">
+<div class="important-to-remember text-medium-small">
 
 Ми вміємо **порівнювати** значення і отримувати `True` / `False`.
 
@@ -380,9 +380,13 @@ score = 95 → «Задовільно» 😱
 <div class="card text-medium-small">
 
 ```python
-# ❌ Неправильно:
-if x = 5       # SyntaxError: = замість ==
-    print(x)   # IndentationError: немає відступу
+# ❌ Неправильно — SyntaxError (= замість ==):
+if x = 5:
+    print(x)
+
+# ❌ Неправильно — IndentationError (немає відступу):
+if x == 5:
+print(x)
 
 # ✅ Правильно:
 if x == 5:
