@@ -269,7 +269,7 @@ style: |
 <section class="grid-container">
 <div class="text-left text-medium-small">
 
-У головному скрипті (`коли натиснуто 🏴`):
+У головному скрипті (`коли натиснуто зелений прапорець`):
 
 ```
 очистити все
