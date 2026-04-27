@@ -8,10 +8,17 @@ jobs:
   build-presentations:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
         with:
           fetch-depth: 2  # Ensures we have at least the previous commit for diffing
 
@@ -54,7 +61,7 @@ jobs:
           fi
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -71,9 +78,14 @@ jobs:
           chmod  777 $PUBLISH_DIR/index.html
           echo "index.html created successfully."
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        if: github.ref == 'refs/heads/main'
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ vars.PUBLISH_DIR }}
+          path: ${{ vars.PUBLISH_DIR }}
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
