@@ -76,25 +76,6 @@ style: |
     text-align: center;
     display: block;
   }
-  .step-instruction {
-    background-color: #e3f2fd;
-    border-left: 5px solid #2196f3;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: left;
-  }
-  .screenshot-placeholder {
-    border: 3px dashed #90a4ae;
-    border-radius: 8px;
-    background-color: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 200px;
-    color: #90a4ae;
-    font-size: 18px;
-    text-align: center;
-  }
 
 ---
 
@@ -137,38 +118,16 @@ style: |
 
 ---
 
-<!-- Секція А -->
+## 🅐 Секція А — Ініціалізація проєкту
 
-## 🅐 Крок 1 — Новий проект
+<section class="task">
 
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
+## ⌨️ Кроки 1–2
 
-**Крок 1.** Відкрийте [makecode.microbit.org/#editor](https://makecode.microbit.org/#editor) та створіть **новий проект**.
-
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-01.png)
-
-</div>
-</section>
-
----
-
-## 🅐 Крок 2 — Подія «при струшуванні»
-
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
+**Крок 1.** Створіть новий проект у редакторі MakeCode.
 
 **Крок 2.** З категорії **Вхідні дані** оберіть блок **при струшуванні** та перетягніть його на робочу область.
 
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-02.png)
-
-</div>
 </section>
 
 ---
@@ -187,55 +146,18 @@ style: |
 
 ---
 
-<!-- Секція Б -->
+## 🅑 Секція Б — Змінна та випадкове число
 
-## 🅑 Крок 3 — Змінна `hand`
+<section class="task">
 
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
+## ⌨️ Кроки 3–5
 
-**Крок 3.** Перейдіть до категорії **Змінні** та створіть нову змінну з назвою **`hand`**.
+**Крок 3.** У категорії **Змінні** створіть нову змінну з назвою `hand`.
 
-</div>
-<div class="image-center">
+**Крок 4.** Блок **задати hand значення 0** перетягніть всередину **при струшуванні**.
 
-![w:450px](assets/60/step-03.png)
+**Крок 5.** З категорії **Математика** візьміть **вибрати випадково від 1 до 3** та замініть ним **0** у блоці задати hand.
 
-</div>
-</section>
-
----
-
-## 🅑 Крок 4 — Задати значення змінній
-
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
-
-**Крок 4.** З категорії **Змінні** оберіть блок **задати hand значення 0** та перетягніть його **всередину** блоку **при струшуванні**.
-
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-04.png)
-
-</div>
-</section>
-
----
-
-## 🅑 Крок 5 — Випадкове число
-
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
-
-**Крок 5.** З категорії **Математика** оберіть **вибрати випадково від 1 до 3** та вставте замість **0** у блоці задати hand.
-
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-05.png)
-
-</div>
 </section>
 
 ---
@@ -281,72 +203,20 @@ style: |
 
 ---
 
-<!-- Секція В -->
+## 🅒 Секція В — Умова для каменю
 
-## 🅒 Крок 6 — Блок «якщо то інакше»
+<section class="task">
 
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
+## ⌨️ Кроки 6–9
 
-**Крок 6.** З категорії **Логіка** оберіть блок **якщо істина то інакше** та додайте його під блок **задати hand**.
+**Крок 6.** З **Логіки** додайте блок **якщо істина то інакше** під блок задати hand.
 
-</div>
-<div class="image-center">
+**Крок 7.** З **Логіки** перетягніть **0 = 0** замість **істина**.
 
-![w:450px](assets/60/step-06.png)
+**Крок 8.** Замініть перший 0 на змінну `hand`, другий 0 — на **1**.
 
-</div>
-</section>
+**Крок 9.** З **Основних** додайте **показати іконку** → оберіть **Діамант** 💎 (камінь).
 
----
-
-## 🅒 Крок 7 — Умова порівняння
-
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
-
-**Крок 7.** З категорії **Логіка** оберіть блок **0 = 0** та перетягніть його замість **істина** у блоці якщо.
-
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-07.png)
-
-</div>
-</section>
-
----
-
-## 🅒 Крок 8 — Порівняємо `hand` з 1
-
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
-
-**Крок 8.** З категорії **Змінні** перетягніть `hand` замість першого **0**. Другий **0** замініть на **1**.
-
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-08.png)
-
-</div>
-</section>
-
----
-
-## 🅒 Крок 9 — Іконка каменю 💎
-
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
-
-**Крок 9.** З категорії **Основні** оберіть **показати іконку** та перетягніть у блок **якщо**. Оберіть іконку **Діамант** 💎 — це камінь.
-
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-09.png)
-
-</div>
 </section>
 
 ---
@@ -365,72 +235,20 @@ style: |
 
 ---
 
-<!-- Секція Г -->
+## 🅓 Секція Г — Умова для паперу
 
-## 🅓 Крок 10 — Додати «інакше якщо»
+<section class="task">
 
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
+## ⌨️ Кроки 10–13
 
-**Крок 10.** Натисніть **+** внизу блоку **якщо то інакше** — з'явиться нова секція **інакше якщо**.
+**Крок 10.** Натисніть **+** внизу блоку — з'явиться **інакше якщо**.
 
-</div>
-<div class="image-center">
+**Крок 11.** З **Логіки** перетягніть **0 = 0** у новий блок **інакше якщо**.
 
-![w:450px](assets/60/step-10.png)
+**Крок 12.** Замініть перший 0 на `hand`, другий 0 — на **2**.
 
-</div>
-</section>
+**Крок 13.** Додайте **показати іконку** → оберіть **Великий квадрат** ⬛ (папір).
 
----
-
-## 🅓 Крок 11 — Умова для другої гілки
-
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
-
-**Крок 11.** З категорії **Логіка** перетягніть блок **0 = 0** у новий блок **інакше якщо**.
-
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-11.png)
-
-</div>
-</section>
-
----
-
-## 🅓 Крок 12 — Порівняємо `hand` з 2
-
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
-
-**Крок 12.** З категорії **Змінні** перетягніть `hand` замість першого **0**. Другий **0** замініть на **2**.
-
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-12.png)
-
-</div>
-</section>
-
----
-
-## 🅓 Крок 13 — Іконка паперу ⬛
-
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
-
-**Крок 13.** З категорії **Основні** додайте **показати іконку** у блок **інакше якщо**. Оберіть **Великий квадрат** ⬛ — це папір.
-
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-13.png)
-
-</div>
 </section>
 
 ---
@@ -449,38 +267,16 @@ style: |
 
 ---
 
-<!-- Секція Д -->
+## 🅔 Секція Д — Ножиці та тестування
 
-## 🅔 Крок 14 — Іконка ножиць ✂️
+<section class="task">
 
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
+## ⌨️ Кроки 14–15
 
-**Крок 14.** У секцію **інакше** перетягніть **показати іконку** та оберіть іконку **Ножиці** ✂️.
+**Крок 14.** У секцію **інакше** додайте **показати іконку** → оберіть **Ножиці** ✂️.
 
-</div>
-<div class="image-center">
+**Крок 15.** Протестуйте програму: потрясіть мікроконтролер у симуляторі (лівий верхній кут екрану). Перевірте всі три символи!
 
-![w:450px](assets/60/step-14.png)
-
-</div>
-</section>
-
----
-
-## 🅔 Крок 15 — Тестування 🧪
-
-<section class="grid-container">
-<div class="step-instruction text-medium-small">
-
-**Крок 15.** Потрясіть мікроконтролер у **симуляторі** (лівий верхній кут). Перевірте, чи з'являються всі три символи!
-
-</div>
-<div class="image-center">
-
-![w:450px](assets/60/step-15.png)
-
-</div>
 </section>
 
 ---
