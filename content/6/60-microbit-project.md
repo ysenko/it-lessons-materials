@@ -120,7 +120,8 @@ style: |
 
 ## 🅐 Секція А — Ініціалізація проєкту
 
-<section class="task">
+<section class="grid-container">
+<div class="task text-medium-small">
 
 ## ⌨️ Кроки 1–2
 
@@ -128,6 +129,12 @@ style: |
 
 **Крок 2.** З категорії **Вхідні дані** оберіть блок **при струшуванні** та перетягніть його на робочу область.
 
+</div>
+<div class="image-center">
+
+![w:450px](assets/60/section-a.png)
+
+</div>
 </section>
 
 ---
@@ -148,7 +155,8 @@ style: |
 
 ## 🅑 Секція Б — Змінна та випадкове число
 
-<section class="task">
+<section class="grid-container">
+<div class="task text-medium-small">
 
 ## ⌨️ Кроки 3–5
 
@@ -158,6 +166,12 @@ style: |
 
 **Крок 5.** З категорії **Математика** візьміть **вибрати випадково від 1 до 3** та замініть ним **0** у блоці задати hand.
 
+</div>
+<div class="image-center">
+
+![w:450px](assets/60/section-b.png)
+
+</div>
 </section>
 
 ---
@@ -205,7 +219,8 @@ style: |
 
 ## 🅒 Секція В — Умова для каменю
 
-<section class="task">
+<section class="grid-container">
+<div class="task text-medium-small">
 
 ## ⌨️ Кроки 6–9
 
@@ -217,6 +232,12 @@ style: |
 
 **Крок 9.** З **Основних** додайте **показати іконку** → оберіть **Діамант** 💎 (камінь).
 
+</div>
+<div class="image-center">
+
+![w:450px](assets/60/section-c.png)
+
+</div>
 </section>
 
 ---
@@ -237,7 +258,8 @@ style: |
 
 ## 🅓 Секція Г — Умова для паперу
 
-<section class="task">
+<section class="grid-container">
+<div class="task text-medium-small">
 
 ## ⌨️ Кроки 10–13
 
@@ -249,6 +271,12 @@ style: |
 
 **Крок 13.** Додайте **показати іконку** → оберіть **Великий квадрат** ⬛ (папір).
 
+</div>
+<div class="image-center">
+
+![w:450px](assets/60/section-d.png)
+
+</div>
 </section>
 
 ---
@@ -269,7 +297,8 @@ style: |
 
 ## 🅔 Секція Д — Ножиці та тестування
 
-<section class="task">
+<section class="grid-container">
+<div class="task text-medium-small">
 
 ## ⌨️ Кроки 14–15
 
@@ -277,6 +306,12 @@ style: |
 
 **Крок 15.** Протестуйте програму: потрясіть мікроконтролер у симуляторі (лівий верхній кут екрану). Перевірте всі три символи!
 
+</div>
+<div class="image-center">
+
+![w:450px](assets/60/section-e.png)
+
+</div>
 </section>
 
 ---
