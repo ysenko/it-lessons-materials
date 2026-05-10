@@ -1,4 +1,4 @@
-.PHONY: clean html-local
+.PHONY: clean html-local assessment-pdf
 
 SRC ?= presentation.md
 # Use content to ensure that produced html files can find images.
@@ -38,6 +38,11 @@ pdf:
 pptx:
 	$(MARP) $(SRC) --output $(PPTX_OUT) --pptx --allow-local-files
 
+# Generate PDF from a plain Markdown assessment (not Marp)
+# Usage: make assessment-pdf SRC=content/8/assessments/my-assessment.md
+assessment-pdf:
+	pandoc $(SRC) -o $(PDF_OUT) --pdf-engine=xelatex -V mainfont="Arial" -V geometry:margin=2cm
+
 # Remove all PDF, HTML and PPTX files
 clean:
 	find . -name "*.html" -exec rm -f {} \;
@@ -50,6 +55,7 @@ help:
 	@echo "Available targets:"
 	@echo "  html     - Generate HTML presentation (default: presentation.md)"
 	@echo "  html-local - Generate HTML for all files in content and rebuild content/index.html"
+	@echo "  assessment-pdf - Generate PDF from a plain Markdown assessment (not Marp)"
 	@echo "  clean    - Remove ALL pdf, html and pptx files"
 	@echo "  help     - Show this help message"
 	@echo "Example usage: make html SRC=my_presentation.md"
