@@ -24,9 +24,10 @@ jobs:
           # Ensure base commit exists
           git fetch origin "$BASE_SHA" --depth=1 || true
 
-          # Find changed or added Marp slides (top-level per grade, excluding plans/)
+          # Find changed or added Marp slides (excluding plans/ and assessments/)
           CHANGED_FILES=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- ':(glob)content/**/*.md' \
-            | { grep -v '/plans/' || true; } | tr '\n' ' ')
+            | { grep -v '/plans/' || true; } \
+            | { grep -v '/assessments/' || true; } | tr '\n' ' ')
           echo "CHANGED_FILES=${CHANGED_FILES}" >> $GITHUB_ENV
           echo "Detected changed or added slide files: ${CHANGED_FILES}"
 
@@ -34,6 +35,11 @@ jobs:
           CHANGED_PLANS=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- ':(glob)content/**/plans/*.md' | tr '\n' ' ')
           echo "CHANGED_PLANS=${CHANGED_PLANS}" >> $GITHUB_ENV
           echo "Detected changed or added plan files: ${CHANGED_PLANS}"
+
+          # Find changed or added assessment files
+          CHANGED_ASSESSMENTS=$(git diff --name-only --diff-filter=ACRM "$BASE_SHA" "$HEAD_SHA" -- ':(glob)content/**/assessments/*.md' | tr '\n' ' ')
+          echo "CHANGED_ASSESSMENTS=${CHANGED_ASSESSMENTS}" >> $GITHUB_ENV
+          echo "Detected changed or added assessment files: ${CHANGED_ASSESSMENTS}"
 
       - name: Create Temporary Directory
         run: |
@@ -68,8 +74,21 @@ jobs:
             docker run --rm -v "$PWD:/workspace" -w /workspace pandoc/extra:3.9-debian "$file" -o "$OUTPUT_PATH_PDF" --pdf-engine=xelatex -H .github/xelatex-header.tex
           done
 
+      - name: Convert Assessments to PDF using Pandoc
+        if: env.CHANGED_ASSESSMENTS != ''
+        run: |
+          sudo chmod -R 777 temp_output
+          for file in $CHANGED_ASSESSMENTS; do
+            RELATIVE_PATH="${file#content/}"
+            OUTPUT_DIR="$TEMP_DIR/$(dirname "$RELATIVE_PATH")"
+            mkdir -p "$OUTPUT_DIR"
+            OUTPUT_PATH_PDF="$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
+
+            docker run --rm -v "$PWD:/workspace" -w /workspace pandoc/extra:3.9-debian "$file" -o "$OUTPUT_PATH_PDF" --pdf-engine=xelatex -H .github/xelatex-header.tex
+          done
+
       - name: Upload Converted Files as Artifact
-        if: env.CHANGED_FILES != '' || env.CHANGED_PLANS != ''
+        if: env.CHANGED_FILES != '' || env.CHANGED_PLANS != '' || env.CHANGED_ASSESSMENTS != ''
         uses: actions/upload-artifact@v4
         env:
           ARTIFACT_NAME: converted-presentations-${{ github.event.pull_request.head.sha }}
