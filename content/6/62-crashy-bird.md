@@ -154,7 +154,7 @@ style: |
 </div>
 <div class="image-center">
 
-![w:280px](https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Fyoutu.be%2F4JxKdH1i2t8)
+![w:280px](./assets/62/qr-video.png)
 
 </div>
 </section>
