@@ -101,7 +101,7 @@ style: |
 </div>
 <div class="image-center">
 
-![w:320px](./assets/62/crashy-bird-demo.png)
+![w:320px](./assets/62/crashy-bird-demo.jpg)
 
 </div>
 </section>
