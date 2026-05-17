@@ -41,7 +41,7 @@ pptx:
 # Generate PDF from a plain Markdown assessment (not Marp)
 # Usage: make assessment-pdf SRC=content/8/assessments/my-assessment.md
 assessment-pdf:
-	pandoc $(SRC) -o $(PDF_OUT) --pdf-engine=xelatex -V mainfont="Arial" -V geometry:margin=2cm
+	pandoc $(SRC) -o $(PDF_OUT) --pdf-engine=xelatex -V mainfont="Arial" -V monofont="Courier New" -V geometry:margin=2cm
 
 # Remove all PDF, HTML and PPTX files
 clean:
