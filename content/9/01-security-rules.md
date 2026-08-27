@@ -97,6 +97,8 @@ style: |
 <div class="grid-container">
 <div class="text-left text-medium-small important-to-remember">
 
+📝 **Запам'ятати і занотувати**
+
 **Загальні положення**
 
 - До роботи в кабінеті допускаються учні, ознайомлені з цією інструкцією.
@@ -118,6 +120,8 @@ style: |
 <div class="grid-container">
 <div class="text-left text-medium-small important-to-remember">
 
+📝 **Запам'ятати і занотувати**
+
 **Перед початком роботи необхідно:**
 
 - переконатися у відсутності видимих пошкоджень на робочому місці, перевірити стан компʼютера;
@@ -137,6 +141,8 @@ style: |
 
 <div class="grid-container">
 <div class="text-left text-medium-small important-to-remember">
+
+📝 **Запам'ятати і занотувати**
 
 **Під час роботи учень зобов’язаний:**
 
@@ -161,6 +167,8 @@ style: |
 <div class="grid-container">
 <div class="text-left text-medium-small important-to-remember">
 
+📝 **Запам'ятати і занотувати**
+
 **Сидимо за компʼютером правильно:**
 
 - відстань від екрана до очей — 70–80 см (довжина витягнутої руки);
@@ -184,6 +192,8 @@ style: |
 <div class="grid-container">
 <div class="text-left text-medium-small important-to-remember">
 
+📝 **Запам'ятати і занотувати**
+
 **Дії в аварійних ситуаціях:**
 
 - у разі програмної помилки або збою обладнання — негайно повідомити вчителя;
@@ -203,6 +213,8 @@ style: |
 
 <div class="grid-container">
 <div class="text-left text-medium-small important-to-remember">
+
+📝 **Запам'ятати і занотувати**
 
 1. Перебувати в класі у верхньому одязі.
 2. Класти одяг і сумки на столи.
@@ -226,6 +238,8 @@ style: |
 
 <div class="grid-container">
 <div class="text-left text-medium-small important-to-remember">
+
+📝 **Запам'ятати і занотувати**
 
 8. Вмикати й вимикати комп’ютери самостійно.
 9. Перекривати вентиляційні отвори системного блока та монітора.
