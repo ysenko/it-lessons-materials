@@ -5,6 +5,10 @@ Presentations are added in the Marp (Markdown flavor) format, and the CI/CD pipe
 
 This is the [web version of presentations](https://ysenko.github.io/it-lessons-materials/index.html)
 
+[![Build and Upload Marp Presentations on Merge to Main](https://github.com/ysenko/it-lessons-materials/actions/workflows/gdrive_upload.yml/badge.svg)](https://github.com/ysenko/it-lessons-materials/actions/workflows/gdrive_upload.yml)
+
+[![Publish HTML presentations from main to github pages.](https://github.com/ysenko/it-lessons-materials/actions/workflows/publish-to-pages.yml/badge.svg)](https://github.com/ysenko/it-lessons-materials/actions/workflows/publish-to-pages.yml)
+
 ## Setup
 
 1. Create a new GCloud Project.
