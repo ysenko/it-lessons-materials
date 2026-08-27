@@ -17,7 +17,7 @@ This is the [web version of presentations](https://ysenko.github.io/it-lessons-m
 4. Download the service account key in JSON format and add it to the GitHub Secrets as `GDRIVE_CREDENTIALS`
 5. Add the following env variables `GRADE_5_FOLDER_ID`  `GRADE_6_FOLDER_ID` `GRADE_5_FOLDER_ID` with respective folder IDs (can be determined by looking at the folder URL in the browser).
 6. Generate personal access token (classic) with read access to the repo. Set repository secret `PAT_TOKEN` so the pipeline can download artifacts.
-7. Grant edit access to all folders for various grades to the service account email address.
+7. **IMPORTANT** Grant edit access to all folders for various grades to the service account email address via Google Drive WebUI.
 8. Commit merge and enjoy.
 
 ## Adding new presentation
