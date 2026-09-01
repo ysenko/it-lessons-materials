@@ -58,6 +58,6 @@ help:
 	@echo "  html     - Generate HTML presentation (default: presentation.md)"
 	@echo "  html-local - Generate HTML for all files in content and rebuild content/index.html"
 	@echo "  assessment-pdf - Generate PDF from a plain Markdown assessment (not Marp)"
-	@echo "  clean    - Remove ALL pdf, html and pptx files"
+	@echo "  clean    - Remove generated pdf, html and pptx files (keeps content/<grade>/assets/pages/)"
 	@echo "  help     - Show this help message"
 	@echo "Example usage: make html SRC=my_presentation.md"
