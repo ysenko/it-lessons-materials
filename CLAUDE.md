@@ -64,6 +64,7 @@ make clean
 
 - **`content/<GRADE>/`** — Markdown presentations organized by grade level (currently grades 6–8)
 - **`content/<GRADE>/assets/<LESSON-NUMBER>/`** — Images and other assets for each lesson
+- **`content/<GRADE>/assets/pages/`** — Source handbook page scans (PDF) used as reference material when planning lessons or assessments. Excluded from `make clean` (unlike other PDFs in the repo) since these are source material, not build output. Still never committed to git (see below)
 - **`templates/gaia_template.md`** — Template for new presentations (copy and customize)
 - **`templates/index_page.html.j2`** — Jinja2 template for generating index pages
 

@@ -43,10 +43,12 @@ pptx:
 assessment-pdf:
 	pandoc $(SRC) -o $(PDF_OUT) --pdf-engine=xelatex -V mainfont="Arial" -V monofont="Courier New" -V geometry:margin=2cm
 
-# Remove all PDF, HTML and PPTX files
+# Remove all PDF, HTML and PPTX files.
+# Handbook page scans under content/<grade>/assets/pages/ are source material,
+# not build output, and must never be swept up by this target.
 clean:
 	find . -name "*.html" -exec rm -f {} \;
-	find . -name "*.pdf" -exec rm -f {} \;
+	find . -name "*.pdf" -not -path "*/assets/pages/*" -exec rm -f {} \;
 	find . -name "*.pptx" -exec rm -f {} \;
 
 # Show help message
