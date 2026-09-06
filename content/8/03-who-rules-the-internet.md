@@ -1,53 +1,135 @@
 ---
+marp: true
 theme: gaia
 _class: lead
 paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
-footer: Інформатика | 8 клас
-header: Урок 03
-marp: true
+footer: 🖥️ Інформатика | 8 клас
+header: 🏫 Урок 03
+style: |
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .grid-item {
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #fafafa;
+  }
+  .text-left {
+    text-align: left;
+    padding: 5px;
+  }
+  .image-center {
+    max-width: 100%; /* Ensures the image scales within its space */
+    height: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .text-large {
+    font-size: 40px;
+  }
+  .text-medium {
+    font-size: 30px;
+  }
+  .text-medium-small {
+    font-size: 25px;
+  }
+  .text-small {
+    font-size: 18px;
+  }
+  .text-tiny {
+    font-size: 14px;
+  }
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #f9f9f9;
+  }
+  .important-to-remember {
+    background-color: #fff3cd;
+    border-left: 6px solid #ffecb5;
+    padding: 15px;
+    margin: 15px 0;
+  }
+  .borderless {
+    border: 0px;
+  }
+  .task {
+    background-color: #e3f2fd;
+    border-left: 5px solid #2196f3;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  .emoji-large {
+    font-size: 3em;
+    text-align: center;
+    display: block;
+  }
+
 ---
-
-<style>
-
-.grid-container {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  align-items: left;
-}
-.text-left {
-  font-size: 14px; /* Adjust text size */
-  padding: 10px;
-}
-.image-center {
-  max-width: 100%; /* Ensures the image scales within its space */
-  height: auto;
-  text-align: right;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.text-medium {
-  font-size: 30px;
-}
-.text-small {
-  font-size: 20px;
-}
-
-</style>
 
 # 🌐✨ Використовуємо інтернет
 
-## 🏫📘 Урок **03**
+## 🏫 Урок **03**
+
+---
+
+## 🛡️ Пригадуємо: техніка безпеки
+
+<div class="important-to-remember text-medium-small text-left">
+
+- 🖥️ Сідаємо рівно, відстань до екрана — довжина витягнутої руки.
+- 🚫 Без їжі, напоїв та верхнього одягу в кабінеті інформатики.
+- 🔌 Не чіпаємо кабелі, роз'єми, задню панель монітора чи системного блока.
+- ⚡ Не вмикаємо/вимикаємо комп'ютер самостійно, не відкриваємо системний блок.
+- 🔥 Побачили дим, почули незвичний звук або сталася помилка — одразу повідомляємо вчителя.
+
+</div>
 
 ---
 
 ## 🎯 Сьогодні ми дізнаємося
 
-- 🌐 Як підключитися до інтернету
-- 🛠️ Хто керує інтернетом
-- 🤔 Цікаві факти та міфи
+- 🌐 Хто керує інтернетом і чому в нього немає єдиного власника
+- 🔌 Як підключитися до інтернету
+- 🕰️ Досліджуємо перший вебсайт в історії людства
+
+---
+
+## ⚡ Бліц-опитування
+
+<section class="text-medium">
+
+1. Що перетворює доменне ім'я сайту на IP-адресу?
+2. Наведіть приклад домену верхнього рівня.
+3. Яку відповідальність може нести людина за порушення законів у цифровій сфері?
+4. А хто, на вашу думку, встановлює правила для доменних імен та адрес в інтернеті?
+
+</section>
+
+---
+
+## 🤔 А хто насправді керує інтернетом?
+
+<div class="card text-medium-small">
+
+Часто можна почути: **«Інтернетом керує одна велика компанія (або одна країна), яка може будь-що вимкнути чи заборонити»**.
+
+</div>
+
+> ❓ Чи згодні ви з цим твердженням? Хто, на вашу думку, насправді відповідає за роботу інтернету?
+
+Насправді інтернет **не має єдиного власника** — він децентралізований і складається з мереж, що належать тисячам організацій, компаній і людей у всьому світі. 🌍
 
 ---
 
@@ -56,7 +138,7 @@ marp: true
 <div class="grid-container">
   <div class="text-left text-small">
 
-Інтернет-провайдер (Internet Service Provider, ISP) забезпечує доступ до мережі «Інтернет» та пов’язаних з нею послуг.
+**Інтернет-провайдер** (Internet Service Provider, ISP) забезпечує доступ до мережі «Інтернет» та пов'язаних з нею послуг.
 
 - ☎️ DSL: підключення через телефонну лінію
 - 📺 Cable: підключення через кабельну мережу
@@ -68,7 +150,7 @@ marp: true
 
   <div class="image-center">
 
-![w:600px](./assets/03/various-internet-connections.png)
+![w:400px](./assets/03/various-internet-connections.png)
 
   </div>
 </div>
@@ -77,43 +159,69 @@ marp: true
 
 ## 🏢 Хто керує інтернетом?
 
-- 🌐 **ICANN** (Internet Corporation for Assigned Names and Numbers) — відповідає за управління доменними іменами та IP-адресами.
-- 🧑‍🔬 **IETF** (Internet Engineering Task Force) — розробляє та підтримує стандарти інтернету, такі як TCP/IP.
-- 🕸️ **W3C** (World Wide Web Consortium) — розробляє стандарти для Всесвітньої павутини (WWW), включаючи HTML та CSS.
-- 🌍 **ISOC** (Internet Society) — підтримує та просуває розвиток інтернету для всіх людей у світі.
+<div class="grid-container">
+<div class="grid-item text-medium-small">🌐 <b>ICANN</b><br>управління доменними іменами та IP-адресами</div>
+<div class="grid-item text-medium-small">🧑‍🔬 <b>IETF</b><br>стандарти інтернету, як-от TCP/IP</div>
+<div class="grid-item text-medium-small">🕸️ <b>W3C</b><br>стандарти Всесвітньої павутини — HTML, CSS</div>
+<div class="grid-item text-medium-small">🌍 <b>ISOC</b><br>підтримка розвитку інтернету для всіх людей у світі</div>
+</div>
 
 ---
 
-## 🏆 Цікаві факти про організації, що керують інтернетом
+## 🏆 Цікаві факти про організації
 
-- 🌐 **ICANN** була заснована у 1998 році, її штаб-квартира знаходиться в Лос-Анджелесі, США.
-- 🧑‍🔬 **IETF** — це відкрита група, до якої може приєднатися будь-хто, хто цікавиться розвитком інтернету.
+<section class="text-medium">
+
+- 🌐 **ICANN** заснована у 1998 році, штаб-квартира — у Лос-Анджелесі, США.
+- 🧑‍🔬 **IETF** — відкрита група, до якої може приєднатися будь-хто.
 - 🕸️ **W3C** створив сер Тім Бернерс-Лі — винахідник Всесвітньої павутини.
-- 🌍 **ISOC** підтримує освітні програми та проєкти для розвитку інтернету у всьому світі.
+- 🌍 **ISOC** підтримує освітні програми з розвитку інтернету у світі.
+
+</section>
 
 ---
 
 ## 🌟 Цікаві факти про інтернет
 
+<section class="text-medium-small">
+
 - 🌍 Понад 5 мільярдів людей у світі користуються інтернетом.
 - 🔎 Щосекунди в Google виконується понад 100 000 пошукових запитів.
-- 📷 Щодня в Instagram завантажують понад 95 мільйонів фотографій.
 - 📨 Перший електронний лист був надісланий у 1971 році.
-- 🏛️ Перший веб-сайт був створений у 1991 році і досі існує: [info.cern.ch](http://info.cern.ch).
+- 🏛️ Перший вебсайт було створено в 1991 році — і він **досі працює**: [info.cern.ch](http://info.cern.ch)
 - 🚀 Найшвидший інтернет у світі — понад 3000 Гбіт/с (Японія, 2022).
-- 🦠 Під час пандемії COVID-19 трафік в інтернеті зріс на 40%.
+
+</section>
 
 ---
 
-## 🧩 Поширені міфи про інтернет
+## 🧠 Вікторина «Правда чи міф?» — Classtime
 
-- 🕵️‍♂️ **Весь інтернет анонімний** — Насправді більшість дій у мережі можна відстежити.
-- 🗑️ **Можна повністю видалити інформацію з інтернету** — Деякі дані залишаються на серверах або в архівах.
-- 🌐 **Інтернет належить одній компанії чи країні** — Інтернет є глобальною мережею, яку підтримують тисячі організацій.
-- 🚫 **Весь контент в інтернеті безпечний** — Насправді існує багато шахрайських сайтів і небезпечного контенту.
+<span class="emoji-large">📱</span>
 
 ---
 
-## 📝 Завдання
+## 🕹️ Квест: подорож у 1991 рік
 
-🔍 Знайдіть відомості про те, як працює супутниковий інтернет. Сформулюйте своє пояснення, чому вартість цього способу з’єднання є високою.
+<section class="task text-medium-small">
+
+Відкрийте в парі сайт [info.cern.ch](http://info.cern.ch) — перший вебсайт в історії — і дайте відповіді:
+
+1. Прочитайте текст на головній сторінці. Якою фразою він починається?
+2. Відкрийте посилання **«Browse the first website»**. Яким заголовком (H1) підписана ця сторінка?
+3. Знайдіть на ній посилання **«History»** і відкрийте його — це хронологія проєкту. Яку подію позначено датою **«March 1989»**? А що відбулося на **«Christmas 1990»**?
+4. Порахуйте зображення, кольори та кнопки на сторінці «The World Wide Web project». Порівняйте з головною сторінкою будь-якого сучасного сайту.
+5. Поверніться на info.cern.ch і спробуйте посилання **«Browse the first website using the line-mode browser simulator»**. Одним реченням опишіть, чим цей спосіб перегляду відрізняється від сучасного браузера.
+
+</section>
+
+---
+
+## 🏠 Домашнє завдання
+
+<section class="text-medium-small">
+
+1. 📖 Опрацювати підручник, с. 12–14 (Крок 1–2; Крок 3 переглянути ознайомчо)
+2. 🖥️ Переглянути презентацію уроку
+
+</section>
