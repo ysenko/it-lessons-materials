@@ -13,3 +13,5 @@ creds.json
 
 # Python bytecode
 *.pyc
+
+.claude/logs/
