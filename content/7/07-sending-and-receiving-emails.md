@@ -130,10 +130,10 @@ style: |
   </div>
   <div class="grid-container">
 
-![h:220px](./assets/07/gmail-inbox-interface.png)
+![w:260px](./assets/07/gmail-inbox-interface.png)
 <!-- TODO: замінити на актуальний знімок вхідних листів у Gmail, якщо інтерфейс змінився -->
 
-![h:220px](./assets/07/proton-mail-inbox-interface.png)
+![w:260px](./assets/07/proton-mail-inbox-interface.png)
 <!-- TODO: зробити знімок екрана папки "Вхідні" в Proton Mail (proton.me/mail) з видимим переліком папок ліворуч -->
 
   </div>
@@ -196,10 +196,10 @@ style: |
   </div>
   <div class="grid-container">
 
-![h:220px](./assets/07/gmail-reading-emails.png)
+![w:260px](./assets/07/gmail-reading-emails.png)
 <!-- TODO: наявний знімок відкритого листа в Gmail -->
 
-![h:220px](./assets/07/proton-mail-reading-emails.png)
+![w:260px](./assets/07/proton-mail-reading-emails.png)
 <!-- TODO: зробити знімок відкритого листа з вкладенням у Proton Mail -->
 
   </div>
@@ -232,7 +232,7 @@ style: |
 
 <div class="image-center">
 
-![h:200px](./assets/07/gmail-reply-forward-buttons.png)
+![h:80px](./assets/07/gmail-reply-forward-buttons.png)
 <!-- TODO: зробити знімок кнопок "Відповісти" / "Відповісти всім" / "Переслати" під відкритим листом (Gmail або Proton Mail) -->
 
 </div>
