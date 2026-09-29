@@ -37,15 +37,16 @@ jobs:
               repo: context.repo.repo,
               commit_sha: context.sha
             });
-            const pr = prs.find(p => p.merged_at && p.merge_commit_sha === context.sha) || prs[0];
+            const pr = prs.find(p => p.merged_at && p.merge_commit_sha === context.sha);
             if (!pr) {
-              core.setFailed(`No pull request found for commit ${context.sha}`);
+              core.notice(`No merged pull request found for commit ${context.sha}. Skipping upload.`);
               return;
             }
             console.log(`PR #${pr.number}, head SHA ${pr.head.sha}`);
             core.exportVariable('MERGED_PR_SHA', pr.head.sha);
 
       - name: Download Artifact from Another Workflow
+        if: env.MERGED_PR_SHA != ''
         uses: dawidd6/action-download-artifact@v6
         with:
           github_token: ${{ secrets.PAT_TOKEN }}  # Use a PAT token to access artifacts from another workflow
