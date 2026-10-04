@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430" width="1200" height="430" font-family="Segoe UI, Arial, sans-serif">
+<rect width="1200" height="430" fill="#ffffff"/>
+<rect x="30" y="40" width="320" height="370" rx="10" fill="#ffffff" stroke="#455a64" stroke-width="2"/>
+<path d="M30 90 V50 a10 10 0 0 1 10 -10 H340 a10 10 0 0 1 10 10 V90 Z" fill="#455a64"/>
+<text x="190.0" y="73" text-anchor="middle" font-size="22" font-weight="bold" fill="#ffffff">Учні</text>
+<rect x="32" y="90" width="316" height="40" fill="#e1f5fe"/>
+<text x="42" y="116" font-size="14" font-weight="bold" fill="#0288d1">PK</text>
+<text x="82" y="116" font-size="17" font-weight="bold" fill="#263238">КодУчня</text>
+<text x="338" y="116" text-anchor="end" font-size="14" fill="#78909c">Автонумерація</text>
+<rect x="32" y="130" width="316" height="40" fill="#ffffff"/>
+<line x1="30" y1="130" x2="350" y2="130" stroke="#cfd8dc"/>
+<text x="82" y="156" font-size="17" fill="#263238">Прізвище</text>
+<text x="338" y="156" text-anchor="end" font-size="14" fill="#78909c">Короткий текст</text>
+<rect x="32" y="170" width="316" height="40" fill="#ffffff"/>
+<line x1="30" y1="170" x2="350" y2="170" stroke="#cfd8dc"/>
+<text x="82" y="196" font-size="17" fill="#263238">Ім&#8217;я</text>
+<text x="338" y="196" text-anchor="end" font-size="14" fill="#78909c">Короткий текст</text>
+<rect x="32" y="210" width="316" height="40" fill="#ffffff"/>
+<line x1="30" y1="210" x2="350" y2="210" stroke="#cfd8dc"/>
+<text x="82" y="236" font-size="17" fill="#263238">Стать</text>
+<text x="338" y="236" text-anchor="end" font-size="14" fill="#78909c">Короткий текст</text>
+<rect x="32" y="250" width="316" height="40" fill="#ffffff"/>
+<line x1="30" y1="250" x2="350" y2="250" stroke="#cfd8dc"/>
+<text x="82" y="276" font-size="17" fill="#263238">Клас</text>
+<text x="338" y="276" text-anchor="end" font-size="14" fill="#78909c">Короткий текст</text>
+<rect x="32" y="290" width="316" height="40" fill="#ffffff"/>
+<line x1="30" y1="290" x2="350" y2="290" stroke="#cfd8dc"/>
+<text x="82" y="316" font-size="17" fill="#263238">ДатаНародження</text>
+<text x="338" y="316" text-anchor="end" font-size="14" fill="#78909c">Дата й час</text>
+<rect x="32" y="330" width="316" height="40" fill="#ffffff"/>
+<line x1="30" y1="330" x2="350" y2="330" stroke="#cfd8dc"/>
+<text x="82" y="356" font-size="17" fill="#263238">Зріст</text>
+<text x="338" y="356" text-anchor="end" font-size="14" fill="#78909c">Число</text>
+<rect x="32" y="370" width="316" height="40" fill="#ffffff"/>
+<line x1="30" y1="370" x2="350" y2="370" stroke="#cfd8dc"/>
+<text x="82" y="396" font-size="17" fill="#263238">Захоплення</text>
+<text x="338" y="396" text-anchor="end" font-size="14" fill="#78909c">Короткий текст</text>
+<rect x="30" y="40" width="320" height="370" rx="10" fill="none" stroke="#455a64" stroke-width="2"/>
+<rect x="440" y="40" width="320" height="250" rx="10" fill="#ffffff" stroke="#455a64" stroke-width="2"/>
+<path d="M440 90 V50 a10 10 0 0 1 10 -10 H750 a10 10 0 0 1 10 10 V90 Z" fill="#455a64"/>
+<text x="600.0" y="73" text-anchor="middle" font-size="22" font-weight="bold" fill="#ffffff">Оцінки</text>
+<rect x="442" y="90" width="316" height="40" fill="#e1f5fe"/>
+<text x="452" y="116" font-size="14" font-weight="bold" fill="#0288d1">PK</text>
+<text x="492" y="116" font-size="17" font-weight="bold" fill="#263238">КодОцінки</text>
+<text x="748" y="116" text-anchor="end" font-size="14" fill="#78909c">Автонумерація</text>
+<rect x="442" y="130" width="316" height="40" fill="#fff3e0"/>
+<line x1="440" y1="130" x2="760" y2="130" stroke="#cfd8dc"/>
+<text x="452" y="156" font-size="14" font-weight="bold" fill="#ef6c00">FK</text>
+<text x="492" y="156" font-size="17" fill="#263238">КодУчня</text>
+<text x="748" y="156" text-anchor="end" font-size="14" fill="#78909c">Число</text>
+<rect x="442" y="170" width="316" height="40" fill="#fff3e0"/>
+<line x1="440" y1="170" x2="760" y2="170" stroke="#cfd8dc"/>
+<text x="452" y="196" font-size="14" font-weight="bold" fill="#ef6c00">FK</text>
+<text x="492" y="196" font-size="17" fill="#263238">КодПредмета</text>
+<text x="748" y="196" text-anchor="end" font-size="14" fill="#78909c">Число</text>
+<rect x="442" y="210" width="316" height="40" fill="#ffffff"/>
+<line x1="440" y1="210" x2="760" y2="210" stroke="#cfd8dc"/>
+<text x="492" y="236" font-size="17" fill="#263238">Оцінка</text>
+<text x="748" y="236" text-anchor="end" font-size="14" fill="#78909c">Число</text>
+<rect x="442" y="250" width="316" height="40" fill="#ffffff"/>
+<line x1="440" y1="250" x2="760" y2="250" stroke="#cfd8dc"/>
+<text x="492" y="276" font-size="17" fill="#263238">Дата</text>
+<text x="748" y="276" text-anchor="end" font-size="14" fill="#78909c">Дата й час</text>
+<rect x="440" y="40" width="320" height="250" rx="10" fill="none" stroke="#455a64" stroke-width="2"/>
+<rect x="850" y="40" width="320" height="130" rx="10" fill="#ffffff" stroke="#455a64" stroke-width="2"/>
+<path d="M850 90 V50 a10 10 0 0 1 10 -10 H1160 a10 10 0 0 1 10 10 V90 Z" fill="#455a64"/>
+<text x="1010.0" y="73" text-anchor="middle" font-size="22" font-weight="bold" fill="#ffffff">Предмети</text>
+<rect x="852" y="90" width="316" height="40" fill="#e1f5fe"/>
+<text x="862" y="116" font-size="14" font-weight="bold" fill="#0288d1">PK</text>
+<text x="902" y="116" font-size="17" font-weight="bold" fill="#263238">КодПредмета</text>
+<text x="1158" y="116" text-anchor="end" font-size="14" fill="#78909c">Автонумерація</text>
+<rect x="852" y="130" width="316" height="40" fill="#ffffff"/>
+<line x1="850" y1="130" x2="1170" y2="130" stroke="#cfd8dc"/>
+<text x="902" y="156" font-size="17" fill="#263238">Назва</text>
+<text x="1158" y="156" text-anchor="end" font-size="14" fill="#78909c">Короткий текст</text>
+<rect x="850" y="40" width="320" height="130" rx="10" fill="none" stroke="#455a64" stroke-width="2"/>
+<path d="M350 110 H395 V150 H440" fill="none" stroke="#0288d1" stroke-width="3"/>
+<text x="358" y="102" font-size="20" font-weight="bold" fill="#0288d1">1</text>
+<text x="414" y="142" font-size="24" font-weight="bold" fill="#0288d1">∞</text>
+<path d="M850 110 H805 V190 H760" fill="none" stroke="#0288d1" stroke-width="3"/>
+<text x="834" y="102" font-size="20" font-weight="bold" fill="#0288d1">1</text>
+<text x="764" y="182" font-size="24" font-weight="bold" fill="#0288d1">∞</text>
+<g font-size="16" fill="#263238">
+<rect x="852" y="250" width="26" height="22" fill="#e1f5fe" stroke="#0288d1"/><text x="890" y="267"><tspan font-weight="bold" fill="#0288d1">PK</tspan> — первинний ключ</text>
+<rect x="852" y="286" width="26" height="22" fill="#fff3e0" stroke="#ef6c00"/><text x="890" y="303"><tspan font-weight="bold" fill="#ef6c00">FK</tspan> — зовнішній ключ</text>
+<line x1="850" y1="333" x2="880" y2="333" stroke="#0288d1" stroke-width="3"/><text x="890" y="339"><tspan font-weight="bold" fill="#0288d1">1 — ∞</tspan> зв’язок «один-до-багатьох»</text>
+</g></svg>
