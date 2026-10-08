@@ -459,7 +459,10 @@ style: |
 
 <div class="text-medium-small">
 
-📖 Довідка: [support.mozilla.org/uk](https://support.mozilla.org/uk/) → у пошуку введіть **«посилений захист від стеження»** та **«режим лише HTTPS»**.
+📖 Довідка:
+
+1. [Захист від засобів стеження та скриптів у Розширеному захисті від стеження](https://support.mozilla.org/uk/kb/zahist-vid-zasobiv-stezhennya-ta-skriptiv-u-rozshi)
+2. [Режим «лише HTTPS» у Firefox](https://support.mozilla.org/uk/kb/https-only-prefs) *(стаття англійською — скористайтеся перекладачем браузера)*
 
 </div>
 
