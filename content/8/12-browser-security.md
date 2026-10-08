@@ -429,7 +429,10 @@ style: |
 
 <div class="text-medium-small">
 
-📖 Довідка: [support.google.com/chrome](https://support.google.com/chrome/?hl=uk) → у пошуку введіть **«Безпечний перегляд»** та **«Перевірка безпеки»**.
+📖 Довідка:
+
+1. [Як вибрати рівень захисту Безпечного перегляду в Chrome](https://support.google.com/chrome/answer/9890866?hl=uk)
+2. [Як керувати безпекою в Chrome](https://support.google.com/chrome/answer/10468685?hl=uk&co=GENIE.Platform%3DDesktop)
 
 </div>
 
