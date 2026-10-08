@@ -399,7 +399,10 @@ style: |
 
 <div class="text-medium-small">
 
-📖 Довідка: [support.microsoft.com/uk-ua](https://support.microsoft.com/uk-ua) → у пошуку введіть **«SmartScreen Edge»** та **«запобігання відстеженню Edge»**.
+📖 Довідка:
+
+1. [Як SmartScreen допомагає захистити мене в Microsoft Edge](https://support.microsoft.com/uk-ua/edge/how-can-smartscreen-help-protect-me-in-microsoft-edge)
+2. [Запобігання відстеженню в Microsoft Edge](https://support.microsoft.com/uk-ua/edge/learn-about-tracking-prevention-in-microsoft-edge)
 
 </div>
 
