@@ -122,7 +122,11 @@ style: |
 
 </div>
 
-<!-- Завдання самостійної роботи додасть учитель. -->
+<div class="text-medium">
+
+📄 <a href="https://drive.google.com/file/d/1CnRFHFXHEzcZFE2Bajd69_Yjx3Bz-Wbv/view?usp=sharing" target="_blank" rel="noopener noreferrer">Завдання самостійної роботи</a>
+
+</div>
 
 ---
 
