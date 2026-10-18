@@ -71,7 +71,7 @@ jobs:
             mkdir -p "$OUTPUT_DIR"
             OUTPUT_PATH_PDF="$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
 
-            docker run --rm -v "$PWD:/workspace" -w /workspace pandoc/extra:3.9-debian "$file" -o "$OUTPUT_PATH_PDF" --resource-path="$(dirname "$file")" --pdf-engine=xelatex -H .github/xelatex-header.tex
+            docker run --rm -v "$PWD:/workspace" -w /workspace pandoc/extra:3.9-debian "$file" -o "$OUTPUT_PATH_PDF" --resource-path=".:$(dirname "$file")" --pdf-engine=xelatex -H .github/xelatex-header.tex -H .github/pandoc-figures.tex
           done
 
       - name: Convert Assessments to PDF using Pandoc
@@ -84,7 +84,7 @@ jobs:
             mkdir -p "$OUTPUT_DIR"
             OUTPUT_PATH_PDF="$OUTPUT_DIR/$(basename "${file%.md}.pdf")"
 
-            docker run --rm -v "$PWD:/workspace" -w /workspace pandoc/extra:3.9-debian -f markdown-implicit_figures "$file" -o "$OUTPUT_PATH_PDF" --resource-path="$(dirname "$file")" --pdf-engine=xelatex -H .github/xelatex-header.tex
+            docker run --rm -v "$PWD:/workspace" -w /workspace pandoc/extra:3.9-debian "$file" -o "$OUTPUT_PATH_PDF" --resource-path=".:$(dirname "$file")" --pdf-engine=xelatex -H .github/xelatex-header.tex -H .github/pandoc-figures.tex
           done
 
       - name: Upload Converted Files as Artifact

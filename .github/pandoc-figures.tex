@@ -1,0 +1,7 @@
+% Image captions show only the alt text: no "Figure N:" prefix, whose
+% numbering would clash with image numbers referenced in task text.
+\usepackage{caption}
+\captionsetup{labelformat=empty}
+% Keep images where they appear in the source instead of floating away.
+\usepackage{float}
+\floatplacement{figure}{H}
