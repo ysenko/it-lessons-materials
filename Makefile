@@ -41,7 +41,7 @@ pptx:
 # Generate PDF from a plain Markdown assessment (not Marp)
 # Usage: make assessment-pdf SRC=content/8/assessments/my-assessment.md
 assessment-pdf:
-	pandoc $(SRC) -o $(PDF_OUT) --resource-path=".:$(dir $(SRC))" -H .github/pandoc-figures.tex --pdf-engine=xelatex -V mainfont="Arial" -V monofont="Courier New" -V geometry:left=2cm,right=1.5cm,top=1.5cm,bottom=1.5cm
+	pandoc $(SRC) -o $(PDF_OUT) --resource-path=".:$(dir $(SRC))" -H .github/pandoc-figures.tex --pdf-engine=xelatex -V mainfont="Arial" -V monofont="Courier New" -V papersize=a4 -V geometry:left=2cm,right=1.5cm,top=1.5cm,bottom=1.5cm
 
 # Remove all PDF, HTML and PPTX files.
 # Handbook page scans under content/<grade>/assets/pages/ are source material,
