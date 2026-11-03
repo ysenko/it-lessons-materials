@@ -175,7 +175,7 @@ style: |
 
 <div class="task text-medium">
 
-1. 🌐 Відкрийте [classtime.com/student/login](https://www.classtime.com/student/login).
+1. 🌐 Відкрийте <a href="https://www.classtime.com/student/login" target="_blank" rel="noopener noreferrer">classtime.com/student/login</a>.
 2. 🔢 Введіть **код сесії** — учитель запише його на дошці.
 3. ✍️ Вкажіть своє **прізвище та ім'я**.
 
@@ -229,8 +229,8 @@ style: |
 
 Перевірте, чи **захищене з'єднання** з кожним із сайтів:
 
-- [osvita.diia.gov.ua](https://osvita.diia.gov.ua)
-- [http.badssl.com](http://http.badssl.com)
+- <a href="https://osvita.diia.gov.ua" target="_blank" rel="noopener noreferrer">osvita.diia.gov.ua</a>
+- <a href="http://http.badssl.com" target="_blank" rel="noopener noreferrer">http.badssl.com</a>
 
 </div>
 
@@ -277,8 +277,8 @@ style: |
 
 У соцмережі поширюють **«щойно зроблене»** фото Лох-Несського чудовиська! 😱
 
-1. Відкрийте [tineye.com](https://tineye.com) і вставте в поле пошуку адресу фото:
-   <span class="text-tiny">[https://upload.wikimedia.org/wikipedia/commons/b/b3/Loch_Ness_Monster_Surgeon%27s_photograph.jpg](https://upload.wikimedia.org/wikipedia/commons/b/b3/Loch_Ness_Monster_Surgeon%27s_photograph.jpg)</span>
+1. Відкрийте <a href="https://tineye.com" target="_blank" rel="noopener noreferrer">tineye.com</a> і вставте в поле пошуку адресу фото:
+   <span class="text-tiny"><a href="https://upload.wikimedia.org/wikipedia/commons/b/b3/Loch_Ness_Monster_Surgeon%27s_photograph.jpg" target="_blank" rel="noopener noreferrer">https://upload.wikimedia.org/wikipedia/commons/b/b3/Loch_Ness_Monster_Surgeon%27s_photograph.jpg</a></span>
 2. Відсортуйте результати від найстаріших (**Oldest**).
 
 </div>
@@ -298,7 +298,7 @@ style: |
 Користувач пише: *«Щойно зняв: Київ замело снігом! Фото без жодної обробки!»*
 
 1. Збережіть фото в папку «Завантаження» (права кнопка миші → «Зберегти зображення як…»):
-   <span class="text-tiny">[https://upload.wikimedia.org/wikipedia/commons/1/14/Sviatoslava_Khorobroho_Street%2C_Kyiv.jpg](https://upload.wikimedia.org/wikipedia/commons/1/14/Sviatoslava_Khorobroho_Street%2C_Kyiv.jpg)</span>
+   <span class="text-tiny"><a href="https://upload.wikimedia.org/wikipedia/commons/1/14/Sviatoslava_Khorobroho_Street%2C_Kyiv.jpg" target="_blank" rel="noopener noreferrer">https://upload.wikimedia.org/wikipedia/commons/1/14/Sviatoslava_Khorobroho_Street%2C_Kyiv.jpg</a></span>
 2. Права кнопка миші на файлі → **«Властивості»** → **«Докладно»**. Знайдіть **дату зйомки** та **назву програми**.
 3. Видаліть файл із «Завантажень» 🗑️
 
@@ -321,7 +321,7 @@ style: |
 - 🅰️ *«Одеса, 12 липня 2024 р.: спека понад +30°, пляжі переповнені»* 🏖️
 - 🅱️ *«Львів, Різдво 25 грудня 2024 р.: мороз −15°, місто засипало снігом»* 🎄
 
-Перевірте обидва твердження на [wolframalpha.com](https://www.wolframalpha.com):
+Перевірте обидва твердження на <a href="https://www.wolframalpha.com" target="_blank" rel="noopener noreferrer">wolframalpha.com</a>:
 `weather Odesa July 12 2024` і `weather Lviv December 25 2024`
 
 </div>
