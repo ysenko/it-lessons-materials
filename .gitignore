@@ -15,3 +15,7 @@ creds.json
 *.pyc
 
 .claude/logs/
+
+# Local tool directories
+.superpowers/
+content/.obsidian/
