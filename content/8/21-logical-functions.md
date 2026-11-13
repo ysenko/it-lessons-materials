@@ -213,6 +213,7 @@ style: |
 
 ### `OR(умова1; умова2; …)`
 **TRUE**, якщо виконується **хоча б одна** умова.
+Чи є серед `A1`, `B1` від'ємне число?
 `=OR(A1<0; B1<0)`
 
 </div>
@@ -220,6 +221,7 @@ style: |
 
 ### `NOT(умова)`
 **TRUE**, якщо умова **не** виконується.
+Чи `A1` не дорівнює 0?
 `=NOT(A1=0)`
 
 </div>
@@ -228,7 +230,7 @@ style: |
 <div class="important-to-remember text-small">
 
 🪆 **Вкладені IF** — для вибору з трьох і більше варіантів (рівняння ax = b, a — в `A4`, b — в `B4`):
-`=IF(AND(A4=0; B4=0); "Безліч розв'язків"; IF(AND(A4=0; B4<>0); "Жодного розв'язку"; B4/A4))`
+`=IF(AND(A4=0; B4=0); "Безліч розв'язків"; IF(A4=0; "Жодного розв'язку"; B4/A4))`
 
 </div>
 
@@ -241,7 +243,7 @@ style: |
 <div class="grid-container">
 <div class="text-left text-medium-small">
 
-У клітинці `A1` — число **100**, у клітинці `B1` — число **10**. Оберіть правильну відповідь на кожне запитання вправи.
+У клітинці `A1` — число **100**, у клітинці `B1` — число **10**. Обери правильну відповідь на кожне запитання вправи.
 
 🔗 <a href="https://learningapps.org/display?v=pyuko1uxa26" target="_blank" rel="noopener noreferrer">Відкрити вправу</a>
 
@@ -263,7 +265,7 @@ style: |
 
 <div class="text-small">
 
-🔗 <a href="https://docs.google.com/spreadsheets/d/1qhTrqkVm2bq1HiJ5BgdiKQOE4DH5ek9EpR5FE6ikptY/copy" target="_blank" rel="noopener noreferrer">Відкрити таблицю</a> → **Створити копію** → перейменуйте на `Урок21_Прізвище`. Заповнюйте **жовті** клітинки формулами.
+🔗 <a href="https://docs.google.com/spreadsheets/d/1qhTrqkVm2bq1HiJ5BgdiKQOE4DH5ek9EpR5FE6ikptY/copy" target="_blank" rel="noopener noreferrer">Відкрити таблицю</a> → **Створити копію** → перейменуй на `Урок21_Прізвище`. Заповнюй **жовті** клітинки формулами.
 
 ### 🟢 Середній
 1. У `C2` за допомогою функції `IF` визнач колір маркування парти: зріст **понад 160 см** — «Синє», інакше — «Зелене». Скопіюй формулу автозаповненням до `C9`.
