@@ -8,3 +8,11 @@ repos:
     -   id: end-of-file-fixer
     -   id: check-yaml
 #    -   id: check-added-large-files
+-   repo: local
+    hooks:
+    -   id: marp-check
+        name: Marp deck check
+        entry: python tools/check_marp.py
+        language: python
+        additional_dependencies: [pyyaml==6.0.3]
+        files: ^content/[0-9]+/[^/]+\.md$
