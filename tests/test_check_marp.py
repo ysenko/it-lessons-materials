@@ -149,6 +149,10 @@ class TechnicalChecks(Base):
         )
         self.assertEqual(self.problems(text), [])
 
+    def test_capitalized_note_comment_ignored(self):
+        text = with_slide("## Слайд\n\n<!-- TODO: замінити знімок -->\n<!-- Note: check -->")
+        self.assertEqual(self.problems(text), [])
+
     def test_code_block_contents_ignored(self):
         code = (
             "## Код\n\n```python\nprint('---')\n---\n"

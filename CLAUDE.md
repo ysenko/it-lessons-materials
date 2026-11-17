@@ -95,7 +95,23 @@ Lesson metadata (title, grade, number) is extracted from the presentation's `<ti
 pre-commit run --all-files
 ```
 
-Hooks: trailing-whitespace, end-of-file-fixer, check-yaml.
+Hooks: trailing-whitespace, end-of-file-fixer, check-yaml, marp-check.
+
+`marp-check` (`tools/check_marp.py`) runs on changed presentations (`content/<GRADE>/*.md`, not `plans/` or `assessments/`) and checks what Marp CLI silently accepts — front matter, local images, `<div>`/`<section>` balance, directive names — plus the `nush-lesson-planner` rules: links as `<a … target="_blank">`, no leftover placeholders, the safety slide second, a homework slide, at most 14 slides (homework not counted), and the template's CSS classes. Older presentations predate these rules and fail until updated.
+
+```sh
+# Check one presentation
+pre-commit run marp-check --files content/7/22-data-types.md
+
+# Skip only the slide-limit check
+MARP_CHECK_SKIP_SLIDE_LIMIT=1 pre-commit run marp-check --files content/7/22-data-types.md
+
+# Bypass the hook for a single commit
+SKIP=marp-check git commit -m "..."
+
+# Run the checker's tests
+python3 -m unittest tests.test_check_marp
+```
 
 ## Presentation Format
 

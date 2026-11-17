@@ -39,7 +39,8 @@ KNOWN_DIRECTIVES = {
 FENCE_RE = re.compile(r"^\s{0,3}(`{3,}|~{3,})")
 INLINE_CODE_RE = re.compile(r"(`+)(.+?)\1")
 COMMENT_RE = re.compile(r"<!--(.*?)-->", re.DOTALL)
-DIRECTIVE_LINE_RE = re.compile(r"^\s*_?([A-Za-z][A-Za-z0-9]*)\s*:")
+# Marp directives are lowerCamelCase; "TODO:" / "Note:" comments are notes.
+DIRECTIVE_LINE_RE = re.compile(r"^\s*_?([a-z][A-Za-z0-9]*)\s*:")
 OPEN_TAG_RE = re.compile(r"<(div|section)\b[^>]*?(?<!/)>", re.IGNORECASE)
 CLOSE_TAG_RE = re.compile(r"</(div|section)\s*>", re.IGNORECASE)
 H1_RE = re.compile(r"^#\s+\S")
