@@ -36,7 +36,10 @@ KNOWN_DIRECTIVES = {
     "marp", "lang",
 }
 
-FENCE_RE = re.compile(r"^\s{0,3}(`{3,}|~{3,})")
+# Any indentation: fences nested in list items are still code blocks.
+FENCE_RE = re.compile(r"^\s*(`{3,}|~{3,})")
+# A markdown thematic break starts a new Marp slide.
+RULE_RE = re.compile(r"^\s{0,3}([-*_])(?:\s*\1){2,}\s*$")
 INLINE_CODE_RE = re.compile(r"(`+)(.+?)\1")
 COMMENT_RE = re.compile(r"<!--(.*?)-->", re.DOTALL)
 # Marp directives are lowerCamelCase; "TODO:" / "Note:" comments are notes.
@@ -80,7 +83,7 @@ class Problem(NamedTuple):
 
 class Slide(NamedTuple):
     start_line: int
-    lines: list[str]  # code-masked: fenced code blanked, inline code -> spaces
+    lines: list[str]  # code-masked: fenced code blanked, inline code -> "x"
 
 
 class Deck(NamedTuple):
@@ -105,8 +108,30 @@ def _mask_code(lines: list[str]) -> list[str]:
                 fence = None
             masked.append("")
         else:
-            masked.append(INLINE_CODE_RE.sub(lambda c: " " * len(c.group(0)), line))
+            # "x", not spaces: "**`code`**" must not turn into a "** **" rule.
+            masked.append(INLINE_CODE_RE.sub(lambda c: "x" * len(c.group(0)), line))
     return masked
+
+
+def _is_slide_break(line: str, previous: str) -> bool:
+    """Mirror markdown: a rule right after text or an HTML block is not a break.
+
+    ``Text`` + ``---`` is a setext heading; ``</div>`` + ``---`` stays inside the
+    HTML block. ``***`` / ``___`` still interrupt a paragraph.
+    """
+    m = RULE_RE.match(line)
+    if not m:
+        return False
+    prev = previous.strip()
+    if not prev or prev.endswith("-->"):  # a comment block ends on its own line
+        return True
+    return m.group(1) != "-" and not prev.startswith("<")
+
+
+def _inside_comment_after(line: str, in_comment: bool) -> bool:
+    for token in re.findall(r"<!--|-->", line):
+        in_comment = token == "<!--"
+    return in_comment
 
 
 def parse_deck(path: Path) -> Deck:
@@ -143,13 +168,17 @@ def parse_deck(path: Path) -> Deck:
     slides: list[Slide] = []
     current: list[str] = []
     start = fm_end + 1
+    in_comment = False
+    previous = ""
     for offset, line in enumerate(masked):
-        if line.rstrip() == "---":
+        if not in_comment and _is_slide_break(line, previous):
             slides.append(Slide(start, current))
             current = []
             start = fm_end + offset + 2
         else:
             current.append(line)
+        in_comment = _inside_comment_after(line, in_comment)
+        previous = line
     slides.append(Slide(start, current))
     return Deck(path, front_matter, error, fm_end, slides, raw_lines)
 

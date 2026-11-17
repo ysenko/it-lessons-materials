@@ -149,6 +149,39 @@ class TechnicalChecks(Base):
         )
         self.assertEqual(self.problems(text), [])
 
+    def slide_count(self, text: str) -> int:
+        return len(parse_deck(self.write_deck(text)).slides)
+
+    def test_dash_break_inside_comment_ignored(self):
+        text = with_slide("## Слайд\n\n<!--\n\n---\n\n<div>\n-->")
+        self.assertEqual(self.problems(text), [])
+        self.assertEqual(self.slide_count(text), self.slide_count(VALID_DECK) + 1)
+
+    def test_setext_heading_not_a_break(self):
+        text = with_slide("## Слайд\n\nПідзаголовок\n---\n\nТекст")
+        self.assertEqual(self.slide_count(text), self.slide_count(VALID_DECK) + 1)
+
+    def test_dash_after_html_block_not_a_break(self):
+        text = with_slide('<div class="card">\nТекст\n</div>\n---\n\n## Далі')
+        self.assertEqual(self.slide_count(text), self.slide_count(VALID_DECK) + 1)
+
+    def test_asterisk_rule_is_a_break(self):
+        text = with_slide("## A\n\n***\n\n## B\n\n___\n\n## C")
+        self.assertEqual(self.slide_count(text), self.slide_count(VALID_DECK) + 3)
+
+    def test_bold_inline_code_not_a_break(self):
+        text = with_slide("## Код\n\nДодати блок:\n**`встановити колір`**\n\nТекст")
+        self.assertEqual(self.slide_count(text), self.slide_count(VALID_DECK) + 1)
+
+    def test_dash_after_comment_is_a_break(self):
+        text = with_slide("## A\n<!-- нотатка -->\n---\n\n## B")
+        self.assertEqual(self.slide_count(text), self.slide_count(VALID_DECK) + 2)
+
+    def test_indented_fence_in_list_masked(self):
+        text = with_slide("## Код\n\n1. Крок\n    ```\n    ---\n    <section>\n    ```")
+        self.assertEqual(self.problems(text), [])
+        self.assertEqual(self.slide_count(text), self.slide_count(VALID_DECK) + 1)
+
     def test_capitalized_note_comment_ignored(self):
         text = with_slide("## Слайд\n\n<!-- TODO: замінити знімок -->\n<!-- Note: check -->")
         self.assertEqual(self.problems(text), [])
