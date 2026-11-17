@@ -3,7 +3,11 @@
 
 Marp CLI converts almost anything without complaint, so this script catches
 problems it silently accepts: broken front matter, missing images, unbalanced
-HTML wrappers, misspelled directives.
+HTML wrappers, misspelled directives. It also enforces the presentation rules
+of skills/nush-lesson-planner/SKILL.md (links, placeholders, required slides,
+slide limit, template CSS classes).
+
+Set MARP_CHECK_SKIP_SLIDE_LIMIT=1 to skip the slide-limit check.
 
 Usage: python tools/check_marp.py <deck.md> [<deck.md> ...]
 Prints ``path:line: message`` per problem; exits 1 if any were found.
@@ -11,8 +15,11 @@ Prints ``path:line: message`` per problem; exits 1 if any were found.
 
 from __future__ import annotations
 
+import functools
+import os
 import re
 import sys
+from collections.abc import Mapping
 from pathlib import Path
 from typing import NamedTuple
 from urllib.parse import unquote
@@ -42,6 +49,27 @@ IMAGE_RES = (
     re.compile(r"url\(\s*[\"']?([^\"')]+?)[\"']?\s*\)"),
 )
 SCHEME_RE = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*:|^//|^#")
+
+SLIDE_LIMIT = 14
+SKIP_SLIDE_LIMIT_ENV = "MARP_CHECK_SKIP_SLIDE_LIMIT"
+SAFETY_TITLE = "Пригадуємо: техніка безпеки"
+HOMEWORK_RE = re.compile(r"^##\s+🏠\s*Домашнє завдання")
+PLACEHOLDER_RE = re.compile(r"REPLACE|ABC[–-]XYZ")
+CSS_CLASS_RE = re.compile(r"^\s*\.([A-Za-z0-9_-]+)\s*\{", re.MULTILINE)
+ANCHOR_RE = re.compile(r"<a\b([^>]*)>(.*?)</a\s*>", re.IGNORECASE)
+ANCHOR_OPEN_RE = re.compile(r"<a\b([^>]*)>", re.IGNORECASE)
+HTTP_HREF_RE = re.compile(r"\bhref\s*=\s*[\"']\s*https?://", re.IGNORECASE)
+TARGET_BLANK_RE = re.compile(r"\btarget\s*=\s*[\"']_blank[\"']", re.IGNORECASE)
+ATTR_VALUE_RE = re.compile(r"\b(?:href|src)\s*=\s*(\"[^\"]*\"|'[^']*')", re.IGNORECASE)
+MD_IMAGE_RE = re.compile(r"!\[[^\]]*\]\([^)]*\)")
+CSS_URL_RE = re.compile(r"url\([^)]*\)")
+MD_LINK_RE = re.compile(r"\[[^\]]*\]\(\s*<?(?:https?://|www\.)")
+AUTOLINK_RE = re.compile(r"<(?:https?://|www\.)[^>\s]*>")
+BARE_URL_RE = re.compile(
+    r"https?://\S+|\bwww\.\S+"
+    r"|(?<![@\w.-])(?:[A-Za-z0-9-]+\.)+(?:com|org|net|ua|io|app|edu|gov|info|me|ly|gl|co|ai)\b(?:/\S*)?"
+)
+LINK_HINT = 'use <a href="…" target="_blank" rel="noopener noreferrer">'
 
 
 class Problem(NamedTuple):
@@ -215,21 +243,104 @@ def _check_directives(deck: Deck) -> list[Problem]:
     return problems
 
 
+def _check_links(deck: Deck) -> list[Problem]:
+    problems = []
+    for slide in deck.slides:
+        for i, line in enumerate(_strip_comments(slide.lines)):
+            number = slide.start_line + i
+            for attrs in ANCHOR_OPEN_RE.findall(line):
+                if HTTP_HREF_RE.search(attrs) and not TARGET_BLANK_RE.search(attrs):
+                    problems.append(Problem(number, f'link must open in a new tab: {LINK_HINT}'))
+            rest = ANCHOR_RE.sub(" ", line)
+            rest = MD_IMAGE_RE.sub(" ", rest)
+            rest = CSS_URL_RE.sub(" ", rest)
+            rest = ATTR_VALUE_RE.sub(" ", rest)
+            if MD_LINK_RE.search(rest):
+                problems.append(Problem(number, f"Markdown link: {LINK_HINT} instead"))
+            elif AUTOLINK_RE.search(rest):
+                problems.append(Problem(number, f"autolink <URL>: {LINK_HINT} instead"))
+            else:
+                bare = BARE_URL_RE.search(rest)
+                if bare:
+                    problems.append(Problem(number, f"bare URL {bare.group(0)}: {LINK_HINT}"))
+    return problems
+
+
+def _check_placeholders(deck: Deck) -> list[Problem]:
+    return [
+        Problem(i + 1, f"leftover placeholder: {m.group(0)}")
+        for i, line in enumerate(deck.raw_lines)
+        for m in PLACEHOLDER_RE.finditer(line)
+    ]
+
+
+def _is_homework(slide: Slide) -> bool:
+    return any(HOMEWORK_RE.match(line) for line in slide.lines)
+
+
+def _check_structure(deck: Deck, skip_slide_limit: bool) -> list[Problem]:
+    problems = []
+    slides = deck.slides
+    if len(slides) < 2 or not any(SAFETY_TITLE in l for l in slides[1].lines):
+        line = slides[1].start_line if len(slides) > 1 else 1
+        problems.append(Problem(line, f'slide 2 must be the "🛡️ {SAFETY_TITLE}" slide'))
+    if not any(_is_homework(s) for s in slides):
+        problems.append(Problem(1, 'no "## 🏠 Домашнє завдання" slide'))
+    counted = [s for s in slides if not _is_homework(s)]
+    if not skip_slide_limit and len(counted) > SLIDE_LIMIT:
+        problems.append(Problem(
+            counted[SLIDE_LIMIT].start_line,
+            f"{len(counted)} slides (homework not counted), the limit is {SLIDE_LIMIT}; "
+            f"set {SKIP_SLIDE_LIMIT_ENV}=1 to skip this check",
+        ))
+    return problems
+
+
+@functools.lru_cache(maxsize=None)
+def _template_classes(template_path: Path) -> tuple[str, ...]:
+    fm = parse_deck(template_path).front_matter or {}
+    return tuple(dict.fromkeys(CSS_CLASS_RE.findall(str(fm.get("style", "")))))
+
+
+def _check_css(deck: Deck, template_path: Path) -> list[Problem]:
+    if deck.front_matter is None:
+        return []
+    present = set(CSS_CLASS_RE.findall(str(deck.front_matter.get("style", ""))))
+    line = next(
+        (i + 1 for i, l in enumerate(deck.raw_lines[: deck.fm_end_line]) if l.startswith("style:")),
+        1,
+    )
+    return [
+        Problem(line, f"CSS class .{name} from {template_path.name} is missing in style:")
+        for name in _template_classes(template_path)
+        if name not in present
+    ]
+
+
+def slide_limit_skipped(environ: Mapping[str, str]) -> bool:
+    return environ.get(SKIP_SLIDE_LIMIT_ENV, "") not in ("", "0")
+
+
 def check_deck(deck: Deck, template_path: Path, skip_slide_limit: bool) -> list[Problem]:
     problems = _check_front_matter(deck)
     problems += _check_title(deck)
     problems += _check_images(deck)
     problems += _check_tags(deck)
     problems += _check_directives(deck)
+    problems += _check_links(deck)
+    problems += _check_placeholders(deck)
+    problems += _check_structure(deck, skip_slide_limit)
+    problems += _check_css(deck, template_path)
     return sorted(problems, key=lambda p: p.line)
 
 
 def main(argv: list[str] | None = None) -> int:
     paths = sys.argv[1:] if argv is None else argv
+    skip = slide_limit_skipped(os.environ)
     failed = False
     for name in paths:
         deck = parse_deck(Path(name))
-        for problem in check_deck(deck, DEFAULT_TEMPLATE, skip_slide_limit=False):
+        for problem in check_deck(deck, DEFAULT_TEMPLATE, skip_slide_limit=skip):
             print(f"{name}:{problem.line}: {problem.message}")
             failed = True
     return 1 if failed else 0

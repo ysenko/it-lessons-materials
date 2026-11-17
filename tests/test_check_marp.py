@@ -1,15 +1,23 @@
 import contextlib
 import io
+import os
 import re
 import sys
 import tempfile
 import unittest
+import unittest.mock
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "tools"))
 
-from check_marp import DEFAULT_TEMPLATE, check_deck, main, parse_deck  # noqa: E402
+from check_marp import (  # noqa: E402
+    DEFAULT_TEMPLATE,
+    check_deck,
+    main,
+    parse_deck,
+    slide_limit_skipped,
+)
 
 
 def _valid_deck() -> str:
@@ -172,6 +180,90 @@ class TechnicalChecks(Base):
             self.assertEqual(main([str(good)]), 0)
             self.assertEqual(main([str(bad)]), 1)
         self.assertRegex(out.getvalue(), rf"^{re.escape(str(bad))}:\d+: .*_clas")
+
+
+def deck_with_counted_slides(n: int) -> str:
+    """VALID_DECK padded to n slides, not counting the homework slide."""
+    base = len(VALID_DECK.split("\n---\n")) - 2  # minus front matter, homework
+    extra = "\n\n---\n\n".join(f"## Слайд {i}" for i in range(n - base))
+    return with_slide(extra) if n > base else VALID_DECK
+
+
+class SkillRules(Base):
+    def test_markdown_url_link(self):
+        self.assertProblem(with_slide("[сайт](https://example.com)"), "<a href")
+
+    def test_autolink(self):
+        self.assertProblem(with_slide("Див. <https://example.com>"), "<a href")
+
+    def test_bare_url(self):
+        self.assertProblem(with_slide("див. https://example.com"), "<a href")
+
+    def test_bare_domain(self):
+        self.assertProblem(with_slide("Відкрийте padlet.com"), "<a href")
+
+    def test_url_inside_href_ok(self):
+        text = with_slide(
+            '<a href="https://e.com/x?a=1" target="_blank" rel="noopener noreferrer">сайт</a>'
+        )
+        self.assertEqual(self.problems(text), [])
+
+    def test_url_in_code_block_ok(self):
+        text = with_slide("```\ncurl https://example.com\n[x](https://a.b)\n```")
+        self.assertEqual(self.problems(text), [])
+
+    def test_anchor_without_target_blank(self):
+        text = with_slide('<a href="https://e.com">сайт</a>')
+        self.assertProblem(text, 'target="_blank"')
+
+    def test_placeholder_replace(self):
+        self.assertProblem(with_slide("REPLACE WITH LESSON TITLE"), "REPLACE")
+
+    def test_placeholder_pages_en_dash(self):
+        self.assertProblem(with_slide("Підручник с. ABC–XYZ"), "ABC–XYZ")
+
+    def test_placeholder_pages_hyphen(self):
+        self.assertProblem(with_slide("Підручник с. ABC-XYZ"), "ABC-XYZ")
+
+    def test_safety_slide_not_second(self):
+        text = VALID_DECK.replace(
+            "## 🛡️ Пригадуємо: техніка безпеки", "## 📌 Інший слайд", 1
+        )
+        self.assertProblem(text, "техніка безпеки")
+
+    def test_no_homework_slide(self):
+        text = VALID_DECK.replace("## 🏠 Домашнє завдання", "## Підсумки", 1)
+        self.assertProblem(text, "Домашнє завдання")
+
+    def test_slide_limit_ok_at_14(self):
+        self.assertEqual(self.problems(deck_with_counted_slides(14)), [])
+
+    def test_slide_limit_exceeded_at_15(self):
+        self.assertProblem(deck_with_counted_slides(15), "14")
+
+    def test_slide_limit_skipped(self):
+        text = deck_with_counted_slides(15).replace("marp: true", "marp: false", 1)
+        msgs = self.problems(text, skip_slide_limit=True)
+        self.assertFalse(any("14" in m for m in msgs), msgs)
+        self.assertTrue(any("marp: true" in m for m in msgs), msgs)
+
+    def test_slide_limit_skipped_env(self):
+        self.assertIs(slide_limit_skipped({}), False)
+        self.assertIs(slide_limit_skipped({"MARP_CHECK_SKIP_SLIDE_LIMIT": "1"}), True)
+        self.assertIs(slide_limit_skipped({"MARP_CHECK_SKIP_SLIDE_LIMIT": "0"}), False)
+        self.assertIs(slide_limit_skipped({"MARP_CHECK_SKIP_SLIDE_LIMIT": ""}), False)
+
+    def test_main_reads_env_switch(self):
+        path = self.write_deck(deck_with_counted_slides(15))
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out), unittest.mock.patch.dict(
+            os.environ, {"MARP_CHECK_SKIP_SLIDE_LIMIT": "1"}
+        ):
+            self.assertEqual(main([str(path)]), 0)
+
+    def test_missing_css_class(self):
+        text = VALID_DECK.replace("  .task {", "  .task-renamed {", 1)
+        self.assertProblem(text, ".task")
 
 
 if __name__ == "__main__":
