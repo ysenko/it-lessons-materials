@@ -14,7 +14,7 @@ PDF_OUT := $(subst content,$(OUTPUT_DIR),$(PDF_OUT))
 PPTX_OUT := $(subst content,$(OUTPUT_DIR),$(PPTX_OUT))
 
 # Define Marp CLI command
-MARP = marp
+MARP = marp --no-stdin
 
 # Default target: generate HTML, PDF and PPTX files
 all: html pdf pptx
