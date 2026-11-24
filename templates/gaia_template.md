@@ -75,6 +75,21 @@ style: |
     text-align: center;
     display: block;
   }
+  .notebook {
+    background-color: #f1f8e9;
+    border-left: 6px solid #8bc34a;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+  }
+  .notebook::before {
+    content: "✍️ Запишіть у зошит";
+    display: block;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #558b2f;
+    margin-bottom: 5px;
+  }
 
 ---
 
