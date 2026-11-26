@@ -162,7 +162,7 @@ style: |
 </div>
 <div class="card image-center text-small">
 
-**2. Налаштовуємо зовнішній вигляд**
+**2. Налаштовуємо зовнішній вигляд діаграми**
 ⏱️ 2:33
 
 ![w:150px](./assets/24/qr-video-2.svg)
